@@ -29,32 +29,78 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
-            richTextBox1 = new RichTextBox();
-            richTextBox2 = new RichTextBox();
-            btnLogin = new Button();
-            pictureBox1 = new PictureBox();
-            pictureBox2 = new PictureBox();
+            pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            pictureBox2 = new PictureBox();
+            pictureBox1 = new PictureBox();
+            tbPassword = new RichTextBox();
+            tbUsername = new RichTextBox();
+            btnLogin = new Button();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // richTextBox1
+            // pictureBox4
             // 
-            richTextBox1.Location = new Point(248, 422);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(245, 43);
-            richTextBox1.TabIndex = 3;
-            richTextBox1.Text = "";
+            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(405, 57);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(499, 678);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 10;
+            pictureBox4.TabStop = false;
             // 
-            // richTextBox2
+            // pictureBox3
             // 
-            richTextBox2.Location = new Point(248, 478);
-            richTextBox2.Name = "richTextBox2";
-            richTextBox2.Size = new Size(245, 43);
-            richTextBox2.TabIndex = 5;
-            richTextBox2.Text = "";
+            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(541, 361);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(222, 80);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 16;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(588, 312);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(136, 55);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 15;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(588, 204);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(136, 115);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 14;
+            pictureBox1.TabStop = false;
+            // 
+            // tbPassword
+            // 
+            tbPassword.Location = new Point(530, 503);
+            tbPassword.Name = "tbPassword";
+            tbPassword.Size = new Size(245, 43);
+            tbPassword.TabIndex = 13;
+            tbPassword.Text = "";
+            // 
+            // tbUsername
+            // 
+            tbUsername.Location = new Point(530, 447);
+            tbUsername.Name = "tbUsername";
+            tbUsername.Size = new Size(245, 43);
+            tbUsername.TabIndex = 12;
+            tbUsername.Text = "";
             // 
             // btnLogin
             // 
@@ -63,45 +109,12 @@
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(248, 527);
+            btnLogin.Location = new Point(530, 552);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(245, 41);
-            btnLogin.TabIndex = 0;
+            btnLogin.TabIndex = 11;
             btnLogin.Text = "login";
             btnLogin.UseVisualStyleBackColor = false;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(306, 179);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(136, 115);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 7;
-            pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(306, 287);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(136, 55);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 8;
-            pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(271, 336);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(222, 80);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 9;
-            pictureBox3.TabStop = false;
             // 
             // LoginForm
             // 
@@ -109,30 +122,34 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(757, 788);
+            ClientSize = new Size(1280, 720);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
-            Controls.Add(richTextBox2);
-            Controls.Add(richTextBox1);
+            Controls.Add(tbPassword);
+            Controls.Add(tbUsername);
             Controls.Add(btnLogin);
+            Controls.Add(pictureBox4);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-        private RichTextBox richTextBox1;
-        private RichTextBox richTextBox2;
-        private Button btnLogin;
-        private PictureBox pictureBox1;
-        private PictureBox pictureBox2;
+
+        private PictureBox pictureBox4;
         private PictureBox pictureBox3;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox1;
+        private RichTextBox tbPassword;
+        private RichTextBox tbUsername;
+        private Button btnLogin;
     }
 }
