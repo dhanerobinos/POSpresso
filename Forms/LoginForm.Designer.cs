@@ -33,9 +33,9 @@
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
-            tbPassword = new RichTextBox();
             tbUsername = new RichTextBox();
             btnLogin = new Button();
+            tbPassword = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -86,16 +86,9 @@
             pictureBox1.TabIndex = 14;
             pictureBox1.TabStop = false;
             // 
-            // tbPassword
-            // 
-            tbPassword.Location = new Point(530, 503);
-            tbPassword.Name = "tbPassword";
-            tbPassword.Size = new Size(245, 43);
-            tbPassword.TabIndex = 13;
-            tbPassword.Text = "";
-            // 
             // tbUsername
             // 
+            tbUsername.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             tbUsername.Location = new Point(530, 447);
             tbUsername.Name = "tbUsername";
             tbUsername.Size = new Size(245, 43);
@@ -115,6 +108,16 @@
             btnLogin.TabIndex = 11;
             btnLogin.Text = "login";
             btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
+            // 
+            // tbPassword
+            // 
+            tbPassword.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbPassword.Location = new Point(530, 496);
+            tbPassword.Name = "tbPassword";
+            tbPassword.Size = new Size(245, 39);
+            tbPassword.TabIndex = 17;
+            tbPassword.UseSystemPasswordChar = true;
             // 
             // LoginForm
             // 
@@ -122,11 +125,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1280, 720);
+            ClientSize = new Size(1280, 782);
+            Controls.Add(tbPassword);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
-            Controls.Add(tbPassword);
             Controls.Add(tbUsername);
             Controls.Add(btnLogin);
             Controls.Add(pictureBox4);
@@ -140,6 +143,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -148,8 +152,8 @@
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
-        private RichTextBox tbPassword;
         private RichTextBox tbUsername;
         private Button btnLogin;
+        private TextBox tbPassword;
     }
 }
