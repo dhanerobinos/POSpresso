@@ -5,9 +5,10 @@ using POSpresso.Infrastructure.Configurations;
 
 namespace POSpresso.Data
 {
-    internal class POSDbContext : DbContext
+    public class POSDbContext : DbContext
     {
         public DbSet<User> User { get; set; }
+
         public POSDbContext(DbContextOptions<POSDbContext> options) : base(options)
         {
         }
@@ -15,7 +16,7 @@ namespace POSpresso.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.ApplyConfiguration(new UserConfig());
         }
 
