@@ -8,6 +8,7 @@ namespace POSpresso.Data
     public class POSDbContext : DbContext
     {
         public DbSet<User> User { get; set; }
+       public DbSet<Products> Products { get; set; }
 
         public POSDbContext(DbContextOptions<POSDbContext> options) : base(options)
         {

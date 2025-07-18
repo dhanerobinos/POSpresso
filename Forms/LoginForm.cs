@@ -1,10 +1,13 @@
 using POSpresso.Services;
+using POSpresso.Domain.Entities;
 
 namespace POSpresso
 {
     public partial class LoginForm : Form
     {
         private readonly AuthService _authService;
+        public User? LoggedInUser { get; private set; }
+
         public LoginForm(AuthService authService)
         {
             InitializeComponent();
@@ -19,7 +22,8 @@ namespace POSpresso
             var user = await _authService.GetByUsernameAsync(username);
             if (user != null && _authService.VerifyPassword(password, user.PasswordHash))
             {
-                MessageBox.Show($"Welcome {user.FirstName} {user.LastName}!", "Login Successful");
+                LoggedInUser = user;
+                DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
