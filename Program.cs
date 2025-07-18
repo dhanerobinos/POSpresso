@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using POSpresso.Data;
 using POSpresso.Services;
 using POSpresso.Domain.Entities;
+using POSpresso.Forms;
 
 namespace POSpresso
 {
@@ -25,9 +26,12 @@ namespace POSpresso
 
                     // Register services
                     services.AddScoped<AuthService>();
+                    services.AddScoped<ProductService>();
 
                     // Register forms
                     services.AddTransient<LoginForm>();
+                    services.AddTransient<AdminDashboard>();
+                    services.AddTransient<CashierDashboard>();  
                 })
                 .Build();
 
@@ -55,6 +59,27 @@ namespace POSpresso
             // Let DI give you the LoginForm
             var loginForm = host.Services.GetRequiredService<LoginForm>();
             Application.Run(loginForm);
+
+            var result = loginForm.DialogResult;
+
+            if (result == DialogResult.OK && loginForm.LoggedInUser != null)
+            {
+                var user = loginForm.LoggedInUser;
+                if (user.Role == "Admin")
+                {
+                   Application.Run(new AdminDashboard(user));
+
+                }
+                else if (user.Role == "Cashier")
+                {
+                    Application.Run(new CashierDashboard(user));
+                }
+                MessageBox.Show($"Welcome {loginForm.LoggedInUser.FirstName} {loginForm.LoggedInUser.LastName}!", "Login Successful");
+            }
+            else
+            {
+                MessageBox.Show("Login failed or cancelled.", "Login Error");
+            }
         }
     }
 }
