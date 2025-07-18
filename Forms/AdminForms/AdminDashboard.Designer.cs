@@ -32,10 +32,10 @@
             receiptPanel = new Panel();
             mainPanel = new Panel();
             adminPanel = new Panel();
-            iconButton4 = new FontAwesome.Sharp.IconButton();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
-            iconButton3 = new FontAwesome.Sharp.IconButton();
-            iconButton2 = new FontAwesome.Sharp.IconButton();
+            btnLogout = new FontAwesome.Sharp.IconButton();
+            btnPOS = new FontAwesome.Sharp.IconButton();
+            btnSettings = new FontAwesome.Sharp.IconButton();
+            btnReport = new FontAwesome.Sharp.IconButton();
             btnUsers = new FontAwesome.Sharp.IconButton();
             btnProducts = new FontAwesome.Sharp.IconButton();
             adminPanel.SuspendLayout();
@@ -58,10 +58,10 @@
             // adminPanel
             // 
             adminPanel.BackgroundImage = (Image)resources.GetObject("adminPanel.BackgroundImage");
-            adminPanel.Controls.Add(iconButton4);
-            adminPanel.Controls.Add(iconButton1);
-            adminPanel.Controls.Add(iconButton3);
-            adminPanel.Controls.Add(iconButton2);
+            adminPanel.Controls.Add(btnLogout);
+            adminPanel.Controls.Add(btnPOS);
+            adminPanel.Controls.Add(btnSettings);
+            adminPanel.Controls.Add(btnReport);
             adminPanel.Controls.Add(btnUsers);
             adminPanel.Controls.Add(btnProducts);
             adminPanel.Location = new Point(130, 58);
@@ -69,77 +69,81 @@
             adminPanel.Size = new Size(181, 620);
             adminPanel.TabIndex = 2;
             // 
-            // iconButton4
+            // btnLogout
             // 
-            iconButton4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            iconButton4.BackgroundImage = (Image)resources.GetObject("iconButton4.BackgroundImage");
-            iconButton4.FlatStyle = FlatStyle.Popup;
-            iconButton4.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton4.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
-            iconButton4.IconColor = Color.Black;
-            iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton4.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton4.Location = new Point(3, 542);
-            iconButton4.Name = "iconButton4";
-            iconButton4.Size = new Size(181, 78);
-            iconButton4.TabIndex = 5;
-            iconButton4.Text = "Logout";
-            iconButton4.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton4.UseVisualStyleBackColor = true;
+            btnLogout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnLogout.BackgroundImage = (Image)resources.GetObject("btnLogout.BackgroundImage");
+            btnLogout.FlatStyle = FlatStyle.Popup;
+            btnLogout.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
+            btnLogout.IconColor = Color.Black;
+            btnLogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnLogout.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLogout.Location = new Point(3, 542);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(181, 78);
+            btnLogout.TabIndex = 5;
+            btnLogout.Text = "Logout";
+            btnLogout.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
-            // iconButton1
+            // btnPOS
             // 
-            iconButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            iconButton1.BackgroundImage = (Image)resources.GetObject("iconButton1.BackgroundImage");
-            iconButton1.FlatStyle = FlatStyle.Popup;
-            iconButton1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.Print;
-            iconButton1.IconColor = Color.Black;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton1.Location = new Point(0, 0);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Size = new Size(181, 78);
-            iconButton1.TabIndex = 4;
-            iconButton1.Text = "POS";
-            iconButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton1.UseVisualStyleBackColor = true;
+            btnPOS.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnPOS.BackgroundImage = (Image)resources.GetObject("btnPOS.BackgroundImage");
+            btnPOS.FlatStyle = FlatStyle.Popup;
+            btnPOS.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPOS.IconChar = FontAwesome.Sharp.IconChar.Print;
+            btnPOS.IconColor = Color.Black;
+            btnPOS.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnPOS.ImageAlign = ContentAlignment.MiddleLeft;
+            btnPOS.Location = new Point(0, 0);
+            btnPOS.Name = "btnPOS";
+            btnPOS.Size = new Size(181, 78);
+            btnPOS.TabIndex = 4;
+            btnPOS.Text = "POS";
+            btnPOS.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnPOS.UseVisualStyleBackColor = true;
+            btnPOS.Click += btnPOS_Click;
             // 
-            // iconButton3
+            // btnSettings
             // 
-            iconButton3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            iconButton3.BackgroundImage = (Image)resources.GetObject("iconButton3.BackgroundImage");
-            iconButton3.FlatStyle = FlatStyle.Popup;
-            iconButton3.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton3.IconChar = FontAwesome.Sharp.IconChar.Sliders;
-            iconButton3.IconColor = Color.Black;
-            iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton3.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton3.Location = new Point(0, 336);
-            iconButton3.Name = "iconButton3";
-            iconButton3.Size = new Size(181, 78);
-            iconButton3.TabIndex = 3;
-            iconButton3.Text = "Settings";
-            iconButton3.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton3.UseVisualStyleBackColor = true;
+            btnSettings.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnSettings.BackgroundImage = (Image)resources.GetObject("btnSettings.BackgroundImage");
+            btnSettings.FlatStyle = FlatStyle.Popup;
+            btnSettings.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSettings.IconChar = FontAwesome.Sharp.IconChar.Sliders;
+            btnSettings.IconColor = Color.Black;
+            btnSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnSettings.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSettings.Location = new Point(0, 336);
+            btnSettings.Name = "btnSettings";
+            btnSettings.Size = new Size(181, 78);
+            btnSettings.TabIndex = 3;
+            btnSettings.Text = "Settings";
+            btnSettings.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSettings.UseVisualStyleBackColor = true;
+            btnSettings.Click += btnSettings_Click;
             // 
-            // iconButton2
+            // btnReport
             // 
-            iconButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            iconButton2.BackgroundImage = (Image)resources.GetObject("iconButton2.BackgroundImage");
-            iconButton2.FlatStyle = FlatStyle.Popup;
-            iconButton2.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton2.IconChar = FontAwesome.Sharp.IconChar.ChartLine;
-            iconButton2.IconColor = Color.Black;
-            iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton2.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton2.Location = new Point(-3, 252);
-            iconButton2.Name = "iconButton2";
-            iconButton2.Size = new Size(184, 78);
-            iconButton2.TabIndex = 2;
-            iconButton2.Text = "Report";
-            iconButton2.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton2.UseVisualStyleBackColor = true;
+            btnReport.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnReport.BackgroundImage = (Image)resources.GetObject("btnReport.BackgroundImage");
+            btnReport.FlatStyle = FlatStyle.Popup;
+            btnReport.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnReport.IconChar = FontAwesome.Sharp.IconChar.ChartLine;
+            btnReport.IconColor = Color.Black;
+            btnReport.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnReport.ImageAlign = ContentAlignment.MiddleLeft;
+            btnReport.Location = new Point(-3, 252);
+            btnReport.Name = "btnReport";
+            btnReport.Size = new Size(184, 78);
+            btnReport.TabIndex = 2;
+            btnReport.Text = "Report";
+            btnReport.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnReport.UseVisualStyleBackColor = true;
+            btnReport.Click += btnReport_Click;
             // 
             // btnUsers
             // 
@@ -158,6 +162,7 @@
             btnUsers.Text = "Users";
             btnUsers.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnUsers.UseVisualStyleBackColor = true;
+            btnUsers.Click += btnUsers_Click;
             // 
             // btnProducts
             // 
@@ -176,6 +181,7 @@
             btnProducts.Text = "Products";
             btnProducts.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnProducts.UseVisualStyleBackColor = true;
+            btnProducts.Click += btnProducts_Click;
             // 
             // AdminDashboard
             // 
@@ -203,9 +209,9 @@
         private Panel adminPanel;
         private FontAwesome.Sharp.IconButton btnUsers;
         private FontAwesome.Sharp.IconButton btnProducts;
-        private FontAwesome.Sharp.IconButton iconButton3;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private FontAwesome.Sharp.IconButton iconButton4;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnSettings;
+        private FontAwesome.Sharp.IconButton btnReport;
+        private FontAwesome.Sharp.IconButton btnLogout;
+        private FontAwesome.Sharp.IconButton btnPOS;
     }
 }

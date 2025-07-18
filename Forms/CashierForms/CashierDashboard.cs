@@ -4,9 +4,15 @@ namespace POSpresso.Forms
 {
     public partial class CashierDashboard : Form
     {
-        public CashierDashboard(User user)
+        private User _user;
+        public CashierDashboard()
         {
             InitializeComponent();
+        }
+        public void SetCurrentUser(User user)
+        {
+            _user = user;
+
         }
     }
 }

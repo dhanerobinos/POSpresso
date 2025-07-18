@@ -67,12 +67,17 @@ namespace POSpresso
                 var user = loginForm.LoggedInUser;
                 if (user.Role == "Admin")
                 {
-                   Application.Run(new AdminDashboard(user));
+                    var dashboard = new AdminDashboard();
+                    dashboard.SetCurrentUser(user);
+                    Application.Run(dashboard);
+
 
                 }
                 else if (user.Role == "Cashier")
                 {
-                    Application.Run(new CashierDashboard(user));
+                    var dashboard = new CashierDashboard();
+                    dashboard.SetCurrentUser(user);
+                    Application.Run(dashboard);
                 }
                 MessageBox.Show($"Welcome {loginForm.LoggedInUser.FirstName} {loginForm.LoggedInUser.LastName}!", "Login Successful");
             }
