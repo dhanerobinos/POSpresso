@@ -5,11 +5,13 @@ using POSpresso.Data;
 using POSpresso.Services;
 using POSpresso.Domain.Entities;
 using POSpresso.Forms;
+using POSpresso.Forms.AdminForms;
 
 namespace POSpresso
 {
     internal static class Program
     {
+        public static IServiceProvider? ServiceProvider { get; private set; }
         [STAThread]
         static void Main()
         {
@@ -27,15 +29,20 @@ namespace POSpresso
                     // Register services
                     services.AddScoped<AuthService>();
                     services.AddScoped<ProductService>();
+                    services.AddScoped<FormLoaderService>();
 
                     // Register forms
                     services.AddTransient<LoginForm>();
                     services.AddTransient<AdminDashboard>();
-                    services.AddTransient<CashierDashboard>();  
+                    services.AddTransient<CashierDashboard>();
+                    services.AddTransient<ManageUserForm>();
+                    services.AddTransient<ProductForm>();
                 })
                 .Build();
+            ServiceProvider = host.Services;
 
             ApplicationConfiguration.Initialize();
+
             using (var scope = host.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<POSDbContext>();
@@ -56,35 +63,8 @@ namespace POSpresso
                 }
             }
 
-            // Let DI give you the LoginForm
             var loginForm = host.Services.GetRequiredService<LoginForm>();
             Application.Run(loginForm);
-
-            var result = loginForm.DialogResult;
-
-            if (result == DialogResult.OK && loginForm.LoggedInUser != null)
-            {
-                var user = loginForm.LoggedInUser;
-                if (user.Role == "Admin")
-                {
-                    var dashboard = new AdminDashboard();
-                    dashboard.SetCurrentUser(user);
-                    Application.Run(dashboard);
-
-
-                }
-                else if (user.Role == "Cashier")
-                {
-                    var dashboard = new CashierDashboard();
-                    dashboard.SetCurrentUser(user);
-                    Application.Run(dashboard);
-                }
-                MessageBox.Show($"Welcome {loginForm.LoggedInUser.FirstName} {loginForm.LoggedInUser.LastName}!", "Login Successful");
-            }
-            else
-            {
-                MessageBox.Show("Login failed or cancelled.", "Login Error");
-            }
         }
     }
 }

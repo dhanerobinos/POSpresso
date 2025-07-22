@@ -36,6 +36,7 @@
             tbUsername = new RichTextBox();
             btnLogin = new Button();
             tbPassword = new TextBox();
+            btnExit = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -106,7 +107,7 @@
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(245, 41);
             btnLogin.TabIndex = 11;
-            btnLogin.Text = "login";
+            btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += btnLogin_Click;
             // 
@@ -119,6 +120,18 @@
             tbPassword.TabIndex = 17;
             tbPassword.UseSystemPasswordChar = true;
             // 
+            // btnExit
+            // 
+            btnExit.IconChar = FontAwesome.Sharp.IconChar.X;
+            btnExit.IconColor = Color.Black;
+            btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnExit.Location = new Point(1225, 0);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(54, 43);
+            btnExit.TabIndex = 18;
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -126,6 +139,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1280, 782);
+            Controls.Add(btnExit);
             Controls.Add(tbPassword);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
@@ -155,5 +169,6 @@
         private RichTextBox tbUsername;
         private Button btnLogin;
         private TextBox tbPassword;
+        private FontAwesome.Sharp.IconButton btnExit;
     }
 }
