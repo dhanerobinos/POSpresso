@@ -16,5 +16,32 @@ namespace POSpresso.Forms.AdminForms
         {
             InitializeComponent();
         }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEditUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeleteUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEditStatus_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

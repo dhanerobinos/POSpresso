@@ -28,44 +28,322 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
-            button1 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageUserForm));
+            dtgvUsers = new DataGridView();
+            ManageUserPanel = new Panel();
+            label7 = new Label();
+            cbStatus = new ComboBox();
+            btnClear = new Button();
+            btnDeleteUser = new Button();
+            btnEditStatus = new Button();
+            btnEditUser = new Button();
+            btnAddUser = new Button();
+            label6 = new Label();
+            label5 = new Label();
+            cbUserRole = new ComboBox();
+            label4 = new Label();
+            tbPassword = new RichTextBox();
+            label3 = new Label();
+            tbUsername = new RichTextBox();
+            label2 = new Label();
+            tbLastName = new RichTextBox();
+            label1 = new Label();
+            tbFirstName = new RichTextBox();
+            ((System.ComponentModel.ISupportInitialize)dtgvUsers).BeginInit();
+            ManageUserPanel.SuspendLayout();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dtgvUsers
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 287);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(565, 282);
-            dataGridView1.TabIndex = 0;
+            dtgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvUsers.Location = new Point(12, 294);
+            dtgvUsers.Name = "dtgvUsers";
+            dtgvUsers.Size = new Size(565, 275);
+            dtgvUsers.TabIndex = 0;
             // 
-            // button1
+            // ManageUserPanel
             // 
-            button1.Location = new Point(172, 69);
-            button1.Name = "button1";
-            button1.Size = new Size(220, 97);
-            button1.TabIndex = 1;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            ManageUserPanel.BackgroundImage = (Image)resources.GetObject("ManageUserPanel.BackgroundImage");
+            ManageUserPanel.Controls.Add(label7);
+            ManageUserPanel.Controls.Add(cbStatus);
+            ManageUserPanel.Controls.Add(btnClear);
+            ManageUserPanel.Controls.Add(btnDeleteUser);
+            ManageUserPanel.Controls.Add(btnEditStatus);
+            ManageUserPanel.Controls.Add(btnEditUser);
+            ManageUserPanel.Controls.Add(btnAddUser);
+            ManageUserPanel.Controls.Add(label6);
+            ManageUserPanel.Controls.Add(label5);
+            ManageUserPanel.Controls.Add(cbUserRole);
+            ManageUserPanel.Controls.Add(label4);
+            ManageUserPanel.Controls.Add(tbPassword);
+            ManageUserPanel.Controls.Add(label3);
+            ManageUserPanel.Controls.Add(tbUsername);
+            ManageUserPanel.Controls.Add(label2);
+            ManageUserPanel.Controls.Add(tbLastName);
+            ManageUserPanel.Controls.Add(label1);
+            ManageUserPanel.Controls.Add(tbFirstName);
+            ManageUserPanel.Location = new Point(22, 19);
+            ManageUserPanel.Name = "ManageUserPanel";
+            ManageUserPanel.Size = new Size(547, 269);
+            ManageUserPanel.TabIndex = 1;
             // 
-            // UserForm
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(38, 226);
+            label7.Name = "label7";
+            label7.Size = new Size(61, 21);
+            label7.TabIndex = 20;
+            label7.Text = "Status:";
+            // 
+            // cbStatus
+            // 
+            cbStatus.FormattingEnabled = true;
+            cbStatus.Location = new Point(140, 226);
+            cbStatus.Name = "cbStatus";
+            cbStatus.Size = new Size(90, 23);
+            cbStatus.TabIndex = 19;
+            // 
+            // btnClear
+            // 
+            btnClear.BackColor = Color.Transparent;
+            btnClear.BackgroundImage = (Image)resources.GetObject("btnClear.BackgroundImage");
+            btnClear.FlatAppearance.BorderSize = 0;
+            btnClear.FlatStyle = FlatStyle.Flat;
+            btnClear.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
+            btnClear.ForeColor = Color.White;
+            btnClear.Location = new Point(399, 197);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(94, 29);
+            btnClear.TabIndex = 18;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
+            // 
+            // btnDeleteUser
+            // 
+            btnDeleteUser.BackColor = Color.Transparent;
+            btnDeleteUser.BackgroundImage = (Image)resources.GetObject("btnDeleteUser.BackgroundImage");
+            btnDeleteUser.FlatAppearance.BorderSize = 0;
+            btnDeleteUser.FlatStyle = FlatStyle.Flat;
+            btnDeleteUser.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
+            btnDeleteUser.ForeColor = Color.White;
+            btnDeleteUser.Location = new Point(399, 158);
+            btnDeleteUser.Name = "btnDeleteUser";
+            btnDeleteUser.Size = new Size(94, 29);
+            btnDeleteUser.TabIndex = 17;
+            btnDeleteUser.Text = "Delete User";
+            btnDeleteUser.UseVisualStyleBackColor = false;
+            btnDeleteUser.Click += btnDeleteUser_Click;
+            // 
+            // btnEditStatus
+            // 
+            btnEditStatus.BackColor = Color.Transparent;
+            btnEditStatus.BackgroundImage = (Image)resources.GetObject("btnEditStatus.BackgroundImage");
+            btnEditStatus.FlatAppearance.BorderSize = 0;
+            btnEditStatus.FlatStyle = FlatStyle.Flat;
+            btnEditStatus.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
+            btnEditStatus.ForeColor = Color.White;
+            btnEditStatus.Location = new Point(399, 123);
+            btnEditStatus.Name = "btnEditStatus";
+            btnEditStatus.Size = new Size(94, 29);
+            btnEditStatus.TabIndex = 16;
+            btnEditStatus.Text = "Edit Status";
+            btnEditStatus.UseVisualStyleBackColor = false;
+            btnEditStatus.Click += btnEditStatus_Click;
+            // 
+            // btnEditUser
+            // 
+            btnEditUser.BackColor = Color.Transparent;
+            btnEditUser.BackgroundImage = (Image)resources.GetObject("btnEditUser.BackgroundImage");
+            btnEditUser.FlatAppearance.BorderSize = 0;
+            btnEditUser.FlatStyle = FlatStyle.Flat;
+            btnEditUser.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
+            btnEditUser.ForeColor = Color.White;
+            btnEditUser.Location = new Point(399, 88);
+            btnEditUser.Name = "btnEditUser";
+            btnEditUser.Size = new Size(94, 29);
+            btnEditUser.TabIndex = 15;
+            btnEditUser.Text = "Edit User";
+            btnEditUser.UseVisualStyleBackColor = false;
+            btnEditUser.Click += btnEditUser_Click;
+            // 
+            // btnAddUser
+            // 
+            btnAddUser.BackColor = Color.Transparent;
+            btnAddUser.BackgroundImage = (Image)resources.GetObject("btnAddUser.BackgroundImage");
+            btnAddUser.FlatAppearance.BorderSize = 0;
+            btnAddUser.FlatStyle = FlatStyle.Flat;
+            btnAddUser.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
+            btnAddUser.ForeColor = Color.White;
+            btnAddUser.Location = new Point(399, 53);
+            btnAddUser.Name = "btnAddUser";
+            btnAddUser.Size = new Size(94, 29);
+            btnAddUser.TabIndex = 14;
+            btnAddUser.Text = "Add User";
+            btnAddUser.UseVisualStyleBackColor = false;
+            btnAddUser.Click += btnAddUser_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(208, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(150, 30);
+            label6.TabIndex = 13;
+            label6.Text = "Manage Users";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(38, 199);
+            label5.Name = "label5";
+            label5.Size = new Size(48, 21);
+            label5.TabIndex = 12;
+            label5.Text = "Role:";
+            // 
+            // cbUserRole
+            // 
+            cbUserRole.FormattingEnabled = true;
+            cbUserRole.Location = new Point(140, 197);
+            cbUserRole.Name = "cbUserRole";
+            cbUserRole.Size = new Size(90, 23);
+            cbUserRole.TabIndex = 11;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(38, 166);
+            label4.Name = "label4";
+            label4.Size = new Size(86, 21);
+            label4.TabIndex = 10;
+            label4.Text = "Password:";
+            // 
+            // tbPassword
+            // 
+            tbPassword.BackColor = SystemColors.ControlLightLight;
+            tbPassword.BorderStyle = BorderStyle.None;
+            tbPassword.Location = new Point(138, 158);
+            tbPassword.Name = "tbPassword";
+            tbPassword.Size = new Size(237, 29);
+            tbPassword.TabIndex = 9;
+            tbPassword.Text = "";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(38, 131);
+            label3.Name = "label3";
+            label3.Size = new Size(91, 21);
+            label3.TabIndex = 8;
+            label3.Text = "Username:";
+            // 
+            // tbUsername
+            // 
+            tbUsername.BackColor = SystemColors.ControlLightLight;
+            tbUsername.BorderStyle = BorderStyle.None;
+            tbUsername.Location = new Point(138, 123);
+            tbUsername.Name = "tbUsername";
+            tbUsername.Size = new Size(237, 29);
+            tbUsername.TabIndex = 7;
+            tbUsername.Text = "";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(38, 96);
+            label2.Name = "label2";
+            label2.Size = new Size(94, 21);
+            label2.TabIndex = 6;
+            label2.Text = "Last Name:";
+            // 
+            // tbLastName
+            // 
+            tbLastName.BackColor = SystemColors.ControlLightLight;
+            tbLastName.BorderStyle = BorderStyle.None;
+            tbLastName.Location = new Point(138, 88);
+            tbLastName.Name = "tbLastName";
+            tbLastName.Size = new Size(237, 29);
+            tbLastName.TabIndex = 5;
+            tbLastName.Text = "";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(38, 61);
+            label1.Name = "label1";
+            label1.Size = new Size(96, 21);
+            label1.TabIndex = 4;
+            label1.Text = "First Name:";
+            // 
+            // tbFirstName
+            // 
+            tbFirstName.BackColor = SystemColors.ControlLightLight;
+            tbFirstName.BorderStyle = BorderStyle.None;
+            tbFirstName.Location = new Point(138, 53);
+            tbFirstName.Name = "tbFirstName";
+            tbFirstName.Size = new Size(237, 29);
+            tbFirstName.TabIndex = 0;
+            tbFirstName.Text = "";
+            // 
+            // ManageUserForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(589, 581);
-            Controls.Add(button1);
-            Controls.Add(dataGridView1);
-            Name = "UserForm";
+            Controls.Add(ManageUserPanel);
+            Controls.Add(dtgvUsers);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "ManageUserForm";
             Text = "UserForm";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvUsers).EndInit();
+            ManageUserPanel.ResumeLayout(false);
+            ManageUserPanel.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
-        private Button button1;
+        private DataGridView dtgvUsers;
+        private Panel ManageUserPanel;
+        private RichTextBox tbFirstName;
+        private Label label1;
+        private RichTextBox tbPassword;
+        private Label label3;
+        private RichTextBox tbUsername;
+        private Label label2;
+        private RichTextBox tbLastName;
+        private Button btnEditStatus;
+        private Button btnEditUser;
+        private Button btnAddUser;
+        private Label label6;
+        private Label label5;
+        private ComboBox cbUserRole;
+        private Label label4;
+        private Label label7;
+        private ComboBox cbStatus;
+        private Button btnClear;
+        private Button btnDeleteUser;
     }
 }
