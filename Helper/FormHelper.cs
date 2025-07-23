@@ -12,11 +12,12 @@ namespace POSpresso.Helper
         {
             foreach (Control control in parent.Controls)
             {
-                // Recursively clear nested controls
+                //clear nested controls
                 if (control.HasChildren)
+                {
                     ClearFormInputs(control);
+                }
 
-                // Clear logic
                 switch (control)
                 {
                     case TextBoxBase textBox: 

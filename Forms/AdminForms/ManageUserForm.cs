@@ -1,7 +1,6 @@
 ﻿using POSpresso.Domain.Enums;
 using POSpresso.Services;
 using POSpresso.Domain.DTO;
-using System.Threading.Tasks;
 using POSpresso.Helper;
 
 namespace POSpresso.Forms.AdminForms
@@ -34,7 +33,6 @@ namespace POSpresso.Forms.AdminForms
              })
              .ToList();
             dtgvUsers.Columns["UserId"].Visible = false;
-
         }
 
         private UserDTO GetUserDTOFromInputs()
@@ -51,7 +49,6 @@ namespace POSpresso.Forms.AdminForms
             };
           
         }
-
         private async void btnAddUser_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbUsername.Text) || string.IsNullOrWhiteSpace(tbPassword.Text) ||
@@ -97,14 +94,13 @@ namespace POSpresso.Forms.AdminForms
                 MessageBox.Show("User updated successfully!");
                 await LoadUsersAsync();
                 FormHelper.ClearFormInputs(ManageUserPanel);
-                _selectedUserId = null; // reset after update
+                _selectedUserId = null;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Failed to update user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private async void btnDeleteUser_Click(object sender, EventArgs e)
         {
             if (_selectedUserId == null)
@@ -131,12 +127,10 @@ namespace POSpresso.Forms.AdminForms
                 MessageBox.Show($"Failed to delete user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             FormHelper.ClearFormInputs(this);
         }
-
         private void dtgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)

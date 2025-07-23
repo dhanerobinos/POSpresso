@@ -19,7 +19,7 @@ namespace POSpresso.Services
 
 
         //INSERT INTO Users (...) VALUES (...); in ADO.NET 
-        //use DTO for services(best practice)
+        //use DTO for services and UI(best practice)
         public async Task AddUserAsync(UserDTO userDto)
         {
             var user = new User
