@@ -1,12 +1,75 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using POSpresso.Data;
+using POSpresso.Domain.DTO;
+using POSpresso.Domain.Entities;    
 
 namespace POSpresso.Services
 {
     public class ManageUserService
     {
+        private readonly POSDbContext _context;
+
+        public ManageUserService(POSDbContext context)
+        {
+                _context = context;
+        }
+
+        public async Task<List<User>> GetAllUsersAsync() =>
+                await _context.User.ToListAsync();
+
+
+        //INSERT INTO Users (...) VALUES (...); in ADO.NET 
+        //use DTO for services(best practice)
+        public async Task AddUserAsync(UserDTO userDto)
+        {
+            var user = new User
+            {
+                Username = userDto.Username,
+                Password = userDto.Password,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password),
+                FirstName = userDto.FirstName,
+                LastName = userDto.LastName,
+                Role = userDto.Role,
+                Status = userDto.Status 
+            };
+
+            _context.User.Add(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateUserAsync(UserDTO userDto)
+        {
+            var user = await _context.User.FindAsync(userDto.UserId);
+            if (user == null)
+                throw new Exception("User not found");
+
+            user.Username = userDto.Username;
+            user.FirstName = userDto.FirstName;
+            user.LastName = userDto.LastName;
+            user.Role = userDto.Role;
+            user.Status = userDto.Status;
+
+            if (!string.IsNullOrEmpty(userDto.Password))
+            {
+                user.Password = userDto.Password;
+                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> DeleteUserAsync(int userId)
+        {
+            var user = await _context.User.FindAsync(userId);
+            if (user == null) return false;
+
+            _context.User.Remove(user);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+
     }
+
 }
+

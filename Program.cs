@@ -2,16 +2,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using POSpresso.Data;
-using POSpresso.Services;
 using POSpresso.Domain.Entities;
+using POSpresso.Domain.Enums;
 using POSpresso.Forms;
 using POSpresso.Forms.AdminForms;
+using POSpresso.Services;
 
 namespace POSpresso
 {
     internal static class Program
     {
-        public static IServiceProvider? ServiceProvider { get; private set; }
+        public static IServiceProvider? ServiceProvider { get; private set; }                               // ServiceProvider is used to resolve services and forms
         [STAThread]
         static void Main()
         {
@@ -22,7 +23,7 @@ namespace POSpresso
                     config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
                 })
                 .ConfigureServices((context, services) =>
-                {
+                {                                                                                           //Always register DbContext,Services, and Forms in the same order
                     // Register DbContext with config
                     services.AddDbContext<POSDbContext>();
 
@@ -30,6 +31,7 @@ namespace POSpresso
                     services.AddScoped<AuthService>();
                     services.AddScoped<ProductService>();
                     services.AddScoped<FormLoaderService>();
+                    services.AddScoped<ManageUserService>();
 
                     // Register forms
                     services.AddTransient<LoginForm>();
@@ -55,7 +57,8 @@ namespace POSpresso
                         PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin123"),
                         FirstName = "Admin",
                         LastName = "User",
-                        Role = "Admin"
+                        Role = UserRole.Admin,
+                        Status = UserStatus.Active
                     };
 
                     db.User.Add(admin);

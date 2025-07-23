@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using POSpresso.Forms;
 using POSpresso.Domain.Entities;
+using POSpresso.Domain.Enums;
+using POSpresso.Forms;
 
 namespace POSpresso.Services
 {
@@ -29,8 +30,8 @@ namespace POSpresso.Services
 
             Form dashboardForm = user.Role switch
             {
-                "Admin" => _serviceProvider.GetRequiredService<AdminDashboard>(),
-                "Cashier" => _serviceProvider.GetRequiredService<CashierDashboard>(),
+                UserRole.Admin => _serviceProvider.GetRequiredService<AdminDashboard>(),
+                UserRole.Cashier => _serviceProvider.GetRequiredService<CashierDashboard>(),
                 _ => throw new Exception("Invalid user role")
             };
 

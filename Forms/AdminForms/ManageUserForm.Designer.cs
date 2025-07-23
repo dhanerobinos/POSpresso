@@ -35,7 +35,6 @@
             cbStatus = new ComboBox();
             btnClear = new Button();
             btnDeleteUser = new Button();
-            btnEditStatus = new Button();
             btnEditUser = new Button();
             btnAddUser = new Button();
             label6 = new Label();
@@ -56,10 +55,12 @@
             // dtgvUsers
             // 
             dtgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvUsers.GridColor = Color.Black;
             dtgvUsers.Location = new Point(12, 294);
             dtgvUsers.Name = "dtgvUsers";
             dtgvUsers.Size = new Size(565, 275);
             dtgvUsers.TabIndex = 0;
+            dtgvUsers.CellContentClick += dtgvUsers_CellContentClick;
             // 
             // ManageUserPanel
             // 
@@ -68,7 +69,6 @@
             ManageUserPanel.Controls.Add(cbStatus);
             ManageUserPanel.Controls.Add(btnClear);
             ManageUserPanel.Controls.Add(btnDeleteUser);
-            ManageUserPanel.Controls.Add(btnEditStatus);
             ManageUserPanel.Controls.Add(btnEditUser);
             ManageUserPanel.Controls.Add(btnAddUser);
             ManageUserPanel.Controls.Add(label6);
@@ -115,7 +115,7 @@
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
             btnClear.ForeColor = Color.White;
-            btnClear.Location = new Point(399, 197);
+            btnClear.Location = new Point(399, 167);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(94, 29);
             btnClear.TabIndex = 18;
@@ -131,29 +131,13 @@
             btnDeleteUser.FlatStyle = FlatStyle.Flat;
             btnDeleteUser.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
             btnDeleteUser.ForeColor = Color.White;
-            btnDeleteUser.Location = new Point(399, 158);
+            btnDeleteUser.Location = new Point(399, 128);
             btnDeleteUser.Name = "btnDeleteUser";
             btnDeleteUser.Size = new Size(94, 29);
             btnDeleteUser.TabIndex = 17;
             btnDeleteUser.Text = "Delete User";
             btnDeleteUser.UseVisualStyleBackColor = false;
             btnDeleteUser.Click += btnDeleteUser_Click;
-            // 
-            // btnEditStatus
-            // 
-            btnEditStatus.BackColor = Color.Transparent;
-            btnEditStatus.BackgroundImage = (Image)resources.GetObject("btnEditStatus.BackgroundImage");
-            btnEditStatus.FlatAppearance.BorderSize = 0;
-            btnEditStatus.FlatStyle = FlatStyle.Flat;
-            btnEditStatus.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            btnEditStatus.ForeColor = Color.White;
-            btnEditStatus.Location = new Point(399, 123);
-            btnEditStatus.Name = "btnEditStatus";
-            btnEditStatus.Size = new Size(94, 29);
-            btnEditStatus.TabIndex = 16;
-            btnEditStatus.Text = "Edit Status";
-            btnEditStatus.UseVisualStyleBackColor = false;
-            btnEditStatus.Click += btnEditStatus_Click;
             // 
             // btnEditUser
             // 
@@ -235,7 +219,9 @@
             // 
             tbPassword.BackColor = SystemColors.ControlLightLight;
             tbPassword.BorderStyle = BorderStyle.None;
+            tbPassword.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             tbPassword.Location = new Point(138, 158);
+            tbPassword.Multiline = false;
             tbPassword.Name = "tbPassword";
             tbPassword.Size = new Size(237, 29);
             tbPassword.TabIndex = 9;
@@ -257,7 +243,9 @@
             // 
             tbUsername.BackColor = SystemColors.ControlLightLight;
             tbUsername.BorderStyle = BorderStyle.None;
+            tbUsername.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             tbUsername.Location = new Point(138, 123);
+            tbUsername.Multiline = false;
             tbUsername.Name = "tbUsername";
             tbUsername.Size = new Size(237, 29);
             tbUsername.TabIndex = 7;
@@ -279,7 +267,9 @@
             // 
             tbLastName.BackColor = SystemColors.ControlLightLight;
             tbLastName.BorderStyle = BorderStyle.None;
+            tbLastName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             tbLastName.Location = new Point(138, 88);
+            tbLastName.Multiline = false;
             tbLastName.Name = "tbLastName";
             tbLastName.Size = new Size(237, 29);
             tbLastName.TabIndex = 5;
@@ -301,7 +291,9 @@
             // 
             tbFirstName.BackColor = SystemColors.ControlLightLight;
             tbFirstName.BorderStyle = BorderStyle.None;
+            tbFirstName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             tbFirstName.Location = new Point(138, 53);
+            tbFirstName.Multiline = false;
             tbFirstName.Name = "tbFirstName";
             tbFirstName.Size = new Size(237, 29);
             tbFirstName.TabIndex = 0;
@@ -317,6 +309,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManageUserForm";
             Text = "UserForm";
+            Load += ManageUserForm_Load;
             ((System.ComponentModel.ISupportInitialize)dtgvUsers).EndInit();
             ManageUserPanel.ResumeLayout(false);
             ManageUserPanel.PerformLayout();
@@ -334,7 +327,6 @@
         private RichTextBox tbUsername;
         private Label label2;
         private RichTextBox tbLastName;
-        private Button btnEditStatus;
         private Button btnEditUser;
         private Button btnAddUser;
         private Label label6;
