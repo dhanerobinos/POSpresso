@@ -14,7 +14,8 @@ namespace POSpresso.Infrastructure.Configurations
             builder.Property(u => u.PasswordHash).IsRequired().HasMaxLength(100);
             builder.Property(u => u.FirstName).IsRequired().HasMaxLength(50);
             builder.Property(u => u.LastName).IsRequired().HasMaxLength(50);
-            builder.Property(u => u.Role).IsRequired();
+            builder.Property(u => u.Role).HasConversion<string>(); // enum to string in db
+            builder.Property(u => u.Status).HasConversion<string>();
         }
     }
 }

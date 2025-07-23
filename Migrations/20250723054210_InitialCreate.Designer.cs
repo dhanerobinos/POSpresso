@@ -12,8 +12,8 @@ using POSpresso.Data;
 namespace POSpresso.Migrations
 {
     [DbContext(typeof(POSDbContext))]
-    [Migration("20250718133241_AddProductAndCategory")]
-    partial class AddProductAndCategory
+    [Migration("20250723054210_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,6 +74,11 @@ namespace POSpresso.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.HasKey("ProductId");
 
                     b.HasIndex("CategoryId");
@@ -105,9 +110,11 @@ namespace POSpresso.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("Username")
                         .IsRequired()

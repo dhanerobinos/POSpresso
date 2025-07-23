@@ -23,7 +23,9 @@ namespace POSpresso.Infrastructure.Configurations
                    .HasColumnType("decimal(18,2)")
                    .IsRequired();
 
-            builder.Property(p => p.IsAvailable)
+            builder.Property(p => p.Status)
+                   .HasConversion<string>() //enum to string in db
+                   .HasMaxLength(20)
                    .IsRequired();
 
             builder.Property(p => p.CreatedAt)
