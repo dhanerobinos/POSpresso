@@ -58,7 +58,7 @@
             dtgvUsers.GridColor = Color.Black;
             dtgvUsers.Location = new Point(12, 294);
             dtgvUsers.Name = "dtgvUsers";
-            dtgvUsers.Size = new Size(565, 275);
+            dtgvUsers.Size = new Size(565, 314);
             dtgvUsers.TabIndex = 0;
             dtgvUsers.CellContentClick += dtgvUsers_CellContentClick;
             // 
@@ -303,7 +303,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(589, 581);
+            ClientSize = new Size(605, 620);
             Controls.Add(ManageUserPanel);
             Controls.Add(dtgvUsers);
             FormBorderStyle = FormBorderStyle.None;
