@@ -12,6 +12,7 @@ namespace POSpresso.Domain.Entities
         public bool IsAvailable { get; set; } = true;
         public  DateTime CreatedAt { get; set; }
         public ProductStatus Status { get; set; } = ProductStatus.Available;
+        public string? ProductImagePath { get; set; }
 
         // Foreign key to the Category table
         public int CategoryId { get; set; }

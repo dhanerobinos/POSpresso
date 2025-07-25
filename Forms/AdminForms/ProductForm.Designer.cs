@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductForm));
             panel1 = new Panel();
-            linkLabel1 = new LinkLabel();
+            lbUploadImage = new LinkLabel();
             label6 = new Label();
             btnClear = new FontAwesome.Sharp.IconButton();
             btnSave = new FontAwesome.Sharp.IconButton();
@@ -54,7 +54,7 @@
             // panel1
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.Controls.Add(linkLabel1);
+            panel1.Controls.Add(lbUploadImage);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(btnClear);
             panel1.Controls.Add(btnSave);
@@ -74,18 +74,19 @@
             panel1.Size = new Size(285, 596);
             panel1.TabIndex = 0;
             // 
-            // linkLabel1
+            // lbUploadImage
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.BackColor = Color.Transparent;
-            linkLabel1.Font = new Font("Segoe UI Black", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            linkLabel1.LinkColor = Color.FromArgb(0, 192, 192);
-            linkLabel1.Location = new Point(186, 109);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(96, 17);
-            linkLabel1.TabIndex = 29;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Upload Image";
+            lbUploadImage.AutoSize = true;
+            lbUploadImage.BackColor = Color.Transparent;
+            lbUploadImage.Font = new Font("Segoe UI Black", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbUploadImage.LinkColor = Color.FromArgb(0, 192, 192);
+            lbUploadImage.Location = new Point(186, 109);
+            lbUploadImage.Name = "lbUploadImage";
+            lbUploadImage.Size = new Size(96, 17);
+            lbUploadImage.TabIndex = 29;
+            lbUploadImage.TabStop = true;
+            lbUploadImage.Text = "Upload Image";
+            lbUploadImage.LinkClicked += lbUploadImage_LinkClicked;
             // 
             // label6
             // 
@@ -114,6 +115,7 @@
             btnClear.TabIndex = 27;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
             // 
             // btnSave
             // 
@@ -130,6 +132,7 @@
             btnSave.TabIndex = 26;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // pbProductImage
             // 
@@ -266,7 +269,7 @@
 
         private Panel panel1;
         private DataGridView dtgvProducts;
-        private LinkLabel linkLabel1;
+        private LinkLabel lbUploadImage;
         private Label label6;
         private FontAwesome.Sharp.IconButton btnClear;
         private FontAwesome.Sharp.IconButton btnSave;

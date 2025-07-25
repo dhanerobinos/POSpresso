@@ -11,6 +11,8 @@ namespace POSpresso.Domain.Entities
         public string LastName { get; set; } = string.Empty;
         public UserRole Role { get; set; } = UserRole.Cashier;
         public UserStatus Status { get; set; } = UserStatus.Active;
+        public string? UserImagePath { get; set; }
+
 
 
     }
