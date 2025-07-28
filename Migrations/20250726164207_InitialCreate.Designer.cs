@@ -12,8 +12,8 @@ using POSpresso.Data;
 namespace POSpresso.Migrations
 {
     [DbContext(typeof(POSDbContext))]
-    [Migration("20250725112755_AddProductAndUserImage")]
-    partial class AddProductAndUserImage
+    [Migration("20250726164207_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,9 +69,6 @@ namespace POSpresso.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("ProductImagePath")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -81,6 +78,9 @@ namespace POSpresso.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<byte[]>("UserImage")
+                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("ProductId");
 
@@ -119,8 +119,8 @@ namespace POSpresso.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserImagePath")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("UserImage")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Username")
                         .IsRequired()

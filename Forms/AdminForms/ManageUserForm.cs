@@ -1,6 +1,7 @@
 ﻿using POSpresso.Domain.Enums;
 using POSpresso.Services;
 using POSpresso.Domain.DTO;
+using POSpresso.Domain.Entities;
 using POSpresso.Helper;
 
 namespace POSpresso.Forms.AdminForms
@@ -9,7 +10,7 @@ namespace POSpresso.Forms.AdminForms
     {
         private readonly ManageUserService _manageUserService;
         private int? _selectedUserId = null;
-
+        private byte[]? selectedUserImageBytes = null;
         public ManageUserForm(ManageUserService manageUserService)
         {
             InitializeComponent();
@@ -17,37 +18,82 @@ namespace POSpresso.Forms.AdminForms
             dtgvUsers.SelectionChanged += dgvUsers_SelectionChanged;
 
         }
+        private void SetupUserGridView()
+        {
+            dtgvUsers.Columns.Clear();
+            dtgvUsers.Rows.Clear();
+
+            var imgCol = new DataGridViewImageColumn
+            {
+                Name = "Image",
+                HeaderText = "Photo",
+                ImageLayout = DataGridViewImageCellLayout.Zoom,
+                Width = 50
+            };
+            dtgvUsers.Columns.Add(imgCol);
+
+            dtgvUsers.Columns.Add("UserId", "User ID");
+            dtgvUsers.Columns["UserId"].Visible = false;
+
+            dtgvUsers.Columns.Add("Username", "Username");
+            dtgvUsers.Columns.Add("FirstName", "First Name");
+            dtgvUsers.Columns.Add("LastName", "Last Name");
+            dtgvUsers.Columns.Add("Role", "Role");
+            dtgvUsers.Columns.Add("Status", "Status");
+
+            dtgvUsers.RowTemplate.Height = 50;
+            dtgvUsers.AllowUserToAddRows = false;
+        }
+        private void PopulateInputsFromRow(DataGridViewRow row)
+        {
+            _selectedUserId = Convert.ToInt32(row.Cells["UserId"].Value);
+            tbUsername.Text = row.Cells["Username"].Value?.ToString();
+            tbFirstName.Text = row.Cells["FirstName"].Value?.ToString();
+            tbLastName.Text = row.Cells["LastName"].Value?.ToString();
+
+            cbUserRole.SelectedItem = Enum.TryParse<UserRole>(row.Cells["Role"].Value?.ToString(), out var role) ? role : null;
+            cbStatus.SelectedItem = Enum.TryParse<UserStatus>(row.Cells["Status"].Value?.ToString(), out var status) ? status : null;
+        }
+
         public async Task LoadUsersAsync()
         {
+            dtgvUsers.Rows.Clear();
             var users = await _manageUserService.GetAllUsersAsync();
+            foreach (var user in users)
+            {
+                Image? img = null;
+                if (user.UserImage != null)
+                {
+                    using var ms = new MemoryStream(user.UserImage);
+                    img = Image.FromStream(ms);
+                }
 
-            dtgvUsers.DataSource = users
-             .Select(u => new
-             {
-                 u.UserId,
-                 u.Username,
-                 u.FirstName,
-                 u.LastName,
-                 u.Role,
-                 u.Status
-             })
-             .ToList();
-            dtgvUsers.Columns["UserId"].Visible = false;
+                dtgvUsers.Rows.Add(
+                    img,
+                    user.UserId,
+                    user.Username,
+                    user.FirstName,
+                    user.LastName,
+                    user.Role,
+                    user.Status
+                );
+            }
+
         }
 
         private UserDTO GetUserDTOFromInputs()
         {
             return new UserDTO
             {
-
                 Username = tbUsername.Text,
                 Password = tbPassword.Text,
                 FirstName = tbFirstName.Text,
                 LastName = tbLastName.Text,
                 Role = (UserRole)cbUserRole.SelectedItem!,
-                Status = (UserStatus)cbStatus.SelectedItem!
+                Status = (UserStatus)cbStatus.SelectedItem!,
+                UserImage = selectedUserImageBytes
             };
-          
+
         }
         private async void btnAddUser_Click(object sender, EventArgs e)
         {
@@ -63,12 +109,12 @@ namespace POSpresso.Forms.AdminForms
                 await _manageUserService.AddUserAsync(userDTO);
                 MessageBox.Show("User added successfully!");
                 await LoadUsersAsync();
+                FormHelper.ClearFormInputs(this);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Failed to Add user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
         private async void btnEditUser_Click(object sender, EventArgs e)
         {
@@ -134,17 +180,7 @@ namespace POSpresso.Forms.AdminForms
         private void dtgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
-            {
-                var row = dtgvUsers.Rows[e.RowIndex];
-                _selectedUserId = Convert.ToInt32(row.Cells["UserId"].Value); 
-
-                tbUsername.Text = row.Cells["Username"].Value?.ToString();
-                tbFirstName.Text = row.Cells["FirstName"].Value?.ToString();
-                tbLastName.Text = row.Cells["LastName"].Value?.ToString();
-                cbUserRole.SelectedItem = Enum.Parse<UserRole>(row.Cells["Role"].Value?.ToString()!);
-                cbStatus.SelectedItem = Enum.Parse<UserStatus>(row.Cells["Status"].Value?.ToString()!);
-                tbPassword.Text = "";
-            }
+                PopulateInputsFromRow(dtgvUsers.Rows[e.RowIndex]);
         }
         private void dgvUsers_SelectionChanged(object sender, EventArgs e)
         {
@@ -154,38 +190,15 @@ namespace POSpresso.Forms.AdminForms
                 _selectedUserId = null;
                 return;
             }
-            var row = dtgvUsers.CurrentRow;
-            if (row.Cells["UserId"].Value == null)
+
+            if (dtgvUsers.CurrentRow.Cells["UserId"].Value == null)
             {
                 FormHelper.ClearFormInputs(ManageUserPanel);
                 _selectedUserId = null;
                 return;
             }
-            _selectedUserId = Convert.ToInt32(row.Cells["UserId"].Value);
-            tbUsername.Text = row.Cells["Username"].Value?.ToString();
-            tbFirstName.Text = row.Cells["FirstName"].Value?.ToString();
-            tbLastName.Text = row.Cells["LastName"].Value?.ToString();
 
-            if (Enum.TryParse<UserRole>(row.Cells["Role"].Value?.ToString(), out var role))
-            {
-                cbUserRole.SelectedItem = role;
-            }
-
-            else
-            {
-                cbUserRole.SelectedIndex = -1;
-            }
-                
-
-            if (Enum.TryParse<UserStatus>(row.Cells["Status"].Value?.ToString(), out var status))
-            {
-                cbStatus.SelectedItem = status;
-            }
-
-            else
-            {
-                cbStatus.SelectedIndex = -1;
-            }
+            PopulateInputsFromRow(dtgvUsers.CurrentRow);
         }
 
 
@@ -194,8 +207,24 @@ namespace POSpresso.Forms.AdminForms
             cbUserRole.DataSource = Enum.GetValues(typeof(UserRole));
             cbStatus.DataSource = Enum.GetValues(typeof(UserStatus));
 
+            SetupUserGridView();
             await LoadUsersAsync();
 
+        }
+
+        private void lbUploadImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    selectedUserImageBytes = File.ReadAllBytes(openFileDialog.FileName);
+                    using var stream = new MemoryStream(selectedUserImageBytes);
+                    UserPhotoBox.Image = Image.FromStream(stream);
+                }
+            }
         }
     }
 }

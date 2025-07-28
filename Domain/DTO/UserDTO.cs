@@ -16,6 +16,7 @@ namespace POSpresso.Domain.DTO
          public string LastName { get; set; } = string.Empty;
          public UserStatus Status { get; set; } = UserStatus.Active;
          public UserRole Role { get; set; } = UserRole.Cashier;
+         public byte[]? UserImage { get; set; }
 
 
     }

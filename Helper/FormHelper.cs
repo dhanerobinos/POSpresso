@@ -20,6 +20,9 @@ namespace POSpresso.Helper
 
                 switch (control)
                 {
+                    case PictureBox pictureBox:
+                        pictureBox.Image = null; 
+                        break;
                     case TextBoxBase textBox: 
                         textBox.Clear();
                         break;
@@ -32,6 +35,8 @@ namespace POSpresso.Helper
                     case RadioButton radioButton:
                         radioButton.Checked = false;
                         break;
+
+
                       
                 }
             }

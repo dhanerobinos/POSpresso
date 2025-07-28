@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageUserForm));
             dtgvUsers = new DataGridView();
             ManageUserPanel = new Panel();
+            UserPhotoBox = new FontAwesome.Sharp.IconPictureBox();
+            lbUploadImage = new LinkLabel();
             label7 = new Label();
             cbStatus = new ComboBox();
             btnClear = new Button();
@@ -48,8 +50,6 @@
             tbLastName = new RichTextBox();
             label1 = new Label();
             tbFirstName = new RichTextBox();
-            lbUploadImage = new LinkLabel();
-            UserPhotoBox = new FontAwesome.Sharp.IconPictureBox();
             ((System.ComponentModel.ISupportInitialize)dtgvUsers).BeginInit();
             ManageUserPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)UserPhotoBox).BeginInit();
@@ -91,6 +91,35 @@
             ManageUserPanel.Name = "ManageUserPanel";
             ManageUserPanel.Size = new Size(547, 269);
             ManageUserPanel.TabIndex = 1;
+            // 
+            // UserPhotoBox
+            // 
+            UserPhotoBox.BackColor = SystemColors.Control;
+            UserPhotoBox.ForeColor = SystemColors.ControlText;
+            UserPhotoBox.IconChar = FontAwesome.Sharp.IconChar.None;
+            UserPhotoBox.IconColor = SystemColors.ControlText;
+            UserPhotoBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            UserPhotoBox.IconSize = 66;
+            UserPhotoBox.Location = new Point(451, 3);
+            UserPhotoBox.Name = "UserPhotoBox";
+            UserPhotoBox.Size = new Size(83, 66);
+            UserPhotoBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            UserPhotoBox.TabIndex = 22;
+            UserPhotoBox.TabStop = false;
+            // 
+            // lbUploadImage
+            // 
+            lbUploadImage.ActiveLinkColor = Color.Red;
+            lbUploadImage.AutoSize = true;
+            lbUploadImage.BackColor = Color.Transparent;
+            lbUploadImage.LinkColor = Color.FromArgb(0, 192, 192);
+            lbUploadImage.Location = new Point(453, 72);
+            lbUploadImage.Name = "lbUploadImage";
+            lbUploadImage.Size = new Size(81, 15);
+            lbUploadImage.TabIndex = 21;
+            lbUploadImage.TabStop = true;
+            lbUploadImage.Text = "Upload Image";
+            lbUploadImage.LinkClicked += lbUploadImage_LinkClicked;
             // 
             // label7
             // 
@@ -303,33 +332,6 @@
             tbFirstName.Size = new Size(209, 29);
             tbFirstName.TabIndex = 0;
             tbFirstName.Text = "";
-            // 
-            // lbUploadImage
-            // 
-            lbUploadImage.ActiveLinkColor = Color.Red;
-            lbUploadImage.AutoSize = true;
-            lbUploadImage.BackColor = Color.Transparent;
-            lbUploadImage.LinkColor = Color.FromArgb(0, 192, 192);
-            lbUploadImage.Location = new Point(453, 72);
-            lbUploadImage.Name = "lbUploadImage";
-            lbUploadImage.Size = new Size(81, 15);
-            lbUploadImage.TabIndex = 21;
-            lbUploadImage.TabStop = true;
-            lbUploadImage.Text = "Upload Image";
-            // 
-            // UserPhotoBox
-            // 
-            UserPhotoBox.BackColor = SystemColors.Control;
-            UserPhotoBox.ForeColor = SystemColors.ControlText;
-            UserPhotoBox.IconChar = FontAwesome.Sharp.IconChar.None;
-            UserPhotoBox.IconColor = SystemColors.ControlText;
-            UserPhotoBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            UserPhotoBox.IconSize = 66;
-            UserPhotoBox.Location = new Point(451, 3);
-            UserPhotoBox.Name = "UserPhotoBox";
-            UserPhotoBox.Size = new Size(83, 66);
-            UserPhotoBox.TabIndex = 22;
-            UserPhotoBox.TabStop = false;
             // 
             // ManageUserForm
             // 
