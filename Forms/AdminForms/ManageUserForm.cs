@@ -15,9 +15,8 @@ namespace POSpresso.Forms.AdminForms
         {
             InitializeComponent();
             _manageUserService = manageUserService;
-            dtgvUsers.SelectionChanged += dgvUsers_SelectionChanged;
-
         }
+
         private void SetupUserGridView()
         {
             dtgvUsers.Columns.Clear();
@@ -40,6 +39,19 @@ namespace POSpresso.Forms.AdminForms
             dtgvUsers.Columns.Add("LastName", "Last Name");
             dtgvUsers.Columns.Add("Role", "Role");
             dtgvUsers.Columns.Add("Status", "Status");
+
+            dtgvUsers.RowTemplate.Height = 50;
+            dtgvUsers.AllowUserToAddRows = false;
+
+            var editCol = new DataGridViewImageColumn
+            {
+                Name = "EditIcon",
+                HeaderText = "",
+                Width = 30,
+                Image = Properties.Resources.icon_edit16, // Make sure this exists
+                ToolTipText = "Edit User"
+            };
+            dtgvUsers.Columns.Add(editCol);
 
             dtgvUsers.RowTemplate.Height = 50;
             dtgvUsers.AllowUserToAddRows = false;
@@ -179,28 +191,31 @@ namespace POSpresso.Forms.AdminForms
         }
         private void dtgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-                PopulateInputsFromRow(dtgvUsers.Rows[e.RowIndex]);
-        }
-        private void dgvUsers_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dtgvUsers.CurrentRow == null || dtgvUsers.CurrentRow.Index < 0)
+            if (e.RowIndex >= 0 && dtgvUsers.Columns[e.ColumnIndex].Name == "EditIcon")
             {
-                FormHelper.ClearFormInputs(ManageUserPanel);
-                _selectedUserId = null;
-                return;
+                var row = dtgvUsers.Rows[e.RowIndex];
+                PopulateInputsFromRow(row);
             }
-
-            if (dtgvUsers.CurrentRow.Cells["UserId"].Value == null)
-            {
-                FormHelper.ClearFormInputs(ManageUserPanel);
-                _selectedUserId = null;
-                return;
-            }
-
-            PopulateInputsFromRow(dtgvUsers.CurrentRow);
         }
+        /*  private void dgvUsers_SelectionChanged(object sender, EventArgs e)
+          {
+              if (dtgvUsers.CurrentRow == null || dtgvUsers.CurrentRow.Index < 0)
+              {
+                  FormHelper.ClearFormInputs(ManageUserPanel);
+                  _selectedUserId = null;
+                  return;
+              }
 
+              if (dtgvUsers.CurrentRow.Cells["UserId"].Value == null)
+              {
+                  FormHelper.ClearFormInputs(ManageUserPanel);
+                  _selectedUserId = null;
+                  return;
+              }
+
+              PopulateInputsFromRow(dtgvUsers.CurrentRow);
+          }
+        */
 
         private async void ManageUserForm_Load(object sender, EventArgs e)
         {
@@ -225,6 +240,11 @@ namespace POSpresso.Forms.AdminForms
                     UserPhotoBox.Image = Image.FromStream(stream);
                 }
             }
+        }
+
+        private void ManageUserPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

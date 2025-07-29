@@ -43,16 +43,16 @@
             // 
             // receiptPanel
             // 
-            receiptPanel.Location = new Point(928, 58);
+            receiptPanel.Location = new Point(986, 58);
             receiptPanel.Name = "receiptPanel";
             receiptPanel.Size = new Size(244, 620);
             receiptPanel.TabIndex = 0;
             // 
             // mainPanel
             // 
-            mainPanel.Location = new Point(317, 58);
+            mainPanel.Location = new Point(215, 58);
             mainPanel.Name = "mainPanel";
-            mainPanel.Size = new Size(605, 620);
+            mainPanel.Size = new Size(765, 620);
             mainPanel.TabIndex = 1;
             // 
             // adminPanel
@@ -64,9 +64,9 @@
             adminPanel.Controls.Add(btnReport);
             adminPanel.Controls.Add(btnUsers);
             adminPanel.Controls.Add(btnProducts);
-            adminPanel.Location = new Point(130, 58);
+            adminPanel.Location = new Point(50, 58);
             adminPanel.Name = "adminPanel";
-            adminPanel.Size = new Size(181, 620);
+            adminPanel.Size = new Size(161, 620);
             adminPanel.TabIndex = 2;
             // 
             // btnLogout
@@ -81,7 +81,7 @@
             btnLogout.ImageAlign = ContentAlignment.MiddleLeft;
             btnLogout.Location = new Point(3, 542);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(181, 78);
+            btnLogout.Size = new Size(159, 78);
             btnLogout.TabIndex = 5;
             btnLogout.Text = "Logout";
             btnLogout.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -100,7 +100,7 @@
             btnPOS.ImageAlign = ContentAlignment.MiddleLeft;
             btnPOS.Location = new Point(0, 0);
             btnPOS.Name = "btnPOS";
-            btnPOS.Size = new Size(181, 78);
+            btnPOS.Size = new Size(159, 78);
             btnPOS.TabIndex = 4;
             btnPOS.Text = "POS";
             btnPOS.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -119,7 +119,7 @@
             btnSettings.ImageAlign = ContentAlignment.MiddleLeft;
             btnSettings.Location = new Point(0, 336);
             btnSettings.Name = "btnSettings";
-            btnSettings.Size = new Size(181, 78);
+            btnSettings.Size = new Size(159, 78);
             btnSettings.TabIndex = 3;
             btnSettings.Text = "Settings";
             btnSettings.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -138,7 +138,7 @@
             btnReport.ImageAlign = ContentAlignment.MiddleLeft;
             btnReport.Location = new Point(-3, 252);
             btnReport.Name = "btnReport";
-            btnReport.Size = new Size(184, 78);
+            btnReport.Size = new Size(162, 78);
             btnReport.TabIndex = 2;
             btnReport.Text = "Report";
             btnReport.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -157,7 +157,7 @@
             btnUsers.ImageAlign = ContentAlignment.MiddleLeft;
             btnUsers.Location = new Point(0, 168);
             btnUsers.Name = "btnUsers";
-            btnUsers.Size = new Size(181, 78);
+            btnUsers.Size = new Size(159, 78);
             btnUsers.TabIndex = 1;
             btnUsers.Text = "Users";
             btnUsers.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -176,7 +176,7 @@
             btnProducts.ImageAlign = ContentAlignment.MiddleLeft;
             btnProducts.Location = new Point(0, 84);
             btnProducts.Name = "btnProducts";
-            btnProducts.Size = new Size(181, 78);
+            btnProducts.Size = new Size(159, 78);
             btnProducts.TabIndex = 0;
             btnProducts.Text = "Products";
             btnProducts.TextImageRelation = TextImageRelation.ImageBeforeText;

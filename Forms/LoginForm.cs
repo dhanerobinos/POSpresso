@@ -1,6 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using POSpresso.Domain.Entities;
+using POSpresso.Forms;
 using POSpresso.Helper;
+using POSpresso.Interfaces;
 using POSpresso.Services;
 using System.Linq;
 
@@ -34,8 +36,19 @@ namespace POSpresso
 
             var user = await _authService.GetByUsernameAsync(username);
 
-            if (user != null && BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
+            if (user != null && _authService.VerifyPassword(password, user.PasswordHash))
             {
+                if (user.RequiresPasswordChange)
+                {
+                    var changePasswordForm = new ChangePasswordForm(_authService, user);
+                    var result = changePasswordForm.ShowDialog();
+
+                    if (result != DialogResult.OK)
+                    {
+                        MessageBox.Show("You must change your password to proceed.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                }
                 _formLoader.LoadDashboard(this, user);
                 FormHelper.ClearFormInputs(this);
                 return;

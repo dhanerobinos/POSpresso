@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CashierDashboard));
             cashierPanel = new Panel();
-            iconButton5 = new FontAwesome.Sharp.IconButton();
+            btnLogout = new FontAwesome.Sharp.IconButton();
             iconButton6 = new FontAwesome.Sharp.IconButton();
             iconButton10 = new FontAwesome.Sharp.IconButton();
             mainPanel = new Panel();
@@ -41,7 +41,7 @@
             // cashierPanel
             // 
             cashierPanel.BackgroundImage = (Image)resources.GetObject("cashierPanel.BackgroundImage");
-            cashierPanel.Controls.Add(iconButton5);
+            cashierPanel.Controls.Add(btnLogout);
             cashierPanel.Controls.Add(iconButton6);
             cashierPanel.Controls.Add(iconButton10);
             cashierPanel.Location = new Point(119, 50);
@@ -49,23 +49,24 @@
             cashierPanel.Size = new Size(181, 620);
             cashierPanel.TabIndex = 10;
             // 
-            // iconButton5
+            // btnLogout
             // 
-            iconButton5.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            iconButton5.BackgroundImage = (Image)resources.GetObject("iconButton5.BackgroundImage");
-            iconButton5.FlatStyle = FlatStyle.Popup;
-            iconButton5.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton5.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
-            iconButton5.IconColor = Color.Black;
-            iconButton5.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton5.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton5.Location = new Point(0, 542);
-            iconButton5.Name = "iconButton5";
-            iconButton5.Size = new Size(181, 78);
-            iconButton5.TabIndex = 5;
-            iconButton5.Text = "Logout";
-            iconButton5.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton5.UseVisualStyleBackColor = true;
+            btnLogout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnLogout.BackgroundImage = (Image)resources.GetObject("btnLogout.BackgroundImage");
+            btnLogout.FlatStyle = FlatStyle.Popup;
+            btnLogout.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
+            btnLogout.IconColor = Color.Black;
+            btnLogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnLogout.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLogout.Location = new Point(0, 542);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(181, 78);
+            btnLogout.TabIndex = 5;
+            btnLogout.Text = "Logout";
+            btnLogout.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // iconButton6
             // 
@@ -117,7 +118,7 @@
             receiptPanel.Size = new Size(244, 620);
             receiptPanel.TabIndex = 7;
             // 
-            // CashierForm
+            // CashierDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -127,7 +128,7 @@
             Controls.Add(mainPanel);
             Controls.Add(receiptPanel);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "CashierForm";
+            Name = "CashierDashboard";
             Text = "CashierForm";
             cashierPanel.ResumeLayout(false);
             ResumeLayout(false);
@@ -136,7 +137,7 @@
         #endregion
 
         private Panel cashierPanel;
-        private FontAwesome.Sharp.IconButton iconButton5;
+        private FontAwesome.Sharp.IconButton btnLogout;
         private FontAwesome.Sharp.IconButton iconButton6;
         private FontAwesome.Sharp.IconButton iconButton10;
         private Panel mainPanel;

@@ -17,6 +17,8 @@ namespace POSpresso.Domain.DTO
          public UserStatus Status { get; set; } = UserStatus.Active;
          public UserRole Role { get; set; } = UserRole.Cashier;
          public byte[]? UserImage { get; set; }
+         public bool RequiresPasswordChange { get; set; } = true;
+
 
 
     }

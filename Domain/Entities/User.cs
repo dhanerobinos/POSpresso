@@ -12,7 +12,7 @@ namespace POSpresso.Domain.Entities
         public UserRole Role { get; set; } = UserRole.Cashier;
         public UserStatus Status { get; set; } = UserStatus.Active;
         public byte[]? UserImage { get; set; }
-        public bool MustChangePassword { get; set; } = true;
+        public bool RequiresPasswordChange { get; set; } = true;
 
     }
 }

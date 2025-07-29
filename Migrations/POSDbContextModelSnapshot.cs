@@ -110,6 +110,9 @@ namespace POSpresso.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("RequiresPasswordChange")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
