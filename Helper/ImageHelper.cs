@@ -8,7 +8,7 @@ namespace POSpresso.Helper
 {
     public class ImageHelper
     {
-        public static string SaveImage(string sourcePath, string categoryFolder)
+       /* public static string SaveImage(string sourcePath, string categoryFolder)
         {
             string fileName = Path.GetFileName(sourcePath);
             string destinationFolder = Path.Combine(Application.StartupPath, "Assets", "Images", categoryFolder);
@@ -26,7 +26,7 @@ namespace POSpresso.Helper
             }
 
             return Path.Combine("Assets", "Images", categoryFolder, fileName); // relative path for DB
-        }
+        }*/
         
 
         public static Image? LoadImage(string? relativePath, string? fallbackPath = null)

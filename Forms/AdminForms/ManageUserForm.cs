@@ -1,8 +1,9 @@
-﻿using POSpresso.Domain.Enums;
-using POSpresso.Services;
+﻿using Microsoft.Extensions.DependencyInjection;
 using POSpresso.Domain.DTO;
 using POSpresso.Domain.Entities;
+using POSpresso.Domain.Enums;
 using POSpresso.Helper;
+using POSpresso.Services;
 
 namespace POSpresso.Forms.AdminForms
 {
@@ -11,10 +12,12 @@ namespace POSpresso.Forms.AdminForms
         private readonly ManageUserService _manageUserService;
         private int? _selectedUserId = null;
         private byte[]? selectedUserImageBytes = null;
-        public ManageUserForm(ManageUserService manageUserService)
+        private readonly FormLoaderService _formLoader;
+        public ManageUserForm(ManageUserService manageUserService, FormLoaderService formLoader)
         {
             InitializeComponent();
             _manageUserService = manageUserService;
+            _formLoader = formLoader;
         }
 
         private void SetupUserGridView()
@@ -40,6 +43,12 @@ namespace POSpresso.Forms.AdminForms
             dtgvUsers.Columns.Add("Role", "Role");
             dtgvUsers.Columns.Add("Status", "Status");
 
+            dtgvUsers.Columns["Username"].Width = 100;
+            dtgvUsers.Columns["FirstName"].Width = 100;
+            dtgvUsers.Columns["LastName"].Width = 100;
+            dtgvUsers.Columns["Role"].Width = 50;
+            dtgvUsers.Columns["Status"].Width = 60;
+
             dtgvUsers.RowTemplate.Height = 50;
             dtgvUsers.AllowUserToAddRows = false;
 
@@ -48,7 +57,7 @@ namespace POSpresso.Forms.AdminForms
                 Name = "EditIcon",
                 HeaderText = "",
                 Width = 30,
-                Image = Properties.Resources.icon_edit16, // Make sure this exists
+                Image = Properties.Resources.icon_edit16,
                 ToolTipText = "Edit User"
             };
             dtgvUsers.Columns.Add(editCol);
@@ -62,9 +71,9 @@ namespace POSpresso.Forms.AdminForms
             tbUsername.Text = row.Cells["Username"].Value?.ToString();
             tbFirstName.Text = row.Cells["FirstName"].Value?.ToString();
             tbLastName.Text = row.Cells["LastName"].Value?.ToString();
-
             cbUserRole.SelectedItem = Enum.TryParse<UserRole>(row.Cells["Role"].Value?.ToString(), out var role) ? role : null;
             cbStatus.SelectedItem = Enum.TryParse<UserStatus>(row.Cells["Status"].Value?.ToString(), out var status) ? status : null;
+            UserPhotoBox.Image = row.Cells["Image"].Value as Image;
         }
 
         public async Task LoadUsersAsync()
@@ -130,12 +139,6 @@ namespace POSpresso.Forms.AdminForms
         }
         private async void btnEditUser_Click(object sender, EventArgs e)
         {
-            if (_selectedUserId == null)
-            {
-                MessageBox.Show("Please select a user to update.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             if (string.IsNullOrWhiteSpace(tbUsername.Text) || string.IsNullOrWhiteSpace(tbFirstName.Text) ||
                 string.IsNullOrWhiteSpace(tbLastName.Text))
             {
@@ -195,27 +198,13 @@ namespace POSpresso.Forms.AdminForms
             {
                 var row = dtgvUsers.Rows[e.RowIndex];
                 PopulateInputsFromRow(row);
+                ManageUserPanel.Visible = true;
+                btnAddUser.Visible = false;
+                tbPassword.Visible = false;
+                btnDeleteUser.Visible = true;
+                btnChangePassword.Visible = true;
             }
         }
-        /*  private void dgvUsers_SelectionChanged(object sender, EventArgs e)
-          {
-              if (dtgvUsers.CurrentRow == null || dtgvUsers.CurrentRow.Index < 0)
-              {
-                  FormHelper.ClearFormInputs(ManageUserPanel);
-                  _selectedUserId = null;
-                  return;
-              }
-
-              if (dtgvUsers.CurrentRow.Cells["UserId"].Value == null)
-              {
-                  FormHelper.ClearFormInputs(ManageUserPanel);
-                  _selectedUserId = null;
-                  return;
-              }
-
-              PopulateInputsFromRow(dtgvUsers.CurrentRow);
-          }
-        */
 
         private async void ManageUserForm_Load(object sender, EventArgs e)
         {
@@ -224,7 +213,6 @@ namespace POSpresso.Forms.AdminForms
 
             SetupUserGridView();
             await LoadUsersAsync();
-
         }
 
         private void lbUploadImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -242,9 +230,18 @@ namespace POSpresso.Forms.AdminForms
             }
         }
 
-        private void ManageUserPanel_Paint(object sender, PaintEventArgs e)
+        private void btnShowAdd_Click(object sender, EventArgs e)
         {
+            ManageUserPanel.Visible = true;
+            btnDeleteUser.Visible = false;
+            btnEditUser.Visible = false;
+            btnChangePassword.Visible = false;
+        }
 
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            tbPassword.Visible = true;
+            btnChangePassword.Visible = false;
         }
     }
 }

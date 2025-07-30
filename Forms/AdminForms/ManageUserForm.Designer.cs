@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageUserForm));
             dtgvUsers = new DataGridView();
             label6 = new Label();
@@ -37,6 +39,7 @@
             lbUploadImage = new LinkLabel();
             UserPhotoBox = new FontAwesome.Sharp.IconPictureBox();
             ManageUserPanel = new Panel();
+            btnChangePassword = new Button();
             label7 = new Label();
             cbStatus = new ComboBox();
             btnEditUser = new Button();
@@ -52,6 +55,9 @@
             tbFirstName = new RichTextBox();
             label8 = new Label();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
+            btnShowAdd = new Button();
+            tbUserSearch = new RichTextBox();
+            btnUserSearch = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)dtgvUsers).BeginInit();
             ((System.ComponentModel.ISupportInitialize)UserPhotoBox).BeginInit();
             ManageUserPanel.SuspendLayout();
@@ -62,13 +68,31 @@
             dtgvUsers.AllowUserToAddRows = false;
             dtgvUsers.AllowUserToDeleteRows = false;
             dtgvUsers.AllowUserToResizeRows = false;
+            dtgvUsers.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Arial Narrow", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dtgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dtgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dtgvUsers.DefaultCellStyle = dataGridViewCellStyle2;
             dtgvUsers.GridColor = Color.Black;
-            dtgvUsers.Location = new Point(1, 43);
+            dtgvUsers.Location = new Point(1, 71);
             dtgvUsers.Name = "dtgvUsers";
             dtgvUsers.ReadOnly = true;
+            dtgvUsers.RowHeadersVisible = false;
             dtgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dtgvUsers.Size = new Size(487, 562);
+            dtgvUsers.Size = new Size(487, 534);
             dtgvUsers.TabIndex = 0;
             dtgvUsers.CellContentClick += dtgvUsers_CellContentClick;
             // 
@@ -108,9 +132,9 @@
             btnDeleteUser.FlatStyle = FlatStyle.Flat;
             btnDeleteUser.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
             btnDeleteUser.ForeColor = Color.White;
-            btnDeleteUser.Location = new Point(59, 428);
+            btnDeleteUser.Location = new Point(196, 392);
             btnDeleteUser.Name = "btnDeleteUser";
-            btnDeleteUser.Size = new Size(94, 29);
+            btnDeleteUser.Size = new Size(66, 29);
             btnDeleteUser.TabIndex = 17;
             btnDeleteUser.Text = "Delete User";
             btnDeleteUser.UseVisualStyleBackColor = false;
@@ -164,6 +188,7 @@
             // ManageUserPanel
             // 
             ManageUserPanel.BackgroundImage = (Image)resources.GetObject("ManageUserPanel.BackgroundImage");
+            ManageUserPanel.Controls.Add(btnChangePassword);
             ManageUserPanel.Controls.Add(UserPhotoBox);
             ManageUserPanel.Controls.Add(lbUploadImage);
             ManageUserPanel.Controls.Add(label7);
@@ -187,6 +212,23 @@
             ManageUserPanel.Name = "ManageUserPanel";
             ManageUserPanel.Size = new Size(276, 605);
             ManageUserPanel.TabIndex = 1;
+            ManageUserPanel.Visible = false;
+            // 
+            // btnChangePassword
+            // 
+            btnChangePassword.BackColor = Color.Transparent;
+            btnChangePassword.BackgroundImage = (Image)resources.GetObject("btnChangePassword.BackgroundImage");
+            btnChangePassword.FlatAppearance.BorderSize = 0;
+            btnChangePassword.FlatStyle = FlatStyle.Flat;
+            btnChangePassword.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
+            btnChangePassword.ForeColor = Color.White;
+            btnChangePassword.Location = new Point(105, 260);
+            btnChangePassword.Name = "btnChangePassword";
+            btnChangePassword.Size = new Size(160, 29);
+            btnChangePassword.TabIndex = 23;
+            btnChangePassword.Text = "Change Password";
+            btnChangePassword.UseVisualStyleBackColor = false;
+            btnChangePassword.Click += btnChangePassword_Click;
             // 
             // label7
             // 
@@ -216,9 +258,9 @@
             btnEditUser.FlatStyle = FlatStyle.Flat;
             btnEditUser.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
             btnEditUser.ForeColor = Color.White;
-            btnEditUser.Location = new Point(153, 463);
+            btnEditUser.Location = new Point(105, 392);
             btnEditUser.Name = "btnEditUser";
-            btnEditUser.Size = new Size(94, 29);
+            btnEditUser.Size = new Size(72, 29);
             btnEditUser.TabIndex = 15;
             btnEditUser.Text = "Edit User";
             btnEditUser.UseVisualStyleBackColor = false;
@@ -346,7 +388,7 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(1, 10);
+            label8.Location = new Point(1, 3);
             label8.Name = "label8";
             label8.Size = new Size(96, 30);
             label8.TabIndex = 23;
@@ -357,11 +399,55 @@
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
+            // btnShowAdd
+            // 
+            btnShowAdd.BackColor = Color.Transparent;
+            btnShowAdd.BackgroundImage = (Image)resources.GetObject("btnShowAdd.BackgroundImage");
+            btnShowAdd.FlatAppearance.BorderSize = 0;
+            btnShowAdd.FlatStyle = FlatStyle.Flat;
+            btnShowAdd.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
+            btnShowAdd.ForeColor = Color.White;
+            btnShowAdd.Location = new Point(390, 36);
+            btnShowAdd.Name = "btnShowAdd";
+            btnShowAdd.Size = new Size(95, 29);
+            btnShowAdd.TabIndex = 23;
+            btnShowAdd.Text = "Add New ";
+            btnShowAdd.UseVisualStyleBackColor = false;
+            btnShowAdd.Click += btnShowAdd_Click;
+            // 
+            // tbUserSearch
+            // 
+            tbUserSearch.BackColor = SystemColors.ControlLightLight;
+            tbUserSearch.BorderStyle = BorderStyle.None;
+            tbUserSearch.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            tbUserSearch.Location = new Point(85, 36);
+            tbUserSearch.Multiline = false;
+            tbUserSearch.Name = "tbUserSearch";
+            tbUserSearch.Size = new Size(257, 29);
+            tbUserSearch.TabIndex = 23;
+            tbUserSearch.Text = "";
+            // 
+            // btnUserSearch
+            // 
+            btnUserSearch.ForeColor = Color.SaddleBrown;
+            btnUserSearch.IconChar = FontAwesome.Sharp.IconChar.Search;
+            btnUserSearch.IconColor = Color.Black;
+            btnUserSearch.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnUserSearch.IconSize = 30;
+            btnUserSearch.Location = new Point(348, 33);
+            btnUserSearch.Name = "btnUserSearch";
+            btnUserSearch.Size = new Size(36, 32);
+            btnUserSearch.TabIndex = 24;
+            btnUserSearch.UseVisualStyleBackColor = true;
+            // 
             // ManageUserForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(765, 620);
+            Controls.Add(btnUserSearch);
+            Controls.Add(tbUserSearch);
+            Controls.Add(btnShowAdd);
             Controls.Add(label8);
             Controls.Add(ManageUserPanel);
             Controls.Add(dtgvUsers);
@@ -402,5 +488,9 @@
         private RichTextBox tbFirstName;
         private Label label8;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
+        private Button btnShowAdd;
+        private RichTextBox tbUserSearch;
+        private FontAwesome.Sharp.IconButton btnUserSearch;
+        private Button btnChangePassword;
     }
 }
