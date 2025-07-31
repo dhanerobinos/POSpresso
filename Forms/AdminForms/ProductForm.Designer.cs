@@ -69,9 +69,9 @@
             panel1.Controls.Add(tbDescription);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(tbProductName);
-            panel1.Location = new Point(12, 12);
+            panel1.Location = new Point(469, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(285, 596);
+            panel1.Size = new Size(284, 596);
             panel1.TabIndex = 0;
             // 
             // lbUploadImage
@@ -142,6 +142,7 @@
             pbProductImage.SizeMode = PictureBoxSizeMode.StretchImage;
             pbProductImage.TabIndex = 25;
             pbProductImage.TabStop = false;
+            pbProductImage.Click += pbProductImage_Click;
             // 
             // label5
             // 
@@ -243,21 +244,23 @@
             // dtgvProducts
             // 
             dtgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvProducts.Location = new Point(313, 12);
+            dtgvProducts.Location = new Point(12, 12);
             dtgvProducts.Name = "dtgvProducts";
-            dtgvProducts.Size = new Size(280, 596);
+            dtgvProducts.Size = new Size(451, 534);
             dtgvProducts.TabIndex = 1;
+            dtgvProducts.CellContentClick += dtgvProducts_CellContentClick;
             // 
             // ProductForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(605, 620);
+            ClientSize = new Size(765, 620);
             Controls.Add(dtgvProducts);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ProductForm";
             Text = "ProductForm";
+            Load += ProductForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbProductImage).EndInit();

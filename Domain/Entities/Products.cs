@@ -7,12 +7,11 @@ namespace POSpresso.Domain.Entities
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
-        public string? Description { get; set; } 
-        public decimal Price { get; set; }
-        public bool IsAvailable { get; set; } = true;
-        public  DateTime CreatedAt { get; set; }
-        public ProductStatus Status { get; set; } = ProductStatus.Available;
-        public byte[]? UserImage { get; set; }
+        public string? ProductDescription { get; set; } 
+        public decimal ProductPrice { get; set; }
+        public  DateTime ProductCreatedAt { get; set; }
+        public ProductStatus ProductStatus { get; set; } = ProductStatus.Available;
+        public byte[]? ProductImage { get; set; }
 
         // Foreign key to the Category table
         public int CategoryId { get; set; }

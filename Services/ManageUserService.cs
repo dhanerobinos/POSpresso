@@ -9,7 +9,7 @@ namespace POSpresso.Services
     {
         private readonly POSDbContext _context;
 
-        public ManageUserService(POSDbContext context)
+       public ManageUserService(POSDbContext context)
         {
           _context = context;
         }

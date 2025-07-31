@@ -16,19 +16,19 @@ namespace POSpresso.Infrastructure.Configurations
                    .IsRequired()
                    .HasMaxLength(100);
 
-            builder.Property(p => p.Description)
+            builder.Property(p => p.ProductDescription)
                    .HasMaxLength(255);
 
-            builder.Property(p => p.Price)
+            builder.Property(p => p.ProductPrice)
                    .HasColumnType("decimal(18,2)")
                    .IsRequired();
 
-            builder.Property(p => p.Status)
+            builder.Property(p => p.ProductStatus)
                    .HasConversion<string>() //enum to string in db
                    .HasMaxLength(20)
                    .IsRequired();
 
-            builder.Property(p => p.CreatedAt)
+            builder.Property(p => p.ProductCreatedAt)
                    .HasDefaultValueSql("GETDATE()");
 
             builder.HasOne(p => p.ProductCategory)

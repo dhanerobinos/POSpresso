@@ -11,7 +11,7 @@ namespace POSpresso.Forms.AdminForms
     {
         private readonly ManageUserService _manageUserService;
         private int? _selectedUserId = null;
-        private byte[]? selectedUserImageBytes = null;
+        private byte[]? selectedUserImage = null;
         private readonly FormLoaderService _formLoader;
         public ManageUserForm(ManageUserService manageUserService, FormLoaderService formLoader)
         {
@@ -112,7 +112,7 @@ namespace POSpresso.Forms.AdminForms
                 LastName = tbLastName.Text,
                 Role = (UserRole)cbUserRole.SelectedItem!,
                 Status = (UserStatus)cbStatus.SelectedItem!,
-                UserImage = selectedUserImageBytes
+                UserImage = selectedUserImage
             };
 
         }
@@ -223,8 +223,8 @@ namespace POSpresso.Forms.AdminForms
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    selectedUserImageBytes = File.ReadAllBytes(openFileDialog.FileName);
-                    using var stream = new MemoryStream(selectedUserImageBytes);
+                    selectedUserImage = File.ReadAllBytes(openFileDialog.FileName);
+                    using var stream = new MemoryStream(selectedUserImage);
                     UserPhotoBox.Image = Image.FromStream(stream);
                 }
             }
