@@ -21,6 +21,15 @@ namespace POSpresso.Services
         //use DTO for services and UI(best practice)
         public async Task AddUserAsync(UserDTO userDto)
         {
+            // Checks of username already exists (case-insensitive match)
+            var existingUser = await _context.User
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Username.ToLower() == userDto.Username.ToLower());
+
+            if (existingUser != null)
+            {
+                throw new InvalidOperationException("Username already exists.");
+            }
             var user = new User
             {
                 Username = userDto.Username,

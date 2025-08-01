@@ -124,20 +124,30 @@ namespace POSpresso.Forms.AdminForms
                 MessageBox.Show("Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var userDTO = GetUserDTOFromInputs();
             try
             {
-                await _manageUserService.AddUserAsync(userDTO);
-                MessageBox.Show("User added successfully!");
+                var userDTO = GetUserDTOFromInputs();
+
+                if (_selectedUserId == null)
+                {
+                    await _manageUserService.AddUserAsync(userDTO);
+                    MessageBox.Show("User added successfully!");
+                }
+                else
+                {
+                    userDTO.UserId = _selectedUserId.Value;
+                    await _manageUserService.UpdateUserAsync(userDTO);
+                    MessageBox.Show("User updated successfully!");
+                }
                 await LoadUsersAsync();
-                FormHelper.ClearFormInputs(this);
-            }
+                FormHelper.ClearFormInputs(ManageUserPanel);
+            }  
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to Add user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Failed to add user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private async void btnEditUser_Click(object sender, EventArgs e)
+        /*private async void btnEditUser_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbUsername.Text) || string.IsNullOrWhiteSpace(tbFirstName.Text) ||
                 string.IsNullOrWhiteSpace(tbLastName.Text))
@@ -161,7 +171,7 @@ namespace POSpresso.Forms.AdminForms
             {
                 MessageBox.Show($"Failed to update user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        }*/
         private async void btnDeleteUser_Click(object sender, EventArgs e)
         {
             if (_selectedUserId == null)
@@ -171,21 +181,21 @@ namespace POSpresso.Forms.AdminForms
             }
 
             var confirm = MessageBox.Show("Are you sure you want to delete this user? Only Delete if this user is added by mistake", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirm != DialogResult.Yes)
-                return;
-
-            try
+            if (confirm == DialogResult.Yes)
             {
-                await _manageUserService.DeleteUserAsync(_selectedUserId.Value);
-                MessageBox.Show("User deleted successfully!");
-                await LoadUsersAsync();
-                FormHelper.ClearFormInputs(this);
-                tbPassword.Text = "";
-                _selectedUserId = null;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Failed to delete user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    await _manageUserService.DeleteUserAsync(_selectedUserId.Value);
+                    MessageBox.Show("User deleted successfully!");
+                    await LoadUsersAsync();
+                    FormHelper.ClearFormInputs(this);
+                    tbPassword.Text = "";
+                    _selectedUserId = null;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to delete user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void btnClear_Click(object sender, EventArgs e)
@@ -234,7 +244,6 @@ namespace POSpresso.Forms.AdminForms
         {
             ManageUserPanel.Visible = true;
             btnDeleteUser.Visible = false;
-            btnEditUser.Visible = false;
             btnChangePassword.Visible = false;
         }
 

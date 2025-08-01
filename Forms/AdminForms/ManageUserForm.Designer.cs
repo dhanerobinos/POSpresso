@@ -42,7 +42,6 @@
             btnChangePassword = new Button();
             label7 = new Label();
             cbStatus = new ComboBox();
-            btnEditUser = new Button();
             label5 = new Label();
             cbUserRole = new ComboBox();
             label4 = new Label();
@@ -195,7 +194,6 @@
             ManageUserPanel.Controls.Add(cbStatus);
             ManageUserPanel.Controls.Add(btnClear);
             ManageUserPanel.Controls.Add(btnDeleteUser);
-            ManageUserPanel.Controls.Add(btnEditUser);
             ManageUserPanel.Controls.Add(btnAddUser);
             ManageUserPanel.Controls.Add(label6);
             ManageUserPanel.Controls.Add(label5);
@@ -249,22 +247,6 @@
             cbStatus.Name = "cbStatus";
             cbStatus.Size = new Size(72, 23);
             cbStatus.TabIndex = 19;
-            // 
-            // btnEditUser
-            // 
-            btnEditUser.BackColor = Color.Transparent;
-            btnEditUser.BackgroundImage = (Image)resources.GetObject("btnEditUser.BackgroundImage");
-            btnEditUser.FlatAppearance.BorderSize = 0;
-            btnEditUser.FlatStyle = FlatStyle.Flat;
-            btnEditUser.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            btnEditUser.ForeColor = Color.White;
-            btnEditUser.Location = new Point(105, 392);
-            btnEditUser.Name = "btnEditUser";
-            btnEditUser.Size = new Size(72, 29);
-            btnEditUser.TabIndex = 15;
-            btnEditUser.Text = "Edit User";
-            btnEditUser.UseVisualStyleBackColor = false;
-            btnEditUser.Click += btnEditUser_Click;
             // 
             // label5
             // 
@@ -473,7 +455,6 @@
         private LinkLabel lbUploadImage;
         private FontAwesome.Sharp.IconPictureBox UserPhotoBox;
         private Panel ManageUserPanel;
-        private Button btnEditUser;
         private Label label7;
         private ComboBox cbStatus;
         private Label label5;

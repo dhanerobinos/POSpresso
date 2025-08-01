@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductForm));
             panel1 = new Panel();
+            btnDelete = new FontAwesome.Sharp.IconButton();
             lbUploadImage = new LinkLabel();
             label6 = new Label();
             btnClear = new FontAwesome.Sharp.IconButton();
@@ -54,6 +55,7 @@
             // panel1
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.Controls.Add(btnDelete);
             panel1.Controls.Add(lbUploadImage);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(btnClear);
@@ -69,10 +71,27 @@
             panel1.Controls.Add(tbDescription);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(tbProductName);
-            panel1.Location = new Point(469, 12);
+            panel1.Location = new Point(494, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(284, 596);
+            panel1.Size = new Size(259, 596);
             panel1.TabIndex = 0;
+            // 
+            // btnDelete
+            // 
+            btnDelete.BackColor = Color.Brown;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnDelete.IconColor = Color.Black;
+            btnDelete.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnDelete.Location = new Point(0, 385);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(259, 33);
+            btnDelete.TabIndex = 30;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // lbUploadImage
             // 
@@ -80,7 +99,7 @@
             lbUploadImage.BackColor = Color.Transparent;
             lbUploadImage.Font = new Font("Segoe UI Black", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbUploadImage.LinkColor = Color.FromArgb(0, 192, 192);
-            lbUploadImage.Location = new Point(186, 109);
+            lbUploadImage.Location = new Point(159, 111);
             lbUploadImage.Name = "lbUploadImage";
             lbUploadImage.Size = new Size(96, 17);
             lbUploadImage.TabIndex = 29;
@@ -111,7 +130,7 @@
             btnClear.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnClear.Location = new Point(3, 346);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(279, 33);
+            btnClear.Size = new Size(259, 33);
             btnClear.TabIndex = 27;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = false;
@@ -128,7 +147,7 @@
             btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnSave.Location = new Point(3, 307);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(279, 33);
+            btnSave.Size = new Size(259, 33);
             btnSave.TabIndex = 26;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
@@ -136,7 +155,7 @@
             // 
             // pbProductImage
             // 
-            pbProductImage.Location = new Point(198, 28);
+            pbProductImage.Location = new Point(171, 30);
             pbProductImage.Name = "pbProductImage";
             pbProductImage.Size = new Size(75, 78);
             pbProductImage.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -150,7 +169,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(12, 264);
+            label5.Location = new Point(5, 266);
             label5.Name = "label5";
             label5.Size = new Size(82, 17);
             label5.TabIndex = 23;
@@ -159,7 +178,7 @@
             // cbStatus
             // 
             cbStatus.FormattingEnabled = true;
-            cbStatus.Location = new Point(118, 263);
+            cbStatus.Location = new Point(111, 265);
             cbStatus.Name = "cbStatus";
             cbStatus.Size = new Size(144, 23);
             cbStatus.TabIndex = 22;
@@ -170,7 +189,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(12, 235);
+            label4.Location = new Point(5, 237);
             label4.Name = "label4";
             label4.Size = new Size(68, 17);
             label4.TabIndex = 21;
@@ -179,7 +198,7 @@
             // cbCategory
             // 
             cbCategory.FormattingEnabled = true;
-            cbCategory.Location = new Point(118, 234);
+            cbCategory.Location = new Point(111, 236);
             cbCategory.Name = "cbCategory";
             cbCategory.Size = new Size(144, 23);
             cbCategory.TabIndex = 20;
@@ -190,7 +209,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(12, 211);
+            label3.Location = new Point(5, 213);
             label3.Name = "label3";
             label3.Size = new Size(42, 17);
             label3.TabIndex = 19;
@@ -198,7 +217,7 @@
             // 
             // tbPrice
             // 
-            tbPrice.Location = new Point(118, 205);
+            tbPrice.Location = new Point(111, 207);
             tbPrice.Name = "tbPrice";
             tbPrice.Size = new Size(144, 23);
             tbPrice.TabIndex = 18;
@@ -209,7 +228,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(12, 177);
+            label2.Location = new Point(5, 179);
             label2.Name = "label2";
             label2.Size = new Size(83, 17);
             label2.TabIndex = 17;
@@ -217,7 +236,7 @@
             // 
             // tbDescription
             // 
-            tbDescription.Location = new Point(118, 176);
+            tbDescription.Location = new Point(111, 178);
             tbDescription.Name = "tbDescription";
             tbDescription.Size = new Size(144, 23);
             tbDescription.TabIndex = 16;
@@ -228,7 +247,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(12, 148);
+            label1.Location = new Point(5, 150);
             label1.Name = "label1";
             label1.Size = new Size(100, 17);
             label1.TabIndex = 15;
@@ -236,17 +255,22 @@
             // 
             // tbProductName
             // 
-            tbProductName.Location = new Point(118, 147);
+            tbProductName.Location = new Point(111, 149);
             tbProductName.Name = "tbProductName";
             tbProductName.Size = new Size(144, 23);
             tbProductName.TabIndex = 14;
             // 
             // dtgvProducts
             // 
+            dtgvProducts.AllowUserToAddRows = false;
+            dtgvProducts.AllowUserToDeleteRows = false;
             dtgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvProducts.Location = new Point(12, 12);
+            dtgvProducts.Location = new Point(1, 71);
             dtgvProducts.Name = "dtgvProducts";
-            dtgvProducts.Size = new Size(451, 534);
+            dtgvProducts.ReadOnly = true;
+            dtgvProducts.RowHeadersVisible = false;
+            dtgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgvProducts.Size = new Size(487, 534);
             dtgvProducts.TabIndex = 1;
             dtgvProducts.CellContentClick += dtgvProducts_CellContentClick;
             // 
@@ -287,5 +311,6 @@
         private TextBox tbDescription;
         private Label label1;
         private TextBox tbProductName;
+        private FontAwesome.Sharp.IconButton btnDelete;
     }
 }

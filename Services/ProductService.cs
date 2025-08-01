@@ -24,6 +24,15 @@ namespace POSpresso.Services
 
         public async Task AddProductAsync(ProductDTO productDto)
         {
+            var existingProduct = await _context.Products
+             .AsNoTracking()
+             .FirstOrDefaultAsync(u => u.ProductName  == productDto.ProductName);
+
+            if (existingProduct != null)
+            {
+                throw new InvalidOperationException("Product already exists.");
+            }
+
             var product = new Products
             {
                 ProductName = productDto.ProductName,
