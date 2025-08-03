@@ -149,6 +149,8 @@ namespace POSpresso.Forms
         private void btnClear_Click(object sender, EventArgs e)
         {
             FormHelper.ClearFormInputs(this);
+            selectedProductId = null;
+            selectedProductImage = null;
         }
 
         private void lbUploadImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -199,9 +201,10 @@ namespace POSpresso.Forms
         {
             if (string.IsNullOrWhiteSpace(tbProductName.Text) ||
                 string.IsNullOrWhiteSpace(tbPrice.Text) ||
-                cbCategory.SelectedItem == null)
+                cbCategory.SelectedItem == null ||
+                (selectedProductId == null && selectedProductImage == null))
             {
-                MessageBox.Show("Please fill in all required fields.");
+                MessageBox.Show("Please fill in all required fields and add product photo.");
                 return;
             }
             try

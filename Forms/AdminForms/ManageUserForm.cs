@@ -118,15 +118,26 @@ namespace POSpresso.Forms.AdminForms
         }
         private async void btnAddUser_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tbUsername.Text) || string.IsNullOrWhiteSpace(tbPassword.Text) ||
-                string.IsNullOrWhiteSpace(tbFirstName.Text) || string.IsNullOrWhiteSpace(tbLastName.Text))
+            // Validate fields
+            if (string.IsNullOrWhiteSpace(tbUsername.Text) ||
+                string.IsNullOrWhiteSpace(tbFirstName.Text) ||
+                string.IsNullOrWhiteSpace(tbLastName.Text))
             {
-                MessageBox.Show("Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            // require password for new users
+            if (_selectedUserId == null && string.IsNullOrWhiteSpace(tbPassword.Text))
+            {
+                MessageBox.Show("Password is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
                 var userDTO = GetUserDTOFromInputs();
+                userDTO.UserId = _selectedUserId ?? 0;
 
                 if (_selectedUserId == null)
                 {
@@ -135,43 +146,27 @@ namespace POSpresso.Forms.AdminForms
                 }
                 else
                 {
-                    userDTO.UserId = _selectedUserId.Value;
+                    //updates password if changed
+                    if (string.IsNullOrWhiteSpace(tbPassword.Text))
+                    {
+                        userDTO.Password = null; 
+                    }
+
                     await _manageUserService.UpdateUserAsync(userDTO);
                     MessageBox.Show("User updated successfully!");
                 }
-                await LoadUsersAsync();
-                FormHelper.ClearFormInputs(ManageUserPanel);
-            }  
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Failed to add user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        /*private async void btnEditUser_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(tbUsername.Text) || string.IsNullOrWhiteSpace(tbFirstName.Text) ||
-                string.IsNullOrWhiteSpace(tbLastName.Text))
-            {
-                MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
-            var userDto = GetUserDTOFromInputs();
-            userDto.UserId = _selectedUserId.Value;
-
-            try
-            {
-                await _manageUserService.UpdateUserAsync(userDto);
-                MessageBox.Show("User updated successfully!");
                 await LoadUsersAsync();
                 FormHelper.ClearFormInputs(ManageUserPanel);
                 _selectedUserId = null;
+                selectedUserImage = null;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to update user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Failed to save user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }*/
+        }
+       
         private async void btnDeleteUser_Click(object sender, EventArgs e)
         {
             if (_selectedUserId == null)
@@ -201,6 +196,9 @@ namespace POSpresso.Forms.AdminForms
         private void btnClear_Click(object sender, EventArgs e)
         {
             FormHelper.ClearFormInputs(this);
+            btnChangePassword.Visible = false;
+            tbPassword.Visible = true;
+            _selectedUserId = null;
         }
         private void dtgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -209,7 +207,6 @@ namespace POSpresso.Forms.AdminForms
                 var row = dtgvUsers.Rows[e.RowIndex];
                 PopulateInputsFromRow(row);
                 ManageUserPanel.Visible = true;
-                btnAddUser.Visible = false;
                 tbPassword.Visible = false;
                 btnDeleteUser.Visible = true;
                 btnChangePassword.Visible = true;
@@ -245,6 +242,7 @@ namespace POSpresso.Forms.AdminForms
             ManageUserPanel.Visible = true;
             btnDeleteUser.Visible = false;
             btnChangePassword.Visible = false;
+            tbPassword.Visible = true;
         }
 
         private void btnChangePassword_Click(object sender, EventArgs e)
