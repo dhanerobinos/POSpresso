@@ -2,12 +2,13 @@
 using POSpresso.Data;
 using POSpresso.Domain.Entities;
 using POSpresso.Domain.DTO;
+using POSpresso.Interfaces;
 using System.Windows.Media.Effects;
 
 
 namespace POSpresso.Services
 {
-    public class ProductService
+    public class ProductService:IProductService
     {
         private readonly POSDbContext _context;
         public ProductService(POSDbContext context)
@@ -76,5 +77,13 @@ namespace POSpresso.Services
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<List<Products>> GetProductsByCategoryAsync(int categoryId)
+        {
+            return await _context.Products
+                .Where(p => p.CategoryId == categoryId)
+                .ToListAsync();
+        }
+
     }
 }

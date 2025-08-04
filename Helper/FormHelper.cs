@@ -41,5 +41,16 @@ namespace POSpresso.Helper
                 }
             }
         }
+        public static void StripCurrency(TextBox textBox)
+        {
+            if (decimal.TryParse(textBox.Text.Replace("₱", "").Trim(), out decimal value))
+                textBox.Text = value.ToString("0.00");
+        }
+
+        public static void ApplyCurrency(TextBox textBox)
+        {
+            if (decimal.TryParse(textBox.Text.Trim(), out decimal value))
+                textBox.Text = $"₱{value:0.00}";
+        }
     }
 }

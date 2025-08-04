@@ -221,6 +221,7 @@
             tbPrice.Name = "tbPrice";
             tbPrice.Size = new Size(144, 23);
             tbPrice.TabIndex = 18;
+            tbPrice.Enter += tbPrice_Enter;
             // 
             // label2
             // 

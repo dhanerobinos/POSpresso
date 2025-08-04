@@ -28,13 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            flpCategories = new FlowLayoutPanel();
+            flpProducts = new FlowLayoutPanel();
             SuspendLayout();
+            // 
+            // flpCategories
+            // 
+            flpCategories.Location = new Point(0, 0);
+            flpCategories.Name = "flpCategories";
+            flpCategories.Size = new Size(145, 620);
+            flpCategories.TabIndex = 0;
+            // 
+            // flpProducts
+            // 
+            flpProducts.Location = new Point(151, 0);
+            flpProducts.Name = "flpProducts";
+            flpProducts.Size = new Size(612, 620);
+            flpProducts.TabIndex = 1;
             // 
             // POSForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(765, 620);
+            Controls.Add(flpProducts);
+            Controls.Add(flpCategories);
             FormBorderStyle = FormBorderStyle.None;
             Name = "POSForm";
             Text = "POSForm";
@@ -42,5 +60,8 @@
         }
 
         #endregion
+
+        private FlowLayoutPanel flpCategories;
+        private FlowLayoutPanel flpProducts;
     }
 }

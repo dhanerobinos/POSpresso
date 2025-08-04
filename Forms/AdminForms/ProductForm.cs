@@ -14,7 +14,7 @@ namespace POSpresso.Forms
     public partial class ProductForm : Form
     {
         private readonly POSDbContext _context;
-        private readonly ProductService _productService;
+        private readonly IProductService _productService;
         private readonly FormLoaderService _formLoader;
         private byte[]? selectedProductImage = null;
         private int? selectedProductId = null;
@@ -101,7 +101,7 @@ namespace POSpresso.Forms
             selectedProductId = row.Cells["ProductId"].Value as int?;
             tbProductName.Text = row.Cells["ProductName"].Value?.ToString();
             tbDescription.Text = row.Cells["ProductDescription"].Value?.ToString();
-            tbPrice.Text = row.Cells["ProductPrice"].Value?.ToString();
+            tbPrice.Text = $"{decimal.Parse(row.Cells["ProductPrice"].Value?.ToString()?.Replace("₱", "") ?? "0"):C}";
             cbStatus.SelectedItem = Enum.TryParse<ProductStatus>(row.Cells["ProductStatus"].Value?.ToString(), out var status) ? status : null;
             var selectedCategoryName = row.Cells["CategoryName"].Value?.ToString();
             if (selectedCategoryName != null)
@@ -139,7 +139,7 @@ namespace POSpresso.Forms
             {
                 ProductName = tbProductName.Text.Trim(),
                 ProductDescription = tbDescription.Text.Trim(),
-                ProductPrice = decimal.Parse(tbPrice.Text.Trim()),
+                ProductPrice = decimal.Parse(tbPrice.Text.Replace("₱", "").Trim()),
                 ProductStatus = (ProductStatus)cbStatus.SelectedItem!,
                 CategoryID = selectedCategory.CategoryID,
                 ProductImage = selectedProductImage
@@ -177,6 +177,10 @@ namespace POSpresso.Forms
             cbCategory.DataSource = await _productService.GetAllCategoriesAsync();
             cbCategory.DisplayMember = "CategoryName";
             cbCategory.ValueMember = "CategoryID";
+
+            //Events
+            tbPrice.Enter += (s, ev) => FormHelper.StripCurrency(tbPrice);
+            tbPrice.Leave += (s, ev) => FormHelper.ApplyCurrency(tbPrice);
 
             SetupProductGridView();
             await LoadProductsAsync();
@@ -245,7 +249,7 @@ namespace POSpresso.Forms
             {
                 try
                 {
-                   await _productService.DeleteProductAsync(selectedProductId.Value);
+                    await _productService.DeleteProductAsync(selectedProductId.Value);
                     MessageBox.Show("Product deleted successfully!");
                     await LoadProductsAsync();
                     FormHelper.ClearFormInputs(this);
@@ -256,6 +260,11 @@ namespace POSpresso.Forms
                 }
 
             }
+        }
+
+        private void tbPrice_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
