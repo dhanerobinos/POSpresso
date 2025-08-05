@@ -6,6 +6,7 @@ using POSpresso.Domain.Entities;
 using POSpresso.Domain.Enums;
 using POSpresso.Forms;
 using POSpresso.Forms.AdminForms;
+using POSpresso.Interfaces;
 using POSpresso.Services;
 
 namespace POSpresso
@@ -32,6 +33,11 @@ namespace POSpresso
                     services.AddScoped<ProductService>();
                     services.AddScoped<FormLoaderService>();
                     services.AddScoped<ManageUserService>();
+
+                    //Interfaces
+                    services.AddScoped<IAuthService, AuthService>();
+                    services.AddScoped<IManageUserService, ManageUserService>();
+                    services.AddScoped<IProductService, ProductService>();
 
                     // Register forms
                     services.AddTransient<LoginForm>();

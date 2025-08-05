@@ -2,10 +2,11 @@
 using POSpresso.Data;
 using POSpresso.Domain.DTO;
 using POSpresso.Domain.Entities;    
+using POSpresso.Interfaces;
 
 namespace POSpresso.Services
 {
-    public class ManageUserService
+    public class ManageUserService : IManageUserService
     {
         private readonly POSDbContext _context;
 
@@ -44,18 +45,6 @@ namespace POSpresso.Services
 
             _context.User.Add(user);
             await _context.SaveChangesAsync();
-        }
-        public async Task<User?> AuthenticateAsync(string username, string password)
-        {
-            var user = await _context.User.FirstOrDefaultAsync(u => u.Username == username);
-
-            if (user == null)
-                return null;
-
-            if (!BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
-                return null;
-
-            return user;
         }
 
         public async Task UpdateUserAsync(UserDTO userDto)

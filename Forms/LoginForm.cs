@@ -10,11 +10,11 @@ namespace POSpresso
 {
     public partial class LoginForm : Form
     {
-        private readonly AuthService _authService;
+        private readonly IAuthService _authService;
         private readonly FormLoaderService _formLoader;
         public User? LoggedInUser { get; private set; }
 
-        public LoginForm(AuthService authService, FormLoaderService formLoaderService)
+        public LoginForm(IAuthService authService, FormLoaderService formLoaderService)
         {
             InitializeComponent();
             _authService = authService;

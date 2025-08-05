@@ -1,13 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using POSpresso.Data;
+﻿using POSpresso.Data;
 using POSpresso.Domain.DTO;
 using POSpresso.Domain.Entities;
 using POSpresso.Domain.Enums;
 using POSpresso.Helper;
 using POSpresso.Interfaces;
 using POSpresso.Services;
-using System.Threading.Tasks;
-
 
 namespace POSpresso.Forms
 {
@@ -18,7 +15,7 @@ namespace POSpresso.Forms
         private readonly FormLoaderService _formLoader;
         private byte[]? selectedProductImage = null;
         private int? selectedProductId = null;
-        public ProductForm(ProductService productService, FormLoaderService formLoader)
+        public ProductForm(IProductService productService, FormLoaderService formLoader)
         {
             _productService = productService;
             _formLoader = formLoader;

@@ -6,6 +6,8 @@ namespace POSpresso.Interfaces
     {
         Task<User?> GetByUsernameAsync(string username);
         bool VerifyPassword(string password, string hashedPassword);
+        Task UpdatePasswordAsync(int userId, string newPassword);
+
     }
 
 }

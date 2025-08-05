@@ -1,13 +1,14 @@
 ﻿using POSpresso.Domain.Entities;
 using POSpresso.Services;
+using POSpresso.Interfaces;
 
 namespace POSpresso.Forms
 {
     public partial class ChangePasswordForm : Form
     {
-        private readonly AuthService _authService;
+        private readonly IAuthService _authService;
         private readonly User _user;
-        public ChangePasswordForm(AuthService authService, User user)
+        public ChangePasswordForm(IAuthService authService, User user)
         {
             InitializeComponent();
             _authService = authService;

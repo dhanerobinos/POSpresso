@@ -1,10 +1,11 @@
 ﻿using POSpresso.Data;
 using POSpresso.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using POSpresso.Interfaces;
 
 namespace POSpresso.Services
 {
-    public class AuthService
+    public class AuthService:IAuthService
     {
         private readonly POSDbContext _context;
         public AuthService(POSDbContext context)

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageUserForm));
             dtgvUsers = new DataGridView();
             label6 = new Label();
@@ -45,7 +45,6 @@
             label5 = new Label();
             cbUserRole = new ComboBox();
             label4 = new Label();
-            tbPassword = new RichTextBox();
             label3 = new Label();
             tbUsername = new RichTextBox();
             label2 = new Label();
@@ -57,6 +56,7 @@
             btnShowAdd = new Button();
             tbUserSearch = new RichTextBox();
             btnUserSearch = new FontAwesome.Sharp.IconButton();
+            tbPassword = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dtgvUsers).BeginInit();
             ((System.ComponentModel.ISupportInitialize)UserPhotoBox).BeginInit();
             ManageUserPanel.SuspendLayout();
@@ -68,23 +68,23 @@
             dtgvUsers.AllowUserToDeleteRows = false;
             dtgvUsers.AllowUserToResizeRows = false;
             dtgvUsers.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Arial Narrow", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dtgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Arial Narrow", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dtgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dtgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dtgvUsers.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dtgvUsers.DefaultCellStyle = dataGridViewCellStyle4;
             dtgvUsers.GridColor = Color.Black;
             dtgvUsers.Location = new Point(1, 71);
             dtgvUsers.Name = "dtgvUsers";
@@ -187,6 +187,7 @@
             // ManageUserPanel
             // 
             ManageUserPanel.BackgroundImage = (Image)resources.GetObject("ManageUserPanel.BackgroundImage");
+            ManageUserPanel.Controls.Add(tbPassword);
             ManageUserPanel.Controls.Add(btnChangePassword);
             ManageUserPanel.Controls.Add(UserPhotoBox);
             ManageUserPanel.Controls.Add(lbUploadImage);
@@ -199,7 +200,6 @@
             ManageUserPanel.Controls.Add(label5);
             ManageUserPanel.Controls.Add(cbUserRole);
             ManageUserPanel.Controls.Add(label4);
-            ManageUserPanel.Controls.Add(tbPassword);
             ManageUserPanel.Controls.Add(label3);
             ManageUserPanel.Controls.Add(tbUsername);
             ManageUserPanel.Controls.Add(label2);
@@ -279,18 +279,6 @@
             label4.Size = new Size(86, 21);
             label4.TabIndex = 10;
             label4.Text = "Password:";
-            // 
-            // tbPassword
-            // 
-            tbPassword.BackColor = SystemColors.ControlLightLight;
-            tbPassword.BorderStyle = BorderStyle.None;
-            tbPassword.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbPassword.Location = new Point(105, 260);
-            tbPassword.Multiline = false;
-            tbPassword.Name = "tbPassword";
-            tbPassword.Size = new Size(160, 29);
-            tbPassword.TabIndex = 9;
-            tbPassword.Text = "";
             // 
             // label3
             // 
@@ -422,6 +410,14 @@
             btnUserSearch.TabIndex = 24;
             btnUserSearch.UseVisualStyleBackColor = true;
             // 
+            // tbPassword
+            // 
+            tbPassword.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            tbPassword.Location = new Point(105, 260);
+            tbPassword.Name = "tbPassword";
+            tbPassword.Size = new Size(160, 29);
+            tbPassword.TabIndex = 24;
+            // 
             // ManageUserForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -460,7 +456,6 @@
         private Label label5;
         private ComboBox cbUserRole;
         private Label label4;
-        private RichTextBox tbPassword;
         private Label label3;
         private RichTextBox tbUsername;
         private Label label2;
@@ -473,5 +468,6 @@
         private RichTextBox tbUserSearch;
         private FontAwesome.Sharp.IconButton btnUserSearch;
         private Button btnChangePassword;
+        private TextBox tbPassword;
     }
 }

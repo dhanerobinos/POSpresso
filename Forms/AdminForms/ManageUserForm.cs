@@ -4,12 +4,13 @@ using POSpresso.Domain.Entities;
 using POSpresso.Domain.Enums;
 using POSpresso.Helper;
 using POSpresso.Services;
+using POSpresso.Interfaces;
 
 namespace POSpresso.Forms.AdminForms
 {
     public partial class ManageUserForm : Form
     {
-        private readonly ManageUserService _manageUserService;
+        private readonly IManageUserService _manageUserService;
         private int? _selectedUserId = null;
         private byte[]? selectedUserImage = null;
         private readonly FormLoaderService _formLoader;

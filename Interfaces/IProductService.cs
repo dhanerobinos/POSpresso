@@ -1,4 +1,6 @@
-﻿using System;
+﻿using POSpresso.Domain.DTO;
+using POSpresso.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,11 @@ namespace POSpresso.Interfaces
 {
     public interface IProductService
     {
+        Task<List<Products>> GetAllProductsAsync();
+        Task<List<ProductCategory>> GetAllCategoriesAsync();
+        Task<List<Products>> GetProductsByCategoryAsync(int categoryId);
+        Task AddProductAsync(ProductDTO productDto);
+        Task UpdateProductAsync(ProductDTO productDto);
+        Task<bool> DeleteProductAsync(int productId);
     }
 }
