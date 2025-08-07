@@ -23,7 +23,7 @@ namespace POSpresso.Forms
 
         private void btnPOS_Click(object sender, EventArgs e)
         {
-
+            _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<POSForm>());
         }
 
         private void btnProducts_Click(object sender, EventArgs e)

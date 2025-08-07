@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             pbProduct = new PictureBox();
-            lbProduct = new Label();
+            lbProductName = new Label();
             lnMedium = new Label();
             lbLarge = new Label();
             btnMediumMinus = new FontAwesome.Sharp.IconButton();
@@ -46,20 +46,22 @@
             // 
             // pbProduct
             // 
-            pbProduct.Location = new Point(143, 64);
+            pbProduct.Location = new Point(143, 47);
             pbProduct.Name = "pbProduct";
             pbProduct.Size = new Size(120, 120);
+            pbProduct.SizeMode = PictureBoxSizeMode.StretchImage;
             pbProduct.TabIndex = 0;
             pbProduct.TabStop = false;
             // 
-            // lbProduct
+            // lbProductName
             // 
-            lbProduct.AutoSize = true;
-            lbProduct.Location = new Point(143, 46);
-            lbProduct.Name = "lbProduct";
-            lbProduct.Size = new Size(52, 15);
-            lbProduct.TabIndex = 1;
-            lbProduct.Text = "Product:";
+            lbProductName.AutoSize = true;
+            lbProductName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbProductName.Location = new Point(167, 170);
+            lbProductName.Name = "lbProductName";
+            lbProductName.Size = new Size(74, 21);
+            lbProductName.TabIndex = 1;
+            lbProductName.Text = "Product:";
             // 
             // lnMedium
             // 
@@ -112,6 +114,7 @@
             btnCancel.TabIndex = 12;
             btnCancel.Text = "CANCEL";
             btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Click += btnCancel_Click;
             // 
             // btnAddtoCart
             // 
@@ -132,9 +135,11 @@
             // lbPrice
             // 
             lbPrice.AutoSize = true;
-            lbPrice.Location = new Point(166, 196);
+            lbPrice.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbPrice.ForeColor = Color.Green;
+            lbPrice.Location = new Point(177, 191);
             lbPrice.Name = "lbPrice";
-            lbPrice.Size = new Size(36, 15);
+            lbPrice.Size = new Size(50, 21);
             lbPrice.TabIndex = 14;
             lbPrice.Text = "Price:";
             // 
@@ -222,10 +227,11 @@
             Controls.Add(btnMediumMinus);
             Controls.Add(lbLarge);
             Controls.Add(lnMedium);
-            Controls.Add(lbProduct);
+            Controls.Add(lbProductName);
             Controls.Add(pbProduct);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ProductOptions";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ProductOptions";
             ((System.ComponentModel.ISupportInitialize)pbProduct).EndInit();
             ResumeLayout(false);
@@ -235,7 +241,7 @@
         #endregion
 
         private PictureBox pbProduct;
-        private Label lbProduct;
+        private Label lbProductName;
         private Label lnMedium;
         private Label lbLarge;
         private FontAwesome.Sharp.IconButton btnMediumMinus;

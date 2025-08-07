@@ -39,6 +39,7 @@
             pbProduct.Location = new Point(23, 20);
             pbProduct.Name = "pbProduct";
             pbProduct.Size = new Size(100, 100);
+            pbProduct.SizeMode = PictureBoxSizeMode.StretchImage;
             pbProduct.TabIndex = 0;
             pbProduct.TabStop = false;
             pbProduct.Click += pictureBox1_Click;
@@ -46,18 +47,22 @@
             // lblProductName
             // 
             lblProductName.AutoSize = true;
-            lblProductName.Location = new Point(23, 123);
+            lblProductName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblProductName.Location = new Point(35, 123);
             lblProductName.Name = "lblProductName";
-            lblProductName.Size = new Size(52, 15);
+            lblProductName.Size = new Size(74, 21);
             lblProductName.TabIndex = 1;
             lblProductName.Text = "Product:";
+            lblProductName.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblPrice
             // 
             lblPrice.AutoSize = true;
-            lblPrice.Location = new Point(23, 138);
+            lblPrice.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPrice.ForeColor = Color.Green;
+            lblPrice.Location = new Point(48, 144);
             lblPrice.Name = "lblPrice";
-            lblPrice.Size = new Size(36, 15);
+            lblPrice.Size = new Size(50, 21);
             lblPrice.TabIndex = 2;
             lblPrice.Text = "Price:";
             // 
@@ -70,6 +75,7 @@
             Controls.Add(pbProduct);
             Name = "ProductDisplayControl";
             Size = new Size(160, 200);
+            Load += ProductDisplayControl_Load;
             ((System.ComponentModel.ISupportInitialize)pbProduct).EndInit();
             ResumeLayout(false);
             PerformLayout();

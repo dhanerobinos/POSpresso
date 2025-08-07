@@ -10,6 +10,13 @@ namespace POSpresso
         public ProductDisplayControl()
         {
             InitializeComponent();
+
+            // Subscribe to the Click event of the UserControl and all child controls
+            this.Click += Card_Click;
+            foreach (Control ctrl in this.Controls)
+            {
+                ctrl.Click += Card_Click;
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -28,7 +35,6 @@ namespace POSpresso
                 pbProduct.Image = Image.FromStream(ms);
             }
 
-            // You can also set tooltip, description, or color based on status
             this.Enabled = product.ProductIsAvailable;
             this.Tag = product.ProductId;
         }
@@ -39,6 +45,11 @@ namespace POSpresso
         {
             if (_product != null)
                 OnProductClicked?.Invoke(this, _product);
+        }
+
+        private void ProductDisplayControl_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

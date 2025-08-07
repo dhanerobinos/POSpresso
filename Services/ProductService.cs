@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using POSpresso.Data;
-using POSpresso.Domain.Entities;
 using POSpresso.Domain.DTO;
+using POSpresso.Domain.Entities;
+using POSpresso.Domain.Enums;
 using POSpresso.Interfaces;
 using System.Windows.Media.Effects;
 
@@ -67,7 +68,20 @@ namespace POSpresso.Services
                                  .OrderBy(c => c.CategoryName)
                                  .ToListAsync();
         }
-
+        public  ProductDTO GetProductDTO(Products product)
+        {
+            return new ProductDTO
+            {
+                ProductId = product.ProductId,
+                ProductName = product.ProductName,
+                ProductDescription = product.ProductDescription,
+                ProductPrice = product.ProductPrice,
+                ProductStatus = product.ProductStatus,
+                ProductCreatedAt = product.ProductCreatedAt,
+                ProductImage = product.ProductImage,
+                CategoryID = product.CategoryId
+            };
+        }
         public async Task<bool> DeleteProductAsync(int productId)
         {
             var product = await _context.Products.FindAsync(productId);
@@ -78,12 +92,24 @@ namespace POSpresso.Services
             return true;
         }
 
-        public async Task<List<Products>> GetProductsByCategoryAsync(int categoryId)
+        public async Task<List<ProductDTO>> GetProductsByCategoryAsync(int categoryId)
         {
             return await _context.Products
-                .Where(p => p.CategoryId == categoryId)
+                .Where(p => p.CategoryId == categoryId && p.ProductStatus == ProductStatus.Available)
+                .Select(p => new ProductDTO
+                {
+                    ProductId = p.ProductId,
+                    ProductName = p.ProductName,
+                    ProductPrice = p.ProductPrice,
+                    ProductImage = p.ProductImage,
+                    ProductDescription = p.ProductDescription,
+                    ProductCreatedAt = p.ProductCreatedAt,
+                    ProductStatus = p.ProductStatus,
+                    CategoryID = p.CategoryId
+                })
                 .ToListAsync();
         }
+
 
     }
 }

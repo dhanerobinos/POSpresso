@@ -12,9 +12,14 @@ namespace POSpresso.Interfaces
     {
         Task<List<Products>> GetAllProductsAsync();
         Task<List<ProductCategory>> GetAllCategoriesAsync();
-        Task<List<Products>> GetProductsByCategoryAsync(int categoryId);
+        Task<List<ProductDTO>> GetProductsByCategoryAsync(int categoryId);
         Task AddProductAsync(ProductDTO productDto);
         Task UpdateProductAsync(ProductDTO productDto);
         Task<bool> DeleteProductAsync(int productId);
+        ProductDTO GetProductDTO(Products product);
+  
+
+
+
     }
 }
