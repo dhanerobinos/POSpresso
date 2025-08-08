@@ -30,7 +30,7 @@ namespace POSpresso.Forms
                 };
 
                 var control = new ProductCategoryControl();
-                control.SetCategory(categoryDTO); 
+                control.SetCategory(categoryDTO);
 
                 control.OnCategoryClicked += Category_Clicked;
 
@@ -39,7 +39,7 @@ namespace POSpresso.Forms
         }
         private async void LoadProductsByCategory(int categoryId)
         {
-            var products = await _productService.GetProductsByCategoryAsync(categoryId); 
+            var products = await _productService.GetProductsByCategoryAsync(categoryId);
 
             flpProducts.Controls.Clear();
 
@@ -47,7 +47,7 @@ namespace POSpresso.Forms
             {
                 var productControl = new ProductDisplayControl();
                 productControl.SetProduct(product);
-                productControl.OnProductClicked += Product_Clicked; 
+                productControl.OnProductClicked += Product_Clicked;
 
                 flpProducts.Controls.Add(productControl);
             }
@@ -63,29 +63,9 @@ namespace POSpresso.Forms
             optionsForm.ShowDialog();
         }
 
-        private async Task LoadProductsAsync()
-        {
-            flpProducts.Controls.Clear();
-
-            var products = await _productService.GetAllProductsAsync(); 
-
-            foreach (var product in products)
-            {
-                var productDTO = _productService.GetProductDTO(product); 
-
-                var control = new ProductDisplayControl();
-                control.SetProduct(productDTO);
-                control.OnProductClicked += Product_Clicked;
-
-                flpProducts.Controls.Add(control);
-            }
-        }
-
-
-
         private async void POSForm_Load(object sender, EventArgs e)
         {
-            await LoadProductsAsync();
+            await LoadCategoriesAsync();
         }
     }
 }

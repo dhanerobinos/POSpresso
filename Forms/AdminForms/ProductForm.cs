@@ -263,5 +263,15 @@ namespace POSpresso.Forms
         {
 
         }
+
+        private void btnAddProducts_Click(object sender, EventArgs e)
+        {
+            ProductsPanel.Show();
+        }
+
+        private void btnAddCategory_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

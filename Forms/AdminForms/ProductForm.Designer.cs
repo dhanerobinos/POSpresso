@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductForm));
-            panel1 = new Panel();
+            ProductsPanel = new Panel();
             btnDelete = new FontAwesome.Sharp.IconButton();
             lbUploadImage = new LinkLabel();
-            label6 = new Label();
             btnClear = new FontAwesome.Sharp.IconButton();
             btnSave = new FontAwesome.Sharp.IconButton();
             pbProductImage = new PictureBox();
@@ -47,34 +46,36 @@
             label1 = new Label();
             tbProductName = new TextBox();
             dtgvProducts = new DataGridView();
-            panel1.SuspendLayout();
+            btnShowProductPanel = new FontAwesome.Sharp.IconButton();
+            btnAddCategory = new FontAwesome.Sharp.IconButton();
+            ProductsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbProductImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgvProducts).BeginInit();
             SuspendLayout();
             // 
-            // panel1
+            // ProductsPanel
             // 
-            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.Controls.Add(btnDelete);
-            panel1.Controls.Add(lbUploadImage);
-            panel1.Controls.Add(label6);
-            panel1.Controls.Add(btnClear);
-            panel1.Controls.Add(btnSave);
-            panel1.Controls.Add(pbProductImage);
-            panel1.Controls.Add(label5);
-            panel1.Controls.Add(cbStatus);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(cbCategory);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(tbPrice);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(tbDescription);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(tbProductName);
-            panel1.Location = new Point(494, 12);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(259, 596);
-            panel1.TabIndex = 0;
+            ProductsPanel.BackgroundImage = (Image)resources.GetObject("ProductsPanel.BackgroundImage");
+            ProductsPanel.Controls.Add(btnDelete);
+            ProductsPanel.Controls.Add(lbUploadImage);
+            ProductsPanel.Controls.Add(btnClear);
+            ProductsPanel.Controls.Add(btnSave);
+            ProductsPanel.Controls.Add(pbProductImage);
+            ProductsPanel.Controls.Add(label5);
+            ProductsPanel.Controls.Add(cbStatus);
+            ProductsPanel.Controls.Add(label4);
+            ProductsPanel.Controls.Add(cbCategory);
+            ProductsPanel.Controls.Add(label3);
+            ProductsPanel.Controls.Add(tbPrice);
+            ProductsPanel.Controls.Add(label2);
+            ProductsPanel.Controls.Add(tbDescription);
+            ProductsPanel.Controls.Add(label1);
+            ProductsPanel.Controls.Add(tbProductName);
+            ProductsPanel.Location = new Point(494, 12);
+            ProductsPanel.Name = "ProductsPanel";
+            ProductsPanel.Size = new Size(259, 596);
+            ProductsPanel.TabIndex = 0;
+            ProductsPanel.Visible = false;
             // 
             // btnDelete
             // 
@@ -99,25 +100,13 @@
             lbUploadImage.BackColor = Color.Transparent;
             lbUploadImage.Font = new Font("Segoe UI Black", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbUploadImage.LinkColor = Color.FromArgb(0, 192, 192);
-            lbUploadImage.Location = new Point(159, 111);
+            lbUploadImage.Location = new Point(83, 101);
             lbUploadImage.Name = "lbUploadImage";
             lbUploadImage.Size = new Size(96, 17);
             lbUploadImage.TabIndex = 29;
             lbUploadImage.TabStop = true;
             lbUploadImage.Text = "Upload Image";
             lbUploadImage.LinkClicked += lbUploadImage_LinkClicked;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(0, 12);
-            label6.Name = "label6";
-            label6.Size = new Size(134, 25);
-            label6.TabIndex = 28;
-            label6.Text = "Add Products";
             // 
             // btnClear
             // 
@@ -155,7 +144,7 @@
             // 
             // pbProductImage
             // 
-            pbProductImage.Location = new Point(171, 30);
+            pbProductImage.Location = new Point(94, 20);
             pbProductImage.Name = "pbProductImage";
             pbProductImage.Size = new Size(75, 78);
             pbProductImage.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -275,19 +264,55 @@
             dtgvProducts.TabIndex = 1;
             dtgvProducts.CellContentClick += dtgvProducts_CellContentClick;
             // 
+            // btnShowProductPanel
+            // 
+            btnShowProductPanel.BackColor = Color.DarkSlateGray;
+            btnShowProductPanel.FlatStyle = FlatStyle.Flat;
+            btnShowProductPanel.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnShowProductPanel.ForeColor = Color.White;
+            btnShowProductPanel.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnShowProductPanel.IconColor = Color.Beige;
+            btnShowProductPanel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnShowProductPanel.Location = new Point(180, 32);
+            btnShowProductPanel.Name = "btnShowProductPanel";
+            btnShowProductPanel.Size = new Size(149, 33);
+            btnShowProductPanel.TabIndex = 31;
+            btnShowProductPanel.Text = "Add Products";
+            btnShowProductPanel.UseVisualStyleBackColor = false;
+            btnShowProductPanel.Click += btnAddProducts_Click;
+            // 
+            // btnAddCategory
+            // 
+            btnAddCategory.BackColor = Color.DarkSlateGray;
+            btnAddCategory.FlatStyle = FlatStyle.Flat;
+            btnAddCategory.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAddCategory.ForeColor = Color.White;
+            btnAddCategory.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnAddCategory.IconColor = Color.Beige;
+            btnAddCategory.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnAddCategory.Location = new Point(335, 32);
+            btnAddCategory.Name = "btnAddCategory";
+            btnAddCategory.Size = new Size(149, 33);
+            btnAddCategory.TabIndex = 32;
+            btnAddCategory.Text = "Add Category";
+            btnAddCategory.UseVisualStyleBackColor = false;
+            btnAddCategory.Click += btnAddCategory_Click;
+            // 
             // ProductForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(765, 620);
+            Controls.Add(btnAddCategory);
+            Controls.Add(btnShowProductPanel);
             Controls.Add(dtgvProducts);
-            Controls.Add(panel1);
+            Controls.Add(ProductsPanel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ProductForm";
             Text = "ProductForm";
             Load += ProductForm_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            ProductsPanel.ResumeLayout(false);
+            ProductsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbProductImage).EndInit();
             ((System.ComponentModel.ISupportInitialize)dtgvProducts).EndInit();
             ResumeLayout(false);
@@ -295,10 +320,9 @@
 
         #endregion
 
-        private Panel panel1;
+        private Panel ProductsPanel;
         private DataGridView dtgvProducts;
         private LinkLabel lbUploadImage;
-        private Label label6;
         private FontAwesome.Sharp.IconButton btnClear;
         private FontAwesome.Sharp.IconButton btnSave;
         private PictureBox pbProductImage;
@@ -313,5 +337,7 @@
         private Label label1;
         private TextBox tbProductName;
         private FontAwesome.Sharp.IconButton btnDelete;
+        private FontAwesome.Sharp.IconButton btnShowProductPanel;
+        private FontAwesome.Sharp.IconButton btnAddCategory;
     }
 }
