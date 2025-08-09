@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
+            tbCategoryName = new TextBox();
             lbCategoryName = new Label();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
+            btnSave = new FontAwesome.Sharp.IconButton();
             pictureBox1 = new PictureBox();
             lbUploadCategoryImage = new LinkLabel();
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
-            iconButton2 = new FontAwesome.Sharp.IconButton();
+            btnCancel = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // textBox1
+            // tbCategoryName
             // 
-            textBox1.Location = new Point(99, 137);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(117, 23);
-            textBox1.TabIndex = 0;
+            tbCategoryName.Location = new Point(99, 137);
+            tbCategoryName.Name = "tbCategoryName";
+            tbCategoryName.Size = new Size(117, 23);
+            tbCategoryName.TabIndex = 0;
             // 
             // lbCategoryName
             // 
@@ -57,17 +57,22 @@
             lbCategoryName.TabIndex = 1;
             lbCategoryName.Text = "Category Name:";
             // 
-            // iconButton1
+            // btnSave
             // 
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            iconButton1.IconColor = Color.Black;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.Location = new Point(56, 177);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Size = new Size(130, 23);
-            iconButton1.TabIndex = 2;
-            iconButton1.Text = "Save";
-            iconButton1.UseVisualStyleBackColor = true;
+            btnSave.BackColor = Color.MediumSpringGreen;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSave.ForeColor = Color.White;
+            btnSave.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnSave.IconColor = Color.Black;
+            btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnSave.Location = new Point(56, 177);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(130, 34);
+            btnSave.TabIndex = 2;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // pictureBox1
             // 
@@ -97,28 +102,34 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(iconButton2);
+            panel1.Controls.Add(btnCancel);
             panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(tbCategoryName);
             panel1.Controls.Add(lbUploadCategoryImage);
             panel1.Controls.Add(lbCategoryName);
-            panel1.Controls.Add(iconButton1);
+            panel1.Controls.Add(btnSave);
             panel1.Location = new Point(279, 41);
             panel1.Name = "panel1";
             panel1.Size = new Size(228, 402);
             panel1.TabIndex = 6;
             // 
-            // iconButton2
+            // btnCancel
             // 
-            iconButton2.IconChar = FontAwesome.Sharp.IconChar.None;
-            iconButton2.IconColor = Color.Black;
-            iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton2.Location = new Point(56, 206);
-            iconButton2.Name = "iconButton2";
-            iconButton2.Size = new Size(130, 23);
-            iconButton2.TabIndex = 5;
-            iconButton2.Text = "Save";
-            iconButton2.UseVisualStyleBackColor = true;
+            btnCancel.BackColor = Color.Brown;
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCancel.ForeColor = Color.White;
+            btnCancel.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnCancel.IconColor = Color.Black;
+            btnCancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnCancel.Location = new Point(56, 217);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(130, 31);
+            btnCancel.TabIndex = 5;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Click += btnCancel_Click;
             // 
             // CategoryForm
             // 
@@ -140,13 +151,13 @@
 
         #endregion
 
-        private TextBox textBox1;
+        private TextBox tbCategoryName;
         private Label lbCategoryName;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnSave;
         private PictureBox pictureBox1;
         private LinkLabel lbUploadCategoryImage;
         private DataGridView dataGridView1;
         private Panel panel1;
-        private FontAwesome.Sharp.IconButton iconButton2;
+        private FontAwesome.Sharp.IconButton btnCancel;
     }
 }

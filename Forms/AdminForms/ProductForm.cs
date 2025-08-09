@@ -1,7 +1,9 @@
-﻿using POSpresso.Data;
+﻿using Microsoft.Extensions.DependencyInjection;
+using POSpresso.Data;
 using POSpresso.Domain.DTO;
 using POSpresso.Domain.Entities;
 using POSpresso.Domain.Enums;
+using POSpresso.Forms.AdminForms;
 using POSpresso.Helper;
 using POSpresso.Interfaces;
 using POSpresso.Services;
@@ -13,14 +15,15 @@ namespace POSpresso.Forms
         private readonly POSDbContext _context;
         private readonly IProductService _productService;
         private readonly FormLoaderService _formLoader;
+        private readonly CategoryForm _categoryForm;
         private byte[]? selectedProductImage = null;
         private int? selectedProductId = null;
-        public ProductForm(IProductService productService, FormLoaderService formLoader)
+        public ProductForm(IProductService productService, FormLoaderService formLoader, CategoryForm categoryForm)
         {
             _productService = productService;
             _formLoader = formLoader;
             InitializeComponent();
-
+            _categoryForm = categoryForm;
         }
         public async Task LoadProductsAsync()
         {
@@ -271,7 +274,7 @@ namespace POSpresso.Forms
 
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
-
+            _categoryForm.ShowDialog();
         }
     }
 }
