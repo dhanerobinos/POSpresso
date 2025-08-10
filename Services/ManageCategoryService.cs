@@ -1,0 +1,49 @@
+﻿using Microsoft.EntityFrameworkCore;
+using POSpresso.Data;
+using POSpresso.Domain.DTO;
+using POSpresso.Domain.Entities;
+using POSpresso.Interfaces;
+
+namespace POSpresso.Services
+{
+    public class ManageCategoryService: IManageCategoryService
+    {
+        private readonly POSDbContext _context;
+        public ManageCategoryService(POSDbContext context)
+        {
+            _context = context;
+        }
+        public async Task<List<ProductCategoryDTO>> GetAllCategoriesAsync()
+        {
+            return await _context.ProductCategories
+                .Select(c => new ProductCategoryDTO
+                {
+                    CategoryID = c.CategoryID,
+                    CategoryName = c.CategoryName,
+                    CategoryImage = c.CategoryImage
+                })
+                .ToListAsync();
+        }
+
+        public async Task AddCategoryAsync(ProductCategoryDTO dto)
+        {
+            var existingCategory = await _context.ProductCategories
+                .AsNoTracking()
+                .FirstOrDefaultAsync(c => c.CategoryName.ToLower() == dto.CategoryName.ToLower());
+
+            if (existingCategory != null)
+                throw new InvalidOperationException("Category already exists.");
+
+            var category = new ProductCategory
+            {
+                CategoryName = dto.CategoryName,
+                CategoryImage = dto.CategoryImage,
+            };
+
+            _context.ProductCategories.Add(category);
+            await _context.SaveChangesAsync();
+        }
+
+
+    }
+}

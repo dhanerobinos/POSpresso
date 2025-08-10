@@ -38,6 +38,7 @@ namespace POSpresso
                     services.AddScoped<IAuthService, AuthService>();
                     services.AddScoped<IManageUserService, ManageUserService>();
                     services.AddScoped<IProductService, ProductService>();
+                    services.AddScoped<IManageCategoryService, ManageCategoryService>();
 
                     // Register forms
                     services.AddTransient<LoginForm>();

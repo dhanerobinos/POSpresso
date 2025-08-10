@@ -31,12 +31,12 @@
             tbCategoryName = new TextBox();
             lbCategoryName = new Label();
             btnSave = new FontAwesome.Sharp.IconButton();
-            pictureBox1 = new PictureBox();
+            pbCategoryImage = new PictureBox();
             lbUploadCategoryImage = new LinkLabel();
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
             btnCancel = new FontAwesome.Sharp.IconButton();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbCategoryImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -74,13 +74,13 @@
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             // 
-            // pictureBox1
+            // pbCategoryImage
             // 
-            pictureBox1.Location = new Point(71, 16);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 78);
-            pictureBox1.TabIndex = 3;
-            pictureBox1.TabStop = false;
+            pbCategoryImage.Location = new Point(71, 16);
+            pbCategoryImage.Name = "pbCategoryImage";
+            pbCategoryImage.Size = new Size(100, 78);
+            pbCategoryImage.TabIndex = 3;
+            pbCategoryImage.TabStop = false;
             // 
             // lbUploadCategoryImage
             // 
@@ -103,7 +103,7 @@
             // panel1
             // 
             panel1.Controls.Add(btnCancel);
-            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(pbCategoryImage);
             panel1.Controls.Add(tbCategoryName);
             panel1.Controls.Add(lbUploadCategoryImage);
             panel1.Controls.Add(lbCategoryName);
@@ -142,7 +142,7 @@
             Name = "CategoryForm";
             StartPosition = FormStartPosition.Manual;
             Text = "CategoryForm";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbCategoryImage).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -154,7 +154,7 @@
         private TextBox tbCategoryName;
         private Label lbCategoryName;
         private FontAwesome.Sharp.IconButton btnSave;
-        private PictureBox pictureBox1;
+        private PictureBox pbCategoryImage;
         private LinkLabel lbUploadCategoryImage;
         private DataGridView dataGridView1;
         private Panel panel1;
