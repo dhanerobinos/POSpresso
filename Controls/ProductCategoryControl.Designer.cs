@@ -35,7 +35,7 @@
             // 
             // pbCategory
             // 
-            pbCategory.Location = new Point(63, 3);
+            pbCategory.Location = new Point(40, 3);
             pbCategory.Name = "pbCategory";
             pbCategory.Size = new Size(76, 70);
             pbCategory.SizeMode = PictureBoxSizeMode.Zoom;

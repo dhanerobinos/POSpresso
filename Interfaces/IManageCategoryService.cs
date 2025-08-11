@@ -7,5 +7,6 @@ namespace POSpresso.Interfaces
     {
         Task<List<ProductCategoryDTO>> GetAllCategoriesAsync();
         Task AddCategoryAsync(ProductCategoryDTO dto);
+        Task UpdateCategoryAsync(ProductCategoryDTO categoryDTO);
     }
 }

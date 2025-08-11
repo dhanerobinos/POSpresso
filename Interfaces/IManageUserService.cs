@@ -9,5 +9,6 @@ namespace POSpresso.Interfaces
         Task AddUserAsync(UserDTO userDto);
         Task UpdateUserAsync(UserDTO userDto);
         Task<bool> DeleteUserAsync(int userId);
+
     }
 }

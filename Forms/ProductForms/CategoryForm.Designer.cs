@@ -31,14 +31,14 @@
             tbCategoryName = new TextBox();
             lbCategoryName = new Label();
             btnSave = new FontAwesome.Sharp.IconButton();
-            pbCategoryImage = new PictureBox();
             lbUploadCategoryImage = new LinkLabel();
-            dataGridView1 = new DataGridView();
+            dtgvCategory = new DataGridView();
             panel1 = new Panel();
+            pbCategoryImage = new FontAwesome.Sharp.IconPictureBox();
             btnCancel = new FontAwesome.Sharp.IconButton();
-            ((System.ComponentModel.ISupportInitialize)pbCategoryImage).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvCategory).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbCategoryImage).BeginInit();
             SuspendLayout();
             // 
             // tbCategoryName
@@ -74,14 +74,6 @@
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             // 
-            // pbCategoryImage
-            // 
-            pbCategoryImage.Location = new Point(71, 16);
-            pbCategoryImage.Name = "pbCategoryImage";
-            pbCategoryImage.Size = new Size(100, 78);
-            pbCategoryImage.TabIndex = 3;
-            pbCategoryImage.TabStop = false;
-            // 
             // lbUploadCategoryImage
             // 
             lbUploadCategoryImage.AutoSize = true;
@@ -91,27 +83,52 @@
             lbUploadCategoryImage.TabIndex = 4;
             lbUploadCategoryImage.TabStop = true;
             lbUploadCategoryImage.Text = "Upload Image";
+            lbUploadCategoryImage.LinkClicked += lbUploadCategoryImage_LinkClicked;
             // 
-            // dataGridView1
+            // dtgvCategory
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 41);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(248, 402);
-            dataGridView1.TabIndex = 5;
+            dtgvCategory.AllowUserToAddRows = false;
+            dtgvCategory.AllowUserToDeleteRows = false;
+            dtgvCategory.AllowUserToResizeColumns = false;
+            dtgvCategory.AllowUserToResizeRows = false;
+            dtgvCategory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgvCategory.BackgroundColor = Color.AntiqueWhite;
+            dtgvCategory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvCategory.Location = new Point(46, 24);
+            dtgvCategory.Name = "dtgvCategory";
+            dtgvCategory.ReadOnly = true;
+            dtgvCategory.RowHeadersVisible = false;
+            dtgvCategory.Size = new Size(255, 402);
+            dtgvCategory.TabIndex = 5;
+            dtgvCategory.CellContentClick += dtgvCategory_CellContentClick;
             // 
             // panel1
             // 
-            panel1.Controls.Add(btnCancel);
             panel1.Controls.Add(pbCategoryImage);
+            panel1.Controls.Add(btnCancel);
             panel1.Controls.Add(tbCategoryName);
             panel1.Controls.Add(lbUploadCategoryImage);
             panel1.Controls.Add(lbCategoryName);
             panel1.Controls.Add(btnSave);
-            panel1.Location = new Point(279, 41);
+            panel1.Location = new Point(368, 24);
             panel1.Name = "panel1";
             panel1.Size = new Size(228, 402);
             panel1.TabIndex = 6;
+            // 
+            // pbCategoryImage
+            // 
+            pbCategoryImage.BackColor = Color.SeaShell;
+            pbCategoryImage.ForeColor = SystemColors.ControlText;
+            pbCategoryImage.IconChar = FontAwesome.Sharp.IconChar.Image;
+            pbCategoryImage.IconColor = SystemColors.ControlText;
+            pbCategoryImage.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            pbCategoryImage.IconSize = 80;
+            pbCategoryImage.Location = new Point(71, 14);
+            pbCategoryImage.Name = "pbCategoryImage";
+            pbCategoryImage.Size = new Size(81, 80);
+            pbCategoryImage.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbCategoryImage.TabIndex = 6;
+            pbCategoryImage.TabStop = false;
             // 
             // btnCancel
             // 
@@ -135,17 +152,19 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(519, 455);
+            BackColor = Color.OldLace;
+            ClientSize = new Size(635, 454);
             Controls.Add(panel1);
-            Controls.Add(dataGridView1);
+            Controls.Add(dtgvCategory);
             FormBorderStyle = FormBorderStyle.None;
             Name = "CategoryForm";
-            StartPosition = FormStartPosition.Manual;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CategoryForm";
-            ((System.ComponentModel.ISupportInitialize)pbCategoryImage).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += CategoryForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dtgvCategory).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbCategoryImage).EndInit();
             ResumeLayout(false);
         }
 
@@ -154,10 +173,10 @@
         private TextBox tbCategoryName;
         private Label lbCategoryName;
         private FontAwesome.Sharp.IconButton btnSave;
-        private PictureBox pbCategoryImage;
         private LinkLabel lbUploadCategoryImage;
-        private DataGridView dataGridView1;
+        private DataGridView dtgvCategory;
         private Panel panel1;
         private FontAwesome.Sharp.IconButton btnCancel;
+        private FontAwesome.Sharp.IconPictureBox pbCategoryImage;
     }
 }
