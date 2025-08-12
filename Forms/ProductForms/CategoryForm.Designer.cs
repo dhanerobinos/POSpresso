@@ -35,7 +35,8 @@
             dtgvCategory = new DataGridView();
             panel1 = new Panel();
             pbCategoryImage = new FontAwesome.Sharp.IconPictureBox();
-            btnCancel = new FontAwesome.Sharp.IconButton();
+            btnHide = new FontAwesome.Sharp.IconButton();
+            btnExit = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)dtgvCategory).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbCategoryImage).BeginInit();
@@ -94,25 +95,25 @@
             dtgvCategory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgvCategory.BackgroundColor = Color.AntiqueWhite;
             dtgvCategory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvCategory.Location = new Point(46, 24);
+            dtgvCategory.Location = new Point(46, 35);
             dtgvCategory.Name = "dtgvCategory";
             dtgvCategory.ReadOnly = true;
             dtgvCategory.RowHeadersVisible = false;
-            dtgvCategory.Size = new Size(255, 402);
+            dtgvCategory.Size = new Size(255, 391);
             dtgvCategory.TabIndex = 5;
             dtgvCategory.CellContentClick += dtgvCategory_CellContentClick;
             // 
             // panel1
             // 
             panel1.Controls.Add(pbCategoryImage);
-            panel1.Controls.Add(btnCancel);
+            panel1.Controls.Add(btnHide);
             panel1.Controls.Add(tbCategoryName);
             panel1.Controls.Add(lbUploadCategoryImage);
             panel1.Controls.Add(lbCategoryName);
             panel1.Controls.Add(btnSave);
-            panel1.Location = new Point(368, 24);
+            panel1.Location = new Point(368, 35);
             panel1.Name = "panel1";
-            panel1.Size = new Size(228, 402);
+            panel1.Size = new Size(228, 391);
             panel1.TabIndex = 6;
             // 
             // pbCategoryImage
@@ -130,23 +131,41 @@
             pbCategoryImage.TabIndex = 6;
             pbCategoryImage.TabStop = false;
             // 
-            // btnCancel
+            // btnHide
             // 
-            btnCancel.BackColor = Color.Brown;
-            btnCancel.FlatAppearance.BorderSize = 0;
-            btnCancel.FlatStyle = FlatStyle.Flat;
-            btnCancel.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCancel.ForeColor = Color.White;
-            btnCancel.IconChar = FontAwesome.Sharp.IconChar.None;
-            btnCancel.IconColor = Color.Black;
-            btnCancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnCancel.Location = new Point(56, 217);
-            btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(130, 31);
-            btnCancel.TabIndex = 5;
-            btnCancel.Text = "Cancel";
-            btnCancel.UseVisualStyleBackColor = false;
-            btnCancel.Click += btnCancel_Click;
+            btnHide.BackColor = Color.Brown;
+            btnHide.FlatAppearance.BorderSize = 0;
+            btnHide.FlatStyle = FlatStyle.Flat;
+            btnHide.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHide.ForeColor = Color.White;
+            btnHide.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnHide.IconColor = Color.Black;
+            btnHide.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnHide.Location = new Point(56, 217);
+            btnHide.Name = "btnHide";
+            btnHide.Size = new Size(130, 31);
+            btnHide.TabIndex = 5;
+            btnHide.Text = "Hide Category";
+            btnHide.UseVisualStyleBackColor = false;
+            btnHide.Click += btnHide_Click;
+            // 
+            // btnExit
+            // 
+            btnExit.BackColor = Color.Brown;
+            btnExit.FlatAppearance.BorderSize = 0;
+            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExit.ForeColor = Color.White;
+            btnExit.IconChar = FontAwesome.Sharp.IconChar.X;
+            btnExit.IconColor = Color.Black;
+            btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnExit.IconSize = 30;
+            btnExit.Location = new Point(602, -1);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(35, 31);
+            btnExit.TabIndex = 7;
+            btnExit.UseVisualStyleBackColor = false;
+            btnExit.Click += btnExit_Click;
             // 
             // CategoryForm
             // 
@@ -154,6 +173,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.OldLace;
             ClientSize = new Size(635, 454);
+            Controls.Add(btnExit);
             Controls.Add(panel1);
             Controls.Add(dtgvCategory);
             FormBorderStyle = FormBorderStyle.None;
@@ -176,7 +196,8 @@
         private LinkLabel lbUploadCategoryImage;
         private DataGridView dtgvCategory;
         private Panel panel1;
-        private FontAwesome.Sharp.IconButton btnCancel;
+        private FontAwesome.Sharp.IconButton btnHide;
         private FontAwesome.Sharp.IconPictureBox pbCategoryImage;
+        private FontAwesome.Sharp.IconButton btnExit;
     }
 }

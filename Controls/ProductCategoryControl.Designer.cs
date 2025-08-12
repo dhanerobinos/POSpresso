@@ -54,6 +54,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FloralWhite;
             Controls.Add(lbCategory);
             Controls.Add(pbCategory);
             Name = "ProductCategoryControl";

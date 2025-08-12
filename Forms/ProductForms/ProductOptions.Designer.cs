@@ -215,6 +215,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.OldLace;
             ClientSize = new Size(400, 420);
             Controls.Add(btnLargeAdd);
             Controls.Add(btnMediumAdd);

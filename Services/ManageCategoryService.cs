@@ -54,7 +54,15 @@ namespace POSpresso.Services
             _context.ProductCategories.Update(categories);
             await _context.SaveChangesAsync();
         }
+        public async Task SetCategoryStatusAsync(int categoryId, bool isActive)
+        {
+            var category = await _context.ProductCategories.FindAsync(categoryId);
+            if (category == null)
+                throw new InvalidOperationException("Category not found.");
 
+            category.IsActive = isActive;
+            await _context.SaveChangesAsync();
+        }
 
     }
 }

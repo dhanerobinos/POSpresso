@@ -11,9 +11,8 @@ namespace POSpresso.Data
         public DbSet<Products> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
 
-        public POSDbContext(DbContextOptions<POSDbContext> options) : base(options)
-        {
-        }
+  
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
