@@ -25,11 +25,13 @@ namespace POSpresso.Forms
             dtgvCategory.Rows.Clear();
 
             var category = await _categoryService.GetAllCategoriesAsync();
-
+            string filter = cbFilterStatus.SelectedItem?.ToString();
             foreach (var categories in category)
             {
-                Image image = null;
+                if (filter == "Active" && !categories.IsActive) continue;
+                if (filter == "Inactive" && categories.IsActive) continue;
 
+                Image image = null;
                 if (categories.CategoryImage != null)
                 {
                     using (var ms = new MemoryStream(categories.CategoryImage))
@@ -37,11 +39,11 @@ namespace POSpresso.Forms
                         image = Image.FromStream(ms);
                     }
                 }
-
                 dtgvCategory.Rows.Add(
                     image,
                     categories.CategoryID,
-                    categories.CategoryName
+                    categories.CategoryName,
+                    categories.IsActive ? "Active" : "Inactive"
                 );
             }
         }
@@ -61,6 +63,8 @@ namespace POSpresso.Forms
             dtgvCategory.Columns["CategoryID"].Visible = false;
             dtgvCategory.Columns.Add("CategoryName", "Category Name");
             dtgvCategory.Columns["CategoryName"].Width = 100;
+            dtgvCategory.Columns.Add("IsActive", "Status");
+            dtgvCategory.Columns["IsActive"].Width = 70;
             dtgvCategory.RowTemplate.Height = 50;
             dtgvCategory.AllowUserToAddRows = false;
             var editCol = new DataGridViewImageColumn
@@ -79,41 +83,43 @@ namespace POSpresso.Forms
             _selectedCategoryID = Convert.ToInt32(row.Cells["CategoryID"].Value);
             tbCategoryName.Text = row.Cells["CategoryName"].Value?.ToString();
             pbCategoryImage.Image = row.Cells["Image"].Value as Image;
+            
         }
 
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(tbCategoryName.Text) ||
-                (_selectedCategoryID == null && selectedCategoryImage == null))
+               (_selectedCategoryID == null && selectedCategoryImage == null))
             {
-                MessageBox.Show("Please fill in all required fields and add product photo.");
+                MessageBox.Show("Please fill in all required fields and add category photo.");
                 return;
             }
+
             try
             {
                 var categoryDTO = new ProductCategoryDTO
                 {
                     CategoryName = tbCategoryName.Text.Trim(),
-                    CategoryImage = selectedCategoryImage
+                    CategoryImage = selectedCategoryImage,
+                    IsActive = cbCategoryStatus.SelectedItem?.ToString() == "Active"
                 };
 
                 if (_selectedCategoryID == null)
                 {
                     await _categoryService.AddCategoryAsync(categoryDTO);
-                    MessageBox.Show("Product added successfully!");
+                    MessageBox.Show("Category added successfully!");
                 }
                 else
                 {
-
                     categoryDTO.CategoryID = _selectedCategoryID.Value;
                     await _categoryService.UpdateCategoryAsync(categoryDTO);
-                    MessageBox.Show("Product updated successfully!");
+                    MessageBox.Show("Category updated successfully!");
                 }
 
                 await LoadCategoryAsync();
                 FormHelper.ClearFormInputs(this);
+                cbCategoryStatus.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -156,14 +162,9 @@ namespace POSpresso.Forms
             }
         }
 
-        private void btnHide_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnExit_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }

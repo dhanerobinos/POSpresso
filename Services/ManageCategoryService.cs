@@ -51,6 +51,7 @@ namespace POSpresso.Services
 
             categories.CategoryName = categoryDTO.CategoryName;
             categories.CategoryImage = categoryDTO.CategoryImage;
+            categories.IsActive = categoryDTO.IsActive;
             _context.ProductCategories.Update(categories);
             await _context.SaveChangesAsync();
         }

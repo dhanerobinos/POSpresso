@@ -12,8 +12,8 @@ using POSpresso.Data;
 namespace POSpresso.Migrations
 {
     [DbContext(typeof(POSDbContext))]
-    [Migration("20250812122208_AddCategoryIsActive")]
-    partial class AddCategoryIsActive
+    [Migration("20250813132652_CategoryIsActive")]
+    partial class CategoryIsActive
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

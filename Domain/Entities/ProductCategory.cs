@@ -1,4 +1,4 @@
-﻿
+﻿using POSpresso.Domain.Enums;
 
 namespace POSpresso.Domain.Entities
 {
