@@ -1,5 +1,6 @@
 ﻿
 using POSpresso.Domain.DTO;
+using POSpresso.Domain.Enums;
 
 namespace POSpresso.Interfaces
 {
@@ -8,6 +9,6 @@ namespace POSpresso.Interfaces
         Task<List<ProductCategoryDTO>> GetAllCategoriesAsync();
         Task AddCategoryAsync(ProductCategoryDTO dto);
         Task UpdateCategoryAsync(ProductCategoryDTO categoryDTO);
-        Task SetCategoryStatusAsync(int categoryId, bool isActive);
+        Task SetCategoryStatusAsync(int categoryId, ProductCategoryStatusEnum status);
     }
 }

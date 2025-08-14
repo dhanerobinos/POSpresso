@@ -8,6 +8,6 @@ namespace POSpresso.Domain.Entities
         public string CategoryName { get; set; }
         public ICollection<Products> Products { get; set; } = new List<Products>();
         public byte[]? CategoryImage { get; set; }
-        public bool IsActive { get; set; } = true;
+        public ProductCategoryStatusEnum CategoryStatus { get; set; } = ProductCategoryStatusEnum.Active;
     }
 }

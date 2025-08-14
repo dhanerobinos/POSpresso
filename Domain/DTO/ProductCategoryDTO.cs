@@ -1,4 +1,5 @@
 ﻿using POSpresso.Domain.Entities;
+using POSpresso.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,6 @@ namespace POSpresso.Domain.DTO
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
         public byte[]? CategoryImage { get; set; }
-        public bool IsActive { get; set; } = true;
+        public ProductCategoryStatusEnum CategoryStatus { get; set; } = ProductCategoryStatusEnum.Active;
     }
 }

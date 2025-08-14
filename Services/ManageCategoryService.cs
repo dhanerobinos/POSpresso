@@ -2,6 +2,7 @@
 using POSpresso.Data;
 using POSpresso.Domain.DTO;
 using POSpresso.Domain.Entities;
+using POSpresso.Domain.Enums;
 using POSpresso.Interfaces;
 
 namespace POSpresso.Services
@@ -51,19 +52,20 @@ namespace POSpresso.Services
 
             categories.CategoryName = categoryDTO.CategoryName;
             categories.CategoryImage = categoryDTO.CategoryImage;
-            categories.IsActive = categoryDTO.IsActive;
+            categories.CategoryStatus = categoryDTO.CategoryStatus;
             _context.ProductCategories.Update(categories);
             await _context.SaveChangesAsync();
         }
-        public async Task SetCategoryStatusAsync(int categoryId, bool isActive)
+        public async Task SetCategoryStatusAsync(int categoryId, ProductCategoryStatusEnum status)
         {
             var category = await _context.ProductCategories.FindAsync(categoryId);
             if (category == null)
                 throw new InvalidOperationException("Category not found.");
 
-            category.IsActive = isActive;
+            category.CategoryStatus = status;
             await _context.SaveChangesAsync();
         }
+
 
     }
 }

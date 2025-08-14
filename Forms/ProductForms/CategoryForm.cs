@@ -14,7 +14,7 @@ namespace POSpresso.Forms
     {
         private readonly IManageCategoryService _categoryService;
         private byte[]? selectedCategoryImage;
-        private int? _selectedCategoryID = null;
+        private int? selectedCategoryID = null;
         public CategoryForm(IManageCategoryService categoryService)
         {
             InitializeComponent();
@@ -24,29 +24,36 @@ namespace POSpresso.Forms
         {
             dtgvCategory.Rows.Clear();
 
-            var category = await _categoryService.GetAllCategoriesAsync();
+            var categories = await _categoryService.GetAllCategoriesAsync();
             string filter = cbFilterStatus.SelectedItem?.ToString();
-            foreach (var categories in category)
+
+            foreach (var category in categories)
             {
-                if (filter == "Active" && !categories.IsActive) continue;
-                if (filter == "Inactive" && categories.IsActive) continue;
+                // If a filter is selected and doesn't match the category's status, skip
+                if (!string.IsNullOrEmpty(filter) &&
+                   !category.CategoryStatus.ToString().Equals(filter, StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
 
                 Image image = null;
-                if (categories.CategoryImage != null)
+                if (category.CategoryImage != null)
                 {
-                    using (var ms = new MemoryStream(categories.CategoryImage))
+                    using (var ms = new MemoryStream(category.CategoryImage))
                     {
                         image = Image.FromStream(ms);
                     }
+
                 }
                 dtgvCategory.Rows.Add(
-                    image,
-                    categories.CategoryID,
-                    categories.CategoryName,
-                    categories.IsActive ? "Active" : "Inactive"
+                image,
+                category.CategoryID,
+                category.CategoryName,
+                category.CategoryStatus.ToString()
                 );
             }
         }
+
         private void SetupCategoryGridView()
         {
             dtgvCategory.Columns.Clear();
@@ -80,39 +87,40 @@ namespace POSpresso.Forms
 
         private void PopulateInputsFromRow(DataGridViewRow row)
         {
-            _selectedCategoryID = Convert.ToInt32(row.Cells["CategoryID"].Value);
+            selectedCategoryID = Convert.ToInt32(row.Cells["CategoryID"].Value);
             tbCategoryName.Text = row.Cells["CategoryName"].Value?.ToString();
             pbCategoryImage.Image = row.Cells["Image"].Value as Image;
-            
-        }
 
+        }
+       
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbCategoryName.Text) ||
-               (_selectedCategoryID == null && selectedCategoryImage == null))
+                  (selectedCategoryID == null && selectedCategoryImage == null))
             {
                 MessageBox.Show("Please fill in all required fields and add category photo.");
                 return;
             }
-
             try
             {
                 var categoryDTO = new ProductCategoryDTO
                 {
                     CategoryName = tbCategoryName.Text.Trim(),
                     CategoryImage = selectedCategoryImage,
-                    IsActive = cbCategoryStatus.SelectedItem?.ToString() == "Active"
+                    CategoryStatus = Enum.Parse<ProductCategoryStatusEnum>(
+                        cbCategoryStatus.SelectedItem.ToString()
+                    )
                 };
 
-                if (_selectedCategoryID == null)
+                if (selectedCategoryID == null)
                 {
                     await _categoryService.AddCategoryAsync(categoryDTO);
                     MessageBox.Show("Category added successfully!");
                 }
                 else
                 {
-                    categoryDTO.CategoryID = _selectedCategoryID.Value;
+                    categoryDTO.CategoryID = selectedCategoryID.Value;
                     await _categoryService.UpdateCategoryAsync(categoryDTO);
                     MessageBox.Show("Category updated successfully!");
                 }
@@ -125,11 +133,6 @@ namespace POSpresso.Forms
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void lbUploadCategoryImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -149,6 +152,7 @@ namespace POSpresso.Forms
 
         private async void CategoryForm_Load(object sender, EventArgs e)
         {
+            cbCategoryStatus.Items.AddRange(Enum.GetNames(typeof(ProductCategoryStatusEnum)));
             SetupCategoryGridView();
             await LoadCategoryAsync();
         }
@@ -165,6 +169,13 @@ namespace POSpresso.Forms
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            FormHelper.ClearFormInputs(this);
+            selectedCategoryID = null;
+            selectedCategoryImage = null;
         }
     }
 }

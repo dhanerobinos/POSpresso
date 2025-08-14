@@ -37,7 +37,7 @@
             label1 = new Label();
             cbCategoryStatus = new ComboBox();
             pbCategoryImage = new FontAwesome.Sharp.IconPictureBox();
-            btnHide = new FontAwesome.Sharp.IconButton();
+            btnClear = new FontAwesome.Sharp.IconButton();
             btnExit = new FontAwesome.Sharp.IconButton();
             cbFilterStatus = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dtgvCategory).BeginInit();
@@ -111,7 +111,7 @@
             panel1.Controls.Add(label1);
             panel1.Controls.Add(cbCategoryStatus);
             panel1.Controls.Add(pbCategoryImage);
-            panel1.Controls.Add(btnHide);
+            panel1.Controls.Add(btnClear);
             panel1.Controls.Add(tbCategoryName);
             panel1.Controls.Add(lbUploadCategoryImage);
             panel1.Controls.Add(lbCategoryName);
@@ -153,23 +153,23 @@
             pbCategoryImage.TabIndex = 6;
             pbCategoryImage.TabStop = false;
             // 
-            // btnHide
+            // btnClear
             // 
-            btnHide.BackColor = Color.Brown;
-            btnHide.FlatAppearance.BorderSize = 0;
-            btnHide.FlatStyle = FlatStyle.Flat;
-            btnHide.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnHide.ForeColor = Color.White;
-            btnHide.IconChar = FontAwesome.Sharp.IconChar.None;
-            btnHide.IconColor = Color.Black;
-            btnHide.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnHide.Location = new Point(55, 257);
-            btnHide.Name = "btnHide";
-            btnHide.Size = new Size(130, 31);
-            btnHide.TabIndex = 5;
-            btnHide.Text = "Hide Category";
-            btnHide.UseVisualStyleBackColor = false;
-  
+            btnClear.BackColor = Color.Brown;
+            btnClear.FlatAppearance.BorderSize = 0;
+            btnClear.FlatStyle = FlatStyle.Flat;
+            btnClear.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClear.ForeColor = Color.White;
+            btnClear.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnClear.IconColor = Color.Black;
+            btnClear.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnClear.Location = new Point(55, 257);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(130, 31);
+            btnClear.TabIndex = 5;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
             // 
             // btnExit
             // 
@@ -227,7 +227,7 @@
         private LinkLabel lbUploadCategoryImage;
         private DataGridView dtgvCategory;
         private Panel panel1;
-        private FontAwesome.Sharp.IconButton btnHide;
+        private FontAwesome.Sharp.IconButton btnClear;
         private FontAwesome.Sharp.IconPictureBox pbCategoryImage;
         private FontAwesome.Sharp.IconButton btnExit;
         private Label label1;
