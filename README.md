@@ -25,4 +25,10 @@ Came up with a system of admin and cashiers users that would allow access to var
 - The project was a functional POS system as well as a significant learning curve to me.
 It helped me learn to integrate EF Core into a real world application, build a WinForms project with clean architecture and learn to work with SQL Server in a more modern and maintainable fashion.
 
+## Features
+- Manage products and categories (with images)
+- Role-based user management (Admin & Cashier)
+- Responsive UI with async/await
+- CRUD operations with EF Core
+- Clean architecture with DTOs & services
 
