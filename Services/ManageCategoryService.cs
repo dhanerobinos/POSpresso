@@ -21,7 +21,8 @@ namespace POSpresso.Services
                 {
                     CategoryID = c.CategoryID,
                     CategoryName = c.CategoryName,
-                    CategoryImage = c.CategoryImage
+                    CategoryImage = c.CategoryImage,
+                    CategoryStatus = c.CategoryStatus
                 })
                 .ToListAsync();
         }
@@ -65,7 +66,21 @@ namespace POSpresso.Services
             category.CategoryStatus = status;
             await _context.SaveChangesAsync();
         }
+        public async Task<ProductCategoryDTO?> GetCategoryByIdAsync(int categoryId)
+        {
+            var category = await _context.ProductCategories
+                .Where(c => c.CategoryID == categoryId)
+                .Select(c => new ProductCategoryDTO
+                {
+                    CategoryID = c.CategoryID,
+                    CategoryName = c.CategoryName,
+                    CategoryImage = c.CategoryImage,
+                    CategoryStatus = c.CategoryStatus
+                })
+                .FirstOrDefaultAsync();
 
+            return category;
+        }
 
     }
 }

@@ -192,6 +192,7 @@ namespace POSpresso.Forms
             {
                 var row = dtgvProducts.Rows[e.RowIndex];
                 PopulateInputsFromRow(row);
+                ProductsPanel.Show();
                 btnDelete.Show();
             }
         }
@@ -270,6 +271,7 @@ namespace POSpresso.Forms
         private void btnAddProducts_Click(object sender, EventArgs e)
         {
             ProductsPanel.Show();
+            btnDelete.Hide();
         }
 
         private void btnAddCategory_Click(object sender, EventArgs e)

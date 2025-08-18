@@ -25,13 +25,14 @@ namespace POSpresso.Forms
             dtgvCategory.Rows.Clear();
 
             var categories = await _categoryService.GetAllCategoriesAsync();
+
             string filter = cbFilterStatus.SelectedItem?.ToString();
 
             foreach (var category in categories)
             {
-                // If a filter is selected and doesn't match the category's status, skip
+                // Filter check
                 if (!string.IsNullOrEmpty(filter) &&
-                   !category.CategoryStatus.ToString().Equals(filter, StringComparison.OrdinalIgnoreCase))
+                    !category.CategoryStatus.ToString().Equals(filter, StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }
@@ -43,13 +44,13 @@ namespace POSpresso.Forms
                     {
                         image = Image.FromStream(ms);
                     }
-
                 }
+
                 dtgvCategory.Rows.Add(
-                image,
-                category.CategoryID,
-                category.CategoryName,
-                category.CategoryStatus.ToString()
+                    image,
+                    category.CategoryID,
+                    category.CategoryName,
+                    category.CategoryStatus.ToString()
                 );
             }
         }
@@ -89,29 +90,49 @@ namespace POSpresso.Forms
         {
             selectedCategoryID = Convert.ToInt32(row.Cells["CategoryID"].Value);
             tbCategoryName.Text = row.Cells["CategoryName"].Value?.ToString();
-            pbCategoryImage.Image = row.Cells["Image"].Value as Image;
 
+            var img = row.Cells["Image"].Value as Image;
+            pbCategoryImage.Image = img;
+
+            if (img != null)
+            {
+                using var ms = new MemoryStream();
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                selectedCategoryImage = ms.ToArray();
+            }
+
+            cbCategoryStatus.SelectedItem = row.Cells["IsActive"].Value?.ToString();
         }
        
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbCategoryName.Text) ||
-                  (selectedCategoryID == null && selectedCategoryImage == null))
+              (selectedCategoryID == null && selectedCategoryImage == null))
             {
                 MessageBox.Show("Please fill in all required fields and add category photo.");
                 return;
             }
+
             try
             {
                 var categoryDTO = new ProductCategoryDTO
                 {
                     CategoryName = tbCategoryName.Text.Trim(),
-                    CategoryImage = selectedCategoryImage,
                     CategoryStatus = Enum.Parse<ProductCategoryStatusEnum>(
                         cbCategoryStatus.SelectedItem.ToString()
                     )
                 };
+
+                if (selectedCategoryImage != null)
+                {
+                    categoryDTO.CategoryImage = selectedCategoryImage;
+                }
+                else if (selectedCategoryID != null)
+                {
+                    var existing = await _categoryService.GetCategoryByIdAsync(selectedCategoryID.Value);
+                    categoryDTO.CategoryImage = existing?.CategoryImage;
+                }
 
                 if (selectedCategoryID == null)
                 {
@@ -128,6 +149,8 @@ namespace POSpresso.Forms
                 await LoadCategoryAsync();
                 FormHelper.ClearFormInputs(this);
                 cbCategoryStatus.SelectedIndex = 0;
+                selectedCategoryID = null;
+                selectedCategoryImage = null;
             }
             catch (Exception ex)
             {
