@@ -4,6 +4,7 @@ using POSpresso.Domain.DTO;
 using POSpresso.Domain.Entities;
 using POSpresso.Domain.Enums;
 using POSpresso.Interfaces;
+using System;
 
 namespace POSpresso.Services
 {
@@ -16,7 +17,8 @@ namespace POSpresso.Services
         }
         public async Task<List<ProductCategoryDTO>> GetAllCategoriesAsync()
         {
-            return await _context.ProductCategories
+            using var context = new POSDbContext(); 
+            return await context.ProductCategories
                 .Select(c => new ProductCategoryDTO
                 {
                     CategoryID = c.CategoryID,

@@ -150,7 +150,7 @@
             pbProductImage.SizeMode = PictureBoxSizeMode.StretchImage;
             pbProductImage.TabIndex = 25;
             pbProductImage.TabStop = false;
-            pbProductImage.Click += pbProductImage_Click;
+
             // 
             // label5
             // 

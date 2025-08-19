@@ -7,6 +7,7 @@ using POSpresso.Forms.AdminForms;
 using POSpresso.Helper;
 using POSpresso.Interfaces;
 using POSpresso.Services;
+using POSpresso.Forms;
 
 namespace POSpresso.Forms
 {
@@ -15,11 +16,13 @@ namespace POSpresso.Forms
         private readonly POSDbContext _context;
         private readonly IProductService _productService;
         private readonly FormLoaderService _formLoader;
+        private readonly IManageCategoryService _categoryService;
         private readonly CategoryForm _categoryForm;
         private byte[]? selectedProductImage = null;
         private int? selectedProductId = null;
-        public ProductForm(IProductService productService, FormLoaderService formLoader, CategoryForm categoryForm)
+        public ProductForm(IProductService productService, FormLoaderService formLoader, CategoryForm categoryForm, IManageCategoryService categoryService)
         {
+            _categoryService = categoryService ?? throw new ArgumentNullException(nameof(categoryService));
             _productService = productService;
             _formLoader = formLoader;
             InitializeComponent();
@@ -27,6 +30,7 @@ namespace POSpresso.Forms
         }
         public async Task LoadProductsAsync()
         {
+            var categories = await _productService.GetAllCategoriesAsync();
             dtgvProducts.Rows.Clear();
             btnDelete.Hide();
             var products = await _productService.GetAllProductsAsync();
@@ -66,7 +70,7 @@ namespace POSpresso.Forms
                 Name = "Image",
                 HeaderText = "Photo",
                 ImageLayout = DataGridViewImageCellLayout.Zoom,
-                Width = 40
+                Width = 50
             };
             dtgvProducts.Columns.Add(imgCol);
             dtgvProducts.Columns.Add("ProductId", "Product ID");
@@ -74,15 +78,15 @@ namespace POSpresso.Forms
             dtgvProducts.Columns.Add("ProductName", "Product Name");
             dtgvProducts.Columns["ProductName"].Width = 100;
             dtgvProducts.Columns.Add("ProductDescription", "Description");
-            dtgvProducts.Columns["ProductDescription"].Width = 80;
+            dtgvProducts.Columns["ProductDescription"].Width = 70;
             dtgvProducts.Columns.Add("ProductPrice", "Price");
-            dtgvProducts.Columns["ProductPrice"].Width = 50;
+            dtgvProducts.Columns["ProductPrice"].Width = 60;
             dtgvProducts.Columns.Add("CategoryName", "Category");
-            dtgvProducts.Columns["CategoryName"].Width = 50;
+            dtgvProducts.Columns["CategoryName"].Width = 60;
             dtgvProducts.Columns.Add("ProductStatus", "Status");
-            dtgvProducts.Columns["ProductStatus"].Width = 50;
+            dtgvProducts.Columns["ProductStatus"].Width = 60;
             dtgvProducts.Columns.Add("CreatedAt", "Created");
-            dtgvProducts.Columns["CreatedAt"].Width = 50;
+            dtgvProducts.Columns["CreatedAt"].Width = 60;
             dtgvProducts.RowTemplate.Height = 50;
             dtgvProducts.AllowUserToAddRows = false;
             var editCol = new DataGridViewImageColumn
@@ -106,7 +110,7 @@ namespace POSpresso.Forms
             var selectedCategoryName = row.Cells["CategoryName"].Value?.ToString();
             if (selectedCategoryName != null)
             {
-                foreach (ProductCategory category in cbCategory.Items)
+                foreach (ProductCategoryDTO category in cbCategory.Items)
                 {
                     if (category.CategoryName == selectedCategoryName)
                     {
@@ -114,6 +118,7 @@ namespace POSpresso.Forms
                         break;
                     }
                 }
+
             }
             else
             {
@@ -127,11 +132,17 @@ namespace POSpresso.Forms
                 selectedProductImage = ms.ToArray();
             }
         }
+        private async Task LoadCategoriesAsync()
+        {
+            var categories = await _productService.GetAllCategoriesAsync();
+            cbCategory.DataSource = categories.ToList();
+            cbCategory.DisplayMember = "CategoryName";
+            cbCategory.ValueMember = "CategoryID";
+        }
 
         private ProductDTO GetProductDTOFromInputs()
         {
-            var selectedCategory = cbCategory.SelectedItem as ProductCategory;
-
+            var selectedCategory = cbCategory.SelectedItem as ProductCategoryDTO;
             if (selectedCategory == null)
                 throw new InvalidOperationException("Selected category is invalid.");
 
@@ -172,7 +183,7 @@ namespace POSpresso.Forms
         {
             //enum
             cbStatus.DataSource = Enum.GetValues(typeof(ProductStatus));
-
+            await LoadCategoriesAsync();
             //DB
             cbCategory.DataSource = await _productService.GetAllCategoriesAsync();
             cbCategory.DisplayMember = "CategoryName";
@@ -181,6 +192,7 @@ namespace POSpresso.Forms
             //Events
             tbPrice.Enter += (s, ev) => FormHelper.StripCurrency(tbPrice);
             tbPrice.Leave += (s, ev) => FormHelper.ApplyCurrency(tbPrice);
+
 
             SetupProductGridView();
             await LoadProductsAsync();
@@ -197,9 +209,14 @@ namespace POSpresso.Forms
             }
         }
 
-        private void pbProductImage_Click(object sender, EventArgs e)
+        private async Task ReloadCategoriesAsync()
         {
+            var categories = await _categoryService.GetAllCategoriesAsync();
 
+            cbCategory.DataSource = null; // clear binding first
+            cbCategory.DataSource = categories;
+            cbCategory.DisplayMember = "CategoryName";
+            cbCategory.ValueMember = "CategoryID";
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -276,7 +293,12 @@ namespace POSpresso.Forms
 
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
-            _categoryForm.ShowDialog();
+            var categoryForm = new CategoryForm(_categoryService);
+            categoryForm.FormClosed += async (s, args) =>
+            {
+                await ReloadCategoriesAsync(); // refresh categories after closing
+            };
+            categoryForm.ShowDialog();
         }
     }
 }

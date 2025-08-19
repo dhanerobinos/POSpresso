@@ -15,6 +15,7 @@ namespace POSpresso.Forms
         private readonly IManageCategoryService _categoryService;
         private byte[]? selectedCategoryImage;
         private int? selectedCategoryID = null;
+        private readonly Form _productform;
         public CategoryForm(IManageCategoryService categoryService)
         {
             InitializeComponent();
@@ -25,7 +26,6 @@ namespace POSpresso.Forms
             dtgvCategory.Rows.Clear();
 
             var categories = await _categoryService.GetAllCategoriesAsync();
-
             string filter = cbFilterStatus.SelectedItem?.ToString();
 
             foreach (var category in categories)
@@ -38,19 +38,19 @@ namespace POSpresso.Forms
                 }
 
                 Image image = null;
-                if (category.CategoryImage != null)
+                if (category.CategoryImage != null && category.CategoryImage.Length > 0)
                 {
-                    using (var ms = new MemoryStream(category.CategoryImage))
-                    {
-                        image = Image.FromStream(ms);
-                    }
+                    using var ms = new MemoryStream(category.CategoryImage);
+                    image = Image.FromStream(ms);
                 }
 
                 dtgvCategory.Rows.Add(
                     image,
                     category.CategoryID,
                     category.CategoryName,
-                    category.CategoryStatus.ToString()
+                    category.CategoryStatus.ToString(),
+                    category.CategoryImage,   //  raw bytes stored in hidden column,fixed GDI error
+                    null
                 );
             }
         }
@@ -59,6 +59,7 @@ namespace POSpresso.Forms
         {
             dtgvCategory.Columns.Clear();
             dtgvCategory.Rows.Clear();
+
             var imgCol = new DataGridViewImageColumn
             {
                 Name = "Image",
@@ -67,14 +68,27 @@ namespace POSpresso.Forms
                 Width = 40
             };
             dtgvCategory.Columns.Add(imgCol);
+
             dtgvCategory.Columns.Add("CategoryID", "Category ID");
             dtgvCategory.Columns["CategoryID"].Visible = false;
+
             dtgvCategory.Columns.Add("CategoryName", "Category Name");
             dtgvCategory.Columns["CategoryName"].Width = 100;
+
             dtgvCategory.Columns.Add("IsActive", "Status");
             dtgvCategory.Columns["IsActive"].Width = 70;
+
+            // 🔹 Add hidden CategoryImage column (for raw bytes)
+            var hiddenBytesCol = new DataGridViewTextBoxColumn
+            {
+                Name = "CategoryImage",
+                Visible = false
+            };
+            dtgvCategory.Columns.Add(hiddenBytesCol);
+
             dtgvCategory.RowTemplate.Height = 50;
             dtgvCategory.AllowUserToAddRows = false;
+
             var editCol = new DataGridViewImageColumn
             {
                 Name = "EditIcon",
@@ -86,19 +100,23 @@ namespace POSpresso.Forms
             dtgvCategory.Columns.Add(editCol);
         }
 
-        private void PopulateInputsFromRow(DataGridViewRow row)
+        private async void PopulateInputsFromRow(DataGridViewRow row)
         {
             selectedCategoryID = Convert.ToInt32(row.Cells["CategoryID"].Value);
             tbCategoryName.Text = row.Cells["CategoryName"].Value?.ToString();
 
-            var img = row.Cells["Image"].Value as Image;
-            pbCategoryImage.Image = img;
-
-            if (img != null)
+            var imageBytes = row.Cells["CategoryImage"].Value as byte[];
+            if (imageBytes != null && imageBytes.Length > 0)
             {
-                using var ms = new MemoryStream();
-                img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                selectedCategoryImage = ms.ToArray();
+                using var ms = new MemoryStream(imageBytes);
+                pbCategoryImage.Image = Image.FromStream(ms);
+
+                selectedCategoryImage = imageBytes;
+            }
+            else
+            {
+                pbCategoryImage.Image = null;
+                selectedCategoryImage = null;
             }
 
             cbCategoryStatus.SelectedItem = row.Cells["IsActive"].Value?.ToString();
