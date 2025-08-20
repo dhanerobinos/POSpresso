@@ -30,9 +30,9 @@ namespace POSpresso.Forms
         }
         public async Task LoadProductsAsync()
         {
-            var categories = await _productService.GetAllCategoriesAsync();
             dtgvProducts.Rows.Clear();
             btnDelete.Hide();
+
             var products = await _productService.GetAllProductsAsync();
 
             foreach (var product in products)
@@ -42,13 +42,15 @@ namespace POSpresso.Forms
                 if (product.ProductImage != null)
                 {
                     using (var ms = new MemoryStream(product.ProductImage))
+                    using (var tempImage = Image.FromStream(ms))
                     {
-                        image = Image.FromStream(ms);
+                        image = new Bitmap(tempImage); // clone so stream can be closed
                     }
                 }
 
                 dtgvProducts.Rows.Add(
-                    image,
+                    image,                              // display photo
+                    product.ProductImage,               // keep raw bytes hidden
                     product.ProductId,
                     product.ProductName,
                     product.ProductDescription,
@@ -65,6 +67,7 @@ namespace POSpresso.Forms
         {
             dtgvProducts.Columns.Clear();
             dtgvProducts.Rows.Clear();
+
             var imgCol = new DataGridViewImageColumn
             {
                 Name = "Image",
@@ -73,22 +76,35 @@ namespace POSpresso.Forms
                 Width = 50
             };
             dtgvProducts.Columns.Add(imgCol);
+
+            // Hidden raw image bytes column
+            dtgvProducts.Columns.Add("ProductImageBytes", "ProductImageBytes");
+            dtgvProducts.Columns["ProductImageBytes"].Visible = false;
+
             dtgvProducts.Columns.Add("ProductId", "Product ID");
             dtgvProducts.Columns["ProductId"].Visible = false;
+
             dtgvProducts.Columns.Add("ProductName", "Product Name");
             dtgvProducts.Columns["ProductName"].Width = 100;
+
             dtgvProducts.Columns.Add("ProductDescription", "Description");
             dtgvProducts.Columns["ProductDescription"].Width = 70;
+
             dtgvProducts.Columns.Add("ProductPrice", "Price");
             dtgvProducts.Columns["ProductPrice"].Width = 60;
+
             dtgvProducts.Columns.Add("CategoryName", "Category");
             dtgvProducts.Columns["CategoryName"].Width = 60;
+
             dtgvProducts.Columns.Add("ProductStatus", "Status");
             dtgvProducts.Columns["ProductStatus"].Width = 60;
+
             dtgvProducts.Columns.Add("CreatedAt", "Created");
             dtgvProducts.Columns["CreatedAt"].Width = 60;
+
             dtgvProducts.RowTemplate.Height = 50;
             dtgvProducts.AllowUserToAddRows = false;
+
             var editCol = new DataGridViewImageColumn
             {
                 Name = "EditIcon",
@@ -106,7 +122,10 @@ namespace POSpresso.Forms
             tbProductName.Text = row.Cells["ProductName"].Value?.ToString();
             tbDescription.Text = row.Cells["ProductDescription"].Value?.ToString();
             tbPrice.Text = $"{decimal.Parse(row.Cells["ProductPrice"].Value?.ToString()?.Replace("₱", "") ?? "0"):C}";
-            cbStatus.SelectedItem = Enum.TryParse<ProductStatus>(row.Cells["ProductStatus"].Value?.ToString(), out var status) ? status : null;
+
+            cbStatus.SelectedItem = Enum.TryParse<ProductStatus>(
+                row.Cells["ProductStatus"].Value?.ToString(), out var status) ? status : null;
+
             var selectedCategoryName = row.Cells["CategoryName"].Value?.ToString();
             if (selectedCategoryName != null)
             {
@@ -118,18 +137,25 @@ namespace POSpresso.Forms
                         break;
                     }
                 }
-
             }
             else
             {
                 cbCategory.SelectedItem = null;
             }
-
-            if (row.Cells["Image"].Value is Image img)
+            if (row.Cells["ProductImageBytes"].Value is byte[] bytes)
             {
-                using var ms = new MemoryStream();
-                img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                selectedProductImage = ms.ToArray();
+                selectedProductImage = bytes;
+
+                // Show image in PictureBox
+                using (var ms = new MemoryStream(bytes))
+                {
+                    pbProductImage.Image = Image.FromStream(ms);
+                }
+            }
+            else
+            {
+                selectedProductImage = null;
+                pbProductImage.Image = null; // clear if no image
             }
         }
         private async Task LoadCategoriesAsync()
@@ -213,10 +239,10 @@ namespace POSpresso.Forms
         {
             var categories = await _categoryService.GetAllCategoriesAsync();
 
-            cbCategory.DataSource = null; // clear binding first
-            cbCategory.DataSource = categories;
+            cbCategory.DataSource = null;
             cbCategory.DisplayMember = "CategoryName";
-            cbCategory.ValueMember = "CategoryID";
+            cbCategory.ValueMember = "CategoryId";
+            cbCategory.DataSource = categories;
         }
 
         private async void btnSave_Click(object sender, EventArgs e)

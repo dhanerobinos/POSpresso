@@ -11,7 +11,7 @@ namespace POSpresso.Interfaces
     public interface IProductService
     {
         Task<List<Products>> GetAllProductsAsync();
-        Task<List<ProductCategory>> GetAllCategoriesAsync();
+        Task<List<ProductCategoryDTO>> GetAllCategoriesAsync();
         Task<List<ProductDTO>> GetProductsByCategoryAsync(int categoryId);
         Task AddProductAsync(ProductDTO productDto);
         Task UpdateProductAsync(ProductDTO productDto);

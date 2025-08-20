@@ -62,13 +62,20 @@ namespace POSpresso.Services
             _context.Products.Update(product);
             await _context.SaveChangesAsync();
         }
-        public async Task<List<ProductCategory>> GetAllCategoriesAsync()
+        public async Task<List<ProductCategoryDTO>> GetAllCategoriesAsync()
         {
             return await _context.ProductCategories
-                                 .OrderBy(c => c.CategoryName)
-                                 .ToListAsync();
+                .OrderBy(c => c.CategoryName)
+                .Select(c => new ProductCategoryDTO
+                {
+                    CategoryID = c.CategoryID,
+                    CategoryName = c.CategoryName,
+                    CategoryStatus = c.CategoryStatus
+                })
+                .ToListAsync();
         }
-        public  ProductDTO GetProductDTO(Products product)
+
+        public ProductDTO GetProductDTO(Products product)
         {
             return new ProductDTO
             {
