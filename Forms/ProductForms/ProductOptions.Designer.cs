@@ -36,8 +36,8 @@
             btnCancel = new FontAwesome.Sharp.IconButton();
             btnAddtoCart = new FontAwesome.Sharp.IconButton();
             lbPrice = new Label();
-            label1 = new Label();
-            label2 = new Label();
+            lblMeduinQty = new Label();
+            lblLargeQty = new Label();
             btnLargeMinus = new FontAwesome.Sharp.IconButton();
             btnMediumAdd = new FontAwesome.Sharp.IconButton();
             btnLargeAdd = new FontAwesome.Sharp.IconButton();
@@ -98,6 +98,7 @@
             btnMediumMinus.Size = new Size(47, 47);
             btnMediumMinus.TabIndex = 8;
             btnMediumMinus.UseVisualStyleBackColor = false;
+            btnMediumMinus.Click += btnMediumMinus_Click;
             // 
             // btnCancel
             // 
@@ -143,25 +144,25 @@
             lbPrice.TabIndex = 14;
             lbPrice.Text = "Price:";
             // 
-            // label1
+            // lblMeduinQty
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(230, 239);
-            label1.Name = "label1";
-            label1.Size = new Size(23, 25);
-            label1.TabIndex = 15;
-            label1.Text = "0";
+            lblMeduinQty.AutoSize = true;
+            lblMeduinQty.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMeduinQty.Location = new Point(230, 239);
+            lblMeduinQty.Name = "lblMeduinQty";
+            lblMeduinQty.Size = new Size(23, 25);
+            lblMeduinQty.TabIndex = 15;
+            lblMeduinQty.Text = "0";
             // 
-            // label2
+            // lblLargeQty
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(230, 289);
-            label2.Name = "label2";
-            label2.Size = new Size(23, 25);
-            label2.TabIndex = 16;
-            label2.Text = "0";
+            lblLargeQty.AutoSize = true;
+            lblLargeQty.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLargeQty.Location = new Point(230, 289);
+            lblLargeQty.Name = "lblLargeQty";
+            lblLargeQty.Size = new Size(23, 25);
+            lblLargeQty.TabIndex = 16;
+            lblLargeQty.Text = "0";
             // 
             // btnLargeMinus
             // 
@@ -178,6 +179,7 @@
             btnLargeMinus.Size = new Size(47, 47);
             btnLargeMinus.TabIndex = 17;
             btnLargeMinus.UseVisualStyleBackColor = false;
+            btnLargeMinus.Click += btnLargeMinus_Click;
             // 
             // btnMediumAdd
             // 
@@ -194,6 +196,7 @@
             btnMediumAdd.Size = new Size(47, 47);
             btnMediumAdd.TabIndex = 18;
             btnMediumAdd.UseVisualStyleBackColor = false;
+            btnMediumAdd.Click += btnMediumAdd_Click;
             // 
             // btnLargeAdd
             // 
@@ -210,6 +213,7 @@
             btnLargeAdd.Size = new Size(47, 47);
             btnLargeAdd.TabIndex = 19;
             btnLargeAdd.UseVisualStyleBackColor = false;
+            btnLargeAdd.Click += btnLargeAdd_Click;
             // 
             // ProductOptions
             // 
@@ -220,8 +224,8 @@
             Controls.Add(btnLargeAdd);
             Controls.Add(btnMediumAdd);
             Controls.Add(btnLargeMinus);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(lblLargeQty);
+            Controls.Add(lblMeduinQty);
             Controls.Add(lbPrice);
             Controls.Add(btnAddtoCart);
             Controls.Add(btnCancel);
@@ -249,8 +253,8 @@
         private FontAwesome.Sharp.IconButton btnCancel;
         private FontAwesome.Sharp.IconButton btnAddtoCart;
         private Label lbPrice;
-        private Label label1;
-        private Label label2;
+        private Label lblMeduinQty;
+        private Label lblLargeQty;
         private FontAwesome.Sharp.IconButton btnLargeMinus;
         private FontAwesome.Sharp.IconButton btnMediumAdd;
         private FontAwesome.Sharp.IconButton btnLargeAdd;

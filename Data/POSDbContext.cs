@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using POSpresso.Domain.Entities;
 using POSpresso.Infrastructure.Configurations;
 
@@ -10,15 +11,20 @@ namespace POSpresso.Data
         public DbSet<User> User { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<Sales> Sales { get; set; }
+        public DbSet<SaleDetails> SaleDetails { get; set; }
 
-  
-        
+
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new ProductConfig());
             modelBuilder.ApplyConfiguration(new ProductCategoryConfig());
+            modelBuilder.ApplyConfiguration(new SaleConfig());
+            modelBuilder.ApplyConfiguration(new SaleDetailConfig());
         }
 
 

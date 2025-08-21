@@ -14,6 +14,8 @@ namespace POSpresso.Forms
     public partial class ProductOptions : Form
     {
         private readonly ProductDTO _product;
+        private int mediumQty = 0;
+        private int largeQty = 0;
         public ProductOptions(ProductDTO product)
         {
             InitializeComponent();
@@ -31,6 +33,36 @@ namespace POSpresso.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnMediumAdd_Click(object sender, EventArgs e)
+        {
+            mediumQty++;
+            lblMeduinQty.Text = mediumQty.ToString();
+        }
+
+        private void btnMediumMinus_Click(object sender, EventArgs e)
+        {
+            if (mediumQty > 0)
+            {
+                mediumQty--;
+                lblMeduinQty.Text = mediumQty.ToString();
+            }
+        }
+
+        private void btnLargeAdd_Click(object sender, EventArgs e)
+        {
+            largeQty++;
+            lblLargeQty.Text = largeQty.ToString();
+        }
+
+        private void btnLargeMinus_Click(object sender, EventArgs e)
+        {
+            if(largeQty > 0)
+            {
+                largeQty--;
+                lblLargeQty.Text = largeQty.ToString();
+            }
         }
     }
 }

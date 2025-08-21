@@ -70,7 +70,8 @@ namespace POSpresso.Services
                 {
                     CategoryID = c.CategoryID,
                     CategoryName = c.CategoryName,
-                    CategoryStatus = c.CategoryStatus
+                    CategoryStatus = c.CategoryStatus,
+                    CategoryImage = c.CategoryImage
                 })
                 .ToListAsync();
         }
