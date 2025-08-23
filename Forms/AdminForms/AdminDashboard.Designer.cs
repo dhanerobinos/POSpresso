@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard));
-            receiptPanel = new Panel();
             mainPanel = new Panel();
             adminPanel = new Panel();
             btnLogout = new FontAwesome.Sharp.IconButton();
@@ -38,15 +37,9 @@
             btnReport = new FontAwesome.Sharp.IconButton();
             btnUsers = new FontAwesome.Sharp.IconButton();
             btnProducts = new FontAwesome.Sharp.IconButton();
+            fplReceipt = new FlowLayoutPanel();
             adminPanel.SuspendLayout();
             SuspendLayout();
-            // 
-            // receiptPanel
-            // 
-            receiptPanel.Location = new Point(986, 58);
-            receiptPanel.Name = "receiptPanel";
-            receiptPanel.Size = new Size(244, 620);
-            receiptPanel.TabIndex = 0;
             // 
             // mainPanel
             // 
@@ -183,6 +176,13 @@
             btnProducts.UseVisualStyleBackColor = true;
             btnProducts.Click += btnProducts_Click;
             // 
+            // fplReceipt
+            // 
+            fplReceipt.Location = new Point(989, 58);
+            fplReceipt.Name = "fplReceipt";
+            fplReceipt.Size = new Size(244, 620);
+            fplReceipt.TabIndex = 3;
+            // 
             // AdminDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -191,9 +191,9 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1280, 720);
             ControlBox = false;
+            Controls.Add(fplReceipt);
             Controls.Add(adminPanel);
             Controls.Add(mainPanel);
-            Controls.Add(receiptPanel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "AdminDashboard";
             StartPosition = FormStartPosition.CenterScreen;
@@ -203,8 +203,6 @@
         }
 
         #endregion
-
-        private Panel receiptPanel;
         private Panel mainPanel;
         private Panel adminPanel;
         private FontAwesome.Sharp.IconButton btnUsers;
@@ -213,5 +211,6 @@
         private FontAwesome.Sharp.IconButton btnReport;
         private FontAwesome.Sharp.IconButton btnLogout;
         private FontAwesome.Sharp.IconButton btnPOS;
+        private FlowLayoutPanel fplReceipt;
     }
 }

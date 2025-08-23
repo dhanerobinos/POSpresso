@@ -132,6 +132,7 @@
             btnAddtoCart.TabIndex = 13;
             btnAddtoCart.Text = "ADD TO CART";
             btnAddtoCart.UseVisualStyleBackColor = false;
+            btnAddtoCart.Click += btnAddtoCart_Click;
             // 
             // lbPrice
             // 

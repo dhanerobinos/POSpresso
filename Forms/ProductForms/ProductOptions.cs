@@ -58,11 +58,16 @@ namespace POSpresso.Forms
 
         private void btnLargeMinus_Click(object sender, EventArgs e)
         {
-            if(largeQty > 0)
+            if (largeQty > 0)
             {
                 largeQty--;
                 lblLargeQty.Text = largeQty.ToString();
             }
+        }
+
+        private void btnAddtoCart_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
