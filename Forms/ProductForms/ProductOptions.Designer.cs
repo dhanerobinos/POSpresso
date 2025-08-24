@@ -36,7 +36,7 @@
             btnCancel = new FontAwesome.Sharp.IconButton();
             btnAddtoCart = new FontAwesome.Sharp.IconButton();
             lbPrice = new Label();
-            lblMeduinQty = new Label();
+            lblMediumQty = new Label();
             lblLargeQty = new Label();
             btnLargeMinus = new FontAwesome.Sharp.IconButton();
             btnMediumAdd = new FontAwesome.Sharp.IconButton();
@@ -145,15 +145,15 @@
             lbPrice.TabIndex = 14;
             lbPrice.Text = "Price:";
             // 
-            // lblMeduinQty
+            // lblMediumQty
             // 
-            lblMeduinQty.AutoSize = true;
-            lblMeduinQty.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMeduinQty.Location = new Point(230, 239);
-            lblMeduinQty.Name = "lblMeduinQty";
-            lblMeduinQty.Size = new Size(23, 25);
-            lblMeduinQty.TabIndex = 15;
-            lblMeduinQty.Text = "0";
+            lblMediumQty.AutoSize = true;
+            lblMediumQty.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMediumQty.Location = new Point(230, 239);
+            lblMediumQty.Name = "lblMediumQty";
+            lblMediumQty.Size = new Size(23, 25);
+            lblMediumQty.TabIndex = 15;
+            lblMediumQty.Text = "0";
             // 
             // lblLargeQty
             // 
@@ -226,7 +226,7 @@
             Controls.Add(btnMediumAdd);
             Controls.Add(btnLargeMinus);
             Controls.Add(lblLargeQty);
-            Controls.Add(lblMeduinQty);
+            Controls.Add(lblMediumQty);
             Controls.Add(lbPrice);
             Controls.Add(btnAddtoCart);
             Controls.Add(btnCancel);
@@ -254,7 +254,7 @@
         private FontAwesome.Sharp.IconButton btnCancel;
         private FontAwesome.Sharp.IconButton btnAddtoCart;
         private Label lbPrice;
-        private Label lblMeduinQty;
+        private Label lblMediumQty;
         private Label lblLargeQty;
         private FontAwesome.Sharp.IconButton btnLargeMinus;
         private FontAwesome.Sharp.IconButton btnMediumAdd;

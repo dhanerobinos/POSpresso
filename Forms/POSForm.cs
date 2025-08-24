@@ -57,9 +57,16 @@ namespace POSpresso.Forms
         {
             LoadProductsByCategory(category.CategoryID);
         }
+        private void AddToCart(CartItem item)
+        {
+            //cart control for UI
+            var cartControl = new CartItemControl(item);
+        }
+
         private void Product_Clicked(object? sender, ProductDTO product)
         {
             using var optionsForm = new ProductOptions(product);
+            optionsForm.OnAddToCart += AddToCart;
             optionsForm.ShowDialog();
         }
 
