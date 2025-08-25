@@ -63,15 +63,15 @@ namespace POSpresso.Forms
                 return;
             }
 
-            // set per-size prices if needed
             decimal mediumPrice = _product.ProductPrice;
-            decimal largePrice = _product.ProductPrice; // change if Large costs more
+            decimal largePrice = _product.ProductPrice + 30;  
 
             if (_mediumQty > 0)
             {
                 OnAddToCart?.Invoke(new CartItem
                 {
-                    // ProductId = _product.ProductId, // ← include if your DTO has it
+
+                    ProductId = _product.ProductId,
                     ProductName = _product.ProductName,
                     Size = "Medium",
                     Quantity = _mediumQty,
@@ -84,7 +84,7 @@ namespace POSpresso.Forms
             {
                 OnAddToCart?.Invoke(new CartItem
                 {
-                    // ProductId = _product.ProductId, // ← include if your DTO has it
+                    ProductId = _product.ProductId,
                     ProductName = _product.ProductName,
                     Size = "Large",
                     Quantity = _largeQty,

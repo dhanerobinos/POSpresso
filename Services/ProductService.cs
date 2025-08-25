@@ -64,8 +64,9 @@ namespace POSpresso.Services
         }
         public async Task<List<ProductCategoryDTO>> GetAllCategoriesAsync()
         {
-            return await _context.ProductCategories
-                .OrderBy(c => c.CategoryName)
+            using var context = new POSDbContext(); 
+            return await context.ProductCategories
+                         .OrderBy(c => c.CategoryName)
                 .Select(c => new ProductCategoryDTO
                 {
                     CategoryID = c.CategoryID,

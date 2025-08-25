@@ -9,6 +9,7 @@ namespace POSpresso.Forms
     public partial class POSForm : Form
     {
         private readonly ProductService _productService;
+        public event Action<CartItem> OnAddToCart;
         public POSForm(ProductService productService)
         {
             InitializeComponent();
@@ -57,18 +58,17 @@ namespace POSpresso.Forms
         {
             LoadProductsByCategory(category.CategoryID);
         }
-        private void AddToCart(CartItem item)
-        {
-            //cart control for UI
-            var cartControl = new CartItemControl(item);
-        }
 
         private void Product_Clicked(object? sender, ProductDTO product)
         {
             using var optionsForm = new ProductOptions(product);
-            optionsForm.OnAddToCart += AddToCart;
+            optionsForm.OnAddToCart += (item) =>
+            {
+                OnAddToCart?.Invoke(item); // bubble event up to AdminDashboard
+            };
             optionsForm.ShowDialog();
         }
+
 
         private async void POSForm_Load(object sender, EventArgs e)
         {

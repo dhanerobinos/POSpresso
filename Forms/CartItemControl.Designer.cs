@@ -39,7 +39,7 @@
             // lbProduct
             // 
             lbProduct.AutoSize = true;
-            lbProduct.Location = new Point(73, 19);
+            lbProduct.Location = new Point(81, 19);
             lbProduct.Name = "lbProduct";
             lbProduct.Size = new Size(38, 15);
             lbProduct.TabIndex = 0;
@@ -48,7 +48,7 @@
             // lbPrice
             // 
             lbPrice.AutoSize = true;
-            lbPrice.Location = new Point(73, 45);
+            lbPrice.Location = new Point(81, 45);
             lbPrice.Name = "lbPrice";
             lbPrice.Size = new Size(38, 15);
             lbPrice.TabIndex = 1;
@@ -66,7 +66,7 @@
             // lbQty
             // 
             lbQty.AutoSize = true;
-            lbQty.Location = new Point(127, 45);
+            lbQty.Location = new Point(135, 45);
             lbQty.Name = "lbQty";
             lbQty.Size = new Size(38, 15);
             lbQty.TabIndex = 3;
@@ -91,7 +91,7 @@
             Controls.Add(lbPrice);
             Controls.Add(lbProduct);
             Name = "CartItemControl";
-            Size = new Size(273, 133);
+            Size = new Size(244, 133);
             ((System.ComponentModel.ISupportInitialize)pbProductImage).EndInit();
             ResumeLayout(false);
             PerformLayout();

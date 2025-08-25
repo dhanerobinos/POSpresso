@@ -24,7 +24,7 @@ namespace POSpresso.Infrastructure.Configurations
             builder.Property(sd => sd.Price)
                    .HasColumnType("decimal(18,2)");
 
-            builder.Property(sd => sd.Subtotal)
+            builder.Property(sd => sd.SubTotal)
                    .HasColumnType("decimal(18,2)");
 
             // Optional: require Size

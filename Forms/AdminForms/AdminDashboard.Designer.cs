@@ -37,7 +37,7 @@
             btnReport = new FontAwesome.Sharp.IconButton();
             btnUsers = new FontAwesome.Sharp.IconButton();
             btnProducts = new FontAwesome.Sharp.IconButton();
-            fplReceipt = new FlowLayoutPanel();
+            fpReceipt = new FlowLayoutPanel();
             adminPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -176,12 +176,12 @@
             btnProducts.UseVisualStyleBackColor = true;
             btnProducts.Click += btnProducts_Click;
             // 
-            // fplReceipt
+            // fpReceipt
             // 
-            fplReceipt.Location = new Point(989, 58);
-            fplReceipt.Name = "fplReceipt";
-            fplReceipt.Size = new Size(244, 620);
-            fplReceipt.TabIndex = 3;
+            fpReceipt.Location = new Point(989, 58);
+            fpReceipt.Name = "fpReceipt";
+            fpReceipt.Size = new Size(244, 620);
+            fpReceipt.TabIndex = 3;
             // 
             // AdminDashboard
             // 
@@ -191,7 +191,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1280, 720);
             ControlBox = false;
-            Controls.Add(fplReceipt);
+            Controls.Add(fpReceipt);
             Controls.Add(adminPanel);
             Controls.Add(mainPanel);
             FormBorderStyle = FormBorderStyle.None;
@@ -211,6 +211,6 @@
         private FontAwesome.Sharp.IconButton btnReport;
         private FontAwesome.Sharp.IconButton btnLogout;
         private FontAwesome.Sharp.IconButton btnPOS;
-        private FlowLayoutPanel fplReceipt;
+        private FlowLayoutPanel fpReceipt;
     }
 }
