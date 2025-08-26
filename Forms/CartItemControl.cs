@@ -6,25 +6,34 @@ namespace POSpresso.Forms
     public partial class CartItemControl : UserControl
     {
         private CartItem _item;
+
+        public int ProductId => _item.ProductId;
+        public string ItemSize => _item.Size;
+
         public CartItemControl(CartItem item)
         {
-          InitializeComponent();
-          _item = item;
-          LoadData();
+            InitializeComponent();
+            _item = item;
+            LoadData();
         }
+
+        public void UpdateQuantity(int delta)
+        {
+            _item.Quantity += delta;
+            LoadData();
+        }
+
         private void LoadData()
         {
-            lbProduct.Text = $"{_item.ProductName} ({_item.Size})";
-            lbQty.Text = $"{_item.Quantity} x {_item.Price:C}";
-            lbSubTotal.Text = _item.SubTotal.ToString("C");
+            lbDetails.Text = $"{_item.ProductName} ({_item.Size})\n" +
+                             $"₱{_item.Price:N2}  x {_item.Quantity} = ₱{_item.SubTotal:N2}";
 
             if (_item.ProductImage != null)
             {
-                using (var ms = new MemoryStream(_item.ProductImage))
-                {
-                    pbProductImage.Image = Image.FromStream(ms);
-                }
+                using var ms = new MemoryStream(_item.ProductImage);
+                pbProductImage.Image = Image.FromStream(ms);
             }
         }
+
     }
 }

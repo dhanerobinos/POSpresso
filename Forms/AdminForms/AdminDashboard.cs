@@ -73,54 +73,19 @@ namespace POSpresso.Forms
 
         private void AddToCart(CartItem item)
         {
-            // Check if already exist
-            foreach (Panel p in fpReceipt.Controls)
+           
+            var existing = fpReceipt.Controls
+                .OfType<CartItemControl>()
+                .FirstOrDefault(c => c.ProductId == item.ProductId && c.ItemSize == item.Size);
+
+            if (existing != null)
             {
-                var lbl = p.Controls.OfType<Label>().FirstOrDefault();
-                if (lbl != null && lbl.Text.StartsWith($"{item.ProductName} ({item.Size})"))
-                {
-                    // Update existing
-                    int newQty = item.Quantity + 1;
-                    lbl.Text = $"{item.ProductName} ({item.Size}) x{newQty} - ₱{item.Price * newQty:N2}";
-                    return;
-                }
+                existing.UpdateQuantity(item.Quantity); 
+                return;
             }
 
-            // If not exists, add new panel
-            var panel = new Panel
-            {
-                Width = fpReceipt.Width - 25,
-                Height = 60,
-                BorderStyle = BorderStyle.FixedSingle,
-                Padding = new Padding(5)
-            };
-
-            if (item.ProductImage != null)
-            {
-                using var ms = new MemoryStream(item.ProductImage);
-                var picture = new PictureBox
-                {
-                    Image = Image.FromStream(ms),
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                    Width = 50,
-                    Height = 50,
-                    Dock = DockStyle.Left
-                };
-                panel.Controls.Add(picture);
-            }
-
-            var lblNew = new Label
-            {
-                Text = $"{item.ProductName} ({item.Size}) x{item.Quantity} - ₱{item.Price * item.Quantity:N2}",
-                AutoSize = true,
-                Left = 60,
-                Top = 20
-            };
-            panel.Controls.Add(lblNew);
-
-            fpReceipt.Controls.Add(panel);
+            var control = new CartItemControl(item);
+            fpReceipt.Controls.Add(control);
         }
-
-
     }
 }

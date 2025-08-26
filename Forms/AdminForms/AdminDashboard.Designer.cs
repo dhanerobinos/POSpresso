@@ -178,9 +178,9 @@
             // 
             // fpReceipt
             // 
-            fpReceipt.Location = new Point(989, 58);
+            fpReceipt.Location = new Point(986, 58);
             fpReceipt.Name = "fpReceipt";
-            fpReceipt.Size = new Size(244, 620);
+            fpReceipt.Size = new Size(256, 620);
             fpReceipt.TabIndex = 3;
             // 
             // AdminDashboard

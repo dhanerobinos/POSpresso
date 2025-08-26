@@ -28,81 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lbProduct = new Label();
-            lbPrice = new Label();
             pbProductImage = new PictureBox();
-            lbQty = new Label();
-            lbSubTotal = new Label();
+            lbDetails = new Label();
             ((System.ComponentModel.ISupportInitialize)pbProductImage).BeginInit();
             SuspendLayout();
             // 
-            // lbProduct
-            // 
-            lbProduct.AutoSize = true;
-            lbProduct.Location = new Point(81, 19);
-            lbProduct.Name = "lbProduct";
-            lbProduct.Size = new Size(38, 15);
-            lbProduct.TabIndex = 0;
-            lbProduct.Text = "label1";
-            // 
-            // lbPrice
-            // 
-            lbPrice.AutoSize = true;
-            lbPrice.Location = new Point(81, 45);
-            lbPrice.Name = "lbPrice";
-            lbPrice.Size = new Size(38, 15);
-            lbPrice.TabIndex = 1;
-            lbPrice.Text = "label2";
-            // 
             // pbProductImage
             // 
-            pbProductImage.Location = new Point(17, 10);
+            pbProductImage.Location = new Point(6, 7);
             pbProductImage.Name = "pbProductImage";
             pbProductImage.Size = new Size(50, 50);
             pbProductImage.SizeMode = PictureBoxSizeMode.StretchImage;
             pbProductImage.TabIndex = 2;
             pbProductImage.TabStop = false;
             // 
-            // lbQty
+            // lbDetails
             // 
-            lbQty.AutoSize = true;
-            lbQty.Location = new Point(135, 45);
-            lbQty.Name = "lbQty";
-            lbQty.Size = new Size(38, 15);
-            lbQty.TabIndex = 3;
-            lbQty.Text = "label2";
-            // 
-            // lbSubTotal
-            // 
-            lbSubTotal.AutoSize = true;
-            lbSubTotal.Location = new Point(208, 45);
-            lbSubTotal.Name = "lbSubTotal";
-            lbSubTotal.Size = new Size(38, 15);
-            lbSubTotal.TabIndex = 4;
-            lbSubTotal.Text = "label2";
+            lbDetails.AutoSize = true;
+            lbDetails.Location = new Point(66, 14);
+            lbDetails.Name = "lbDetails";
+            lbDetails.Size = new Size(42, 15);
+            lbDetails.TabIndex = 3;
+            lbDetails.Text = "Details";
             // 
             // CartItemControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(lbSubTotal);
-            Controls.Add(lbQty);
+            Controls.Add(lbDetails);
             Controls.Add(pbProductImage);
-            Controls.Add(lbPrice);
-            Controls.Add(lbProduct);
             Name = "CartItemControl";
-            Size = new Size(244, 133);
+            Size = new Size(263, 74);
             ((System.ComponentModel.ISupportInitialize)pbProductImage).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label lbProduct;
-        private Label lbPrice;
         private PictureBox pbProductImage;
-        private Label lbQty;
-        private Label lbSubTotal;
+        private Label lbDetails;
     }
 }
