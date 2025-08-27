@@ -38,7 +38,13 @@
             btnUsers = new FontAwesome.Sharp.IconButton();
             btnProducts = new FontAwesome.Sharp.IconButton();
             fpReceipt = new FlowLayoutPanel();
+            btnCheckout = new FontAwesome.Sharp.IconButton();
+            panel1 = new Panel();
+            this.lbTotal = new Label();
+            this.lbTax = new Label();
+            lbSubtotal = new Label();
             adminPanel.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // mainPanel
@@ -180,8 +186,68 @@
             // 
             fpReceipt.Location = new Point(986, 58);
             fpReceipt.Name = "fpReceipt";
-            fpReceipt.Size = new Size(256, 620);
+            fpReceipt.Size = new Size(256, 463);
             fpReceipt.TabIndex = 3;
+            // 
+            // btnCheckout
+            // 
+            btnCheckout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCheckout.BackColor = Color.LightGreen;
+            btnCheckout.FlatStyle = FlatStyle.Popup;
+            btnCheckout.Font = new Font("Segoe UI Black", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCheckout.IconChar = FontAwesome.Sharp.IconChar.Check;
+            btnCheckout.IconColor = Color.Black;
+            btnCheckout.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnCheckout.IconSize = 40;
+            btnCheckout.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCheckout.Location = new Point(104, 117);
+            btnCheckout.Name = "btnCheckout";
+            btnCheckout.Size = new Size(148, 39);
+            btnCheckout.TabIndex = 5;
+            btnCheckout.Text = "Checkout";
+            btnCheckout.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCheckout.UseVisualStyleBackColor = false;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(this.lbTotal);
+            panel1.Controls.Add(this.lbTax);
+            panel1.Controls.Add(lbSubtotal);
+            panel1.Controls.Add(btnCheckout);
+            panel1.Location = new Point(986, 518);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(256, 160);
+            panel1.TabIndex = 7;
+            // 
+            // lbTotal
+            // 
+            this.lbTotal.AutoSize = true;
+            this.lbTotal.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            this.lbTotal.Location = new Point(21, 73);
+            this.lbTotal.Name = "lbTotal";
+            this.lbTotal.Size = new Size(56, 21);
+            this.lbTotal.TabIndex = 8;
+            this.lbTotal.Text = "Total:";
+            // 
+            // lbTax
+            // 
+            this.lbTax.AutoSize = true;
+            this.lbTax.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            this.lbTax.Location = new Point(21, 47);
+            this.lbTax.Name = "lbTax";
+            this.lbTax.Size = new Size(44, 21);
+            this.lbTax.TabIndex = 7;
+            this.lbTax.Text = "Tax:";
+            // 
+            // lbSubtotal
+            // 
+            lbSubtotal.AutoSize = true;
+            lbSubtotal.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            lbSubtotal.Location = new Point(21, 22);
+            lbSubtotal.Name = "lbSubtotal";
+            lbSubtotal.Size = new Size(86, 21);
+            lbSubtotal.TabIndex = 6;
+            lbSubtotal.Text = "Subtotal: ";
             // 
             // AdminDashboard
             // 
@@ -191,6 +257,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1280, 720);
             ControlBox = false;
+            Controls.Add(panel1);
             Controls.Add(fpReceipt);
             Controls.Add(adminPanel);
             Controls.Add(mainPanel);
@@ -199,6 +266,8 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Dashboard";
             adminPanel.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -212,5 +281,11 @@
         private FontAwesome.Sharp.IconButton btnLogout;
         private FontAwesome.Sharp.IconButton btnPOS;
         private FlowLayoutPanel fpReceipt;
+        private FontAwesome.Sharp.IconButton btnCheckout;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Panel panel1;
+        private Label label3;
+        private Label label2;
+        private Label lbSubtotal;
     }
 }

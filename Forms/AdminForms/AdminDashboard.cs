@@ -21,13 +21,13 @@ namespace POSpresso.Forms
         public void SetCurrentUser(User user)
         {
             _user = user;
-            
+
         }
 
         private void btnPOS_Click(object sender, EventArgs e)
         {
             var posForm = Program.ServiceProvider.GetRequiredService<POSForm>();
-            posForm.OnAddToCart += AddToCart; 
+            posForm.OnAddToCart += AddToCart;
 
             _formLoader.LoadForm(mainPanel, posForm);
         }
@@ -73,19 +73,24 @@ namespace POSpresso.Forms
 
         private void AddToCart(CartItem item)
         {
-           
+
             var existing = fpReceipt.Controls
                 .OfType<CartItemControl>()
                 .FirstOrDefault(c => c.ProductId == item.ProductId && c.ItemSize == item.Size);
 
             if (existing != null)
             {
-                existing.UpdateQuantity(item.Quantity); 
+                existing.UpdateQuantity(item.Quantity);
                 return;
             }
 
             var control = new CartItemControl(item);
             fpReceipt.Controls.Add(control);
+        }
+
+        private void fpReceipt_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
