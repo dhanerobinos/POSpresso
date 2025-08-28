@@ -9,6 +9,11 @@ namespace POSpresso.Forms
 
         public int ProductId => _item.ProductId;
         public string ItemSize => _item.Size;
+        public int Quantity => _item.Quantity;
+        public decimal Price => _item.Price;
+        public decimal SubTotal => _item.SubTotal;
+        public CartItem Item => _item;
+        public event Action? OnQuantityChanged;
 
         public CartItemControl(CartItem item)
         {
@@ -21,6 +26,8 @@ namespace POSpresso.Forms
         {
             _item.Quantity += delta;
             LoadData();
+            //fire event
+            OnQuantityChanged?.Invoke();
         }
 
         private void LoadData()

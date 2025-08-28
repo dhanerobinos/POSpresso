@@ -73,24 +73,67 @@ namespace POSpresso.Forms
 
         private void AddToCart(CartItem item)
         {
-
             var existing = fpReceipt.Controls
-                .OfType<CartItemControl>()
-                .FirstOrDefault(c => c.ProductId == item.ProductId && c.ItemSize == item.Size);
+             .OfType<CartItemControl>()
+             .FirstOrDefault(c => c.ProductId == item.ProductId && c.ItemSize == item.Size);
 
             if (existing != null)
             {
                 existing.UpdateQuantity(item.Quantity);
+            }
+            else
+            {
+                var control = new CartItemControl(item);
+                control.OnQuantityChanged += UpdateTotals;
+                fpReceipt.Controls.Add(control);
+            }
+            UpdateTotals();
+        }
+        private void UpdateTotals()
+        {
+            decimal subtotal = 0;
+
+            foreach (var control in fpReceipt.Controls.OfType<CartItemControl>())
+            {
+                subtotal += control.SubTotal;
+            }
+
+            decimal tax = subtotal * 0.12m; // example 12% VAT
+            decimal total = subtotal + tax;
+
+            lbSubtotal.Text = $"Subtotal: ₱{subtotal:N2}";
+            lbTax.Text = $"Tax: ₱{tax:N2}";
+            lbTotal.Text = $"Total: ₱{total:N2}";
+        }
+
+
+        private void btnCheckout_Click(object sender, EventArgs e)
+        {
+            if (fpReceipt.Controls.Count == 0)
+            {
+                MessageBox.Show("No items in the cart.");
                 return;
             }
 
-            var control = new CartItemControl(item);
-            fpReceipt.Controls.Add(control);
-        }
+            decimal subtotal = 0;
+            var items = new List<CartItem>();
 
-        private void fpReceipt_Paint(object sender, PaintEventArgs e)
-        {
+            foreach (var control in fpReceipt.Controls.OfType<CartItemControl>())
+            {
+                subtotal += control.SubTotal;
+                items.Add(control.Item); // expose Item from CartItemControl
+            }
 
+            decimal tax = subtotal * 0.12m; // sample tax calculation
+            decimal grandTotal = subtotal + tax;
+
+            MessageBox.Show($"Subtotal: ₱{subtotal:N2}\nTax: ₱{tax:N2}\nTotal: ₱{grandTotal:N2}",
+                "Checkout");
+
+            // TODO: Save order to DB via a SalesService
+
+            // Clear cart
+            fpReceipt.Controls.Clear();
         }
     }
 }

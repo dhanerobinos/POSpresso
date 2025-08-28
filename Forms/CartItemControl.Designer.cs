@@ -35,9 +35,9 @@
             // 
             // pbProductImage
             // 
-            pbProductImage.Location = new Point(6, 7);
+            pbProductImage.Location = new Point(3, 3);
             pbProductImage.Name = "pbProductImage";
-            pbProductImage.Size = new Size(50, 50);
+            pbProductImage.Size = new Size(35, 35);
             pbProductImage.SizeMode = PictureBoxSizeMode.StretchImage;
             pbProductImage.TabIndex = 2;
             pbProductImage.TabStop = false;
@@ -45,7 +45,7 @@
             // lbDetails
             // 
             lbDetails.AutoSize = true;
-            lbDetails.Location = new Point(66, 14);
+            lbDetails.Location = new Point(44, 13);
             lbDetails.Name = "lbDetails";
             lbDetails.Size = new Size(42, 15);
             lbDetails.TabIndex = 3;
@@ -58,7 +58,7 @@
             Controls.Add(lbDetails);
             Controls.Add(pbProductImage);
             Name = "CartItemControl";
-            Size = new Size(263, 74);
+            Size = new Size(263, 40);
             ((System.ComponentModel.ISupportInitialize)pbProductImage).EndInit();
             ResumeLayout(false);
             PerformLayout();

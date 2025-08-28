@@ -40,8 +40,8 @@
             fpReceipt = new FlowLayoutPanel();
             btnCheckout = new FontAwesome.Sharp.IconButton();
             panel1 = new Panel();
-            this.lbTotal = new Label();
-            this.lbTax = new Label();
+            lbTotal = new Label();
+            lbTax = new Label();
             lbSubtotal = new Label();
             adminPanel.SuspendLayout();
             panel1.SuspendLayout();
@@ -207,11 +207,12 @@
             btnCheckout.Text = "Checkout";
             btnCheckout.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCheckout.UseVisualStyleBackColor = false;
+            btnCheckout.Click += btnCheckout_Click;
             // 
             // panel1
             // 
-            panel1.Controls.Add(this.lbTotal);
-            panel1.Controls.Add(this.lbTax);
+            panel1.Controls.Add(lbTotal);
+            panel1.Controls.Add(lbTax);
             panel1.Controls.Add(lbSubtotal);
             panel1.Controls.Add(btnCheckout);
             panel1.Location = new Point(986, 518);
@@ -221,23 +222,23 @@
             // 
             // lbTotal
             // 
-            this.lbTotal.AutoSize = true;
-            this.lbTotal.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
-            this.lbTotal.Location = new Point(21, 73);
-            this.lbTotal.Name = "lbTotal";
-            this.lbTotal.Size = new Size(56, 21);
-            this.lbTotal.TabIndex = 8;
-            this.lbTotal.Text = "Total:";
+            lbTotal.AutoSize = true;
+            lbTotal.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            lbTotal.Location = new Point(21, 82);
+            lbTotal.Name = "lbTotal";
+            lbTotal.Size = new Size(56, 21);
+            lbTotal.TabIndex = 8;
+            lbTotal.Text = "Total:";
             // 
             // lbTax
             // 
-            this.lbTax.AutoSize = true;
-            this.lbTax.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
-            this.lbTax.Location = new Point(21, 47);
-            this.lbTax.Name = "lbTax";
-            this.lbTax.Size = new Size(44, 21);
-            this.lbTax.TabIndex = 7;
-            this.lbTax.Text = "Tax:";
+            lbTax.AutoSize = true;
+            lbTax.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            lbTax.Location = new Point(21, 54);
+            lbTax.Name = "lbTax";
+            lbTax.Size = new Size(44, 21);
+            lbTax.TabIndex = 7;
+            lbTax.Text = "Tax:";
             // 
             // lbSubtotal
             // 
@@ -287,5 +288,7 @@
         private Label label3;
         private Label label2;
         private Label lbSubtotal;
+        private Label lbTotal;
+        private Label lbTax;
     }
 }
