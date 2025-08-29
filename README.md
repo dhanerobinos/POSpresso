@@ -28,6 +28,7 @@ It helped me learn to integrate EF Core into a real world application, build a W
 ## Features
 - Manage products and categories (with images)
 - Role-based user management (Admin & Cashier)
+- POS functionality
 - Responsive UI with async/await
 - CRUD operations with EF Core
 - Clean architecture with DTOs & services
