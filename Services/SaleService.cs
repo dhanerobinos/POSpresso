@@ -2,11 +2,12 @@
 using POSpresso.Data;
 using POSpresso.Domain.Entities;
 using POSpresso.Domain.DTO;
+using POSpresso.Interfaces;
 
 
 namespace POSpresso.Services
 {
-    public class SaleService
+    public class SaleService: ISaleService
     {
         private readonly POSDbContext _context;
 
@@ -39,24 +40,31 @@ namespace POSpresso.Services
             var sale = new Sales
             {
                 UserId = dto.UserId,
-                SubTotal = dto.Subtotal,
-                Tax = dto.Tax,
-                Total = dto.Total,
+                SubTotal = Math.Round(dto.Subtotal, 2),
+                Tax = Math.Round(dto.Tax, 2),
+                Total = Math.Round(dto.Total, 2),
                 SaleDate = DateTime.Now,
                 SaleDetails = dto.Items.Select(i => new SaleDetails
                 {
                     ProductId = i.ProductId,
                     Size = i.Size,
                     Quantity = i.Quantity,
-                    Price = i.Price,
-                    SubTotal = i.Price * i.Quantity
+                    Price = Math.Round(i.Price, 2),
+                    SubTotal = Math.Round(i.Price * i.Quantity, 2)
                 }).ToList()
             };
 
-            _context.Sales.Add(sale);
-            await _context.SaveChangesAsync();
-
-            return sale.SaleId;
+            try
+            {
+                _context.Sales.Add(sale);
+                await _context.SaveChangesAsync();
+                return sale.SaleId;
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine(ex.InnerException?.Message);
+                throw;
+            }
         }
     }
 }

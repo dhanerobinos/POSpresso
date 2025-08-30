@@ -8,14 +8,22 @@ namespace POSpresso.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Sales> builder)
         {
-            builder.HasKey(s => s.Id);
+            builder.HasKey(s => s.SaleId);
 
             builder.HasMany(s => s.SaleDetails)
                    .WithOne(sd => sd.Sales)
                    .HasForeignKey(sd => sd.SaleId);
 
-            builder.Property(s => s.TotalAmount)
+
+            builder.Property(s => s.Total)
+                   .HasColumnType("decimal(18,2)");
+
+            builder.Property(s => s.SubTotal)
+                   .HasColumnType("decimal(18,2)");
+
+            builder.Property(s => s.Tax)
                    .HasColumnType("decimal(18,2)");
         }
     }
 }
+
