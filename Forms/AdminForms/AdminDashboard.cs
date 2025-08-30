@@ -13,10 +13,13 @@ namespace POSpresso.Forms
         private readonly IServiceProvider _serviceProvider;
         private readonly FormLoaderService _formLoader;
         private readonly ProductService _productService;
-        public AdminDashboard(FormLoaderService formLoader)
+        private readonly SaleService _salesService;
+        public AdminDashboard(FormLoaderService formLoader,ProductService productService, SaleService salesService)
         {
             InitializeComponent();
             _formLoader = formLoader;
+            _productService = productService;
+            _salesService = salesService;
         }
         public void SetCurrentUser(User user)
         {
@@ -57,19 +60,6 @@ namespace POSpresso.Forms
             this.Hide();
             Application.Restart();
         }
-        private void LoadPOSForm()
-        {
-            var posForm = new POSForm(_productService);
-            posForm.TopLevel = false;
-            posForm.FormBorderStyle = FormBorderStyle.None;
-            posForm.Dock = DockStyle.Fill;
-
-            posForm.OnAddToCart += AddToCart;
-
-            mainPanel.Controls.Clear();
-            mainPanel.Controls.Add(posForm);
-            posForm.Show();
-        }
 
         private void AddToCart(CartItem item)
         {
@@ -107,7 +97,7 @@ namespace POSpresso.Forms
         }
 
 
-        private void btnCheckout_Click(object sender, EventArgs e)
+        private async void btnCheckout_Click(object sender, EventArgs e)
         {
             if (fpReceipt.Controls.Count == 0)
             {
@@ -116,21 +106,40 @@ namespace POSpresso.Forms
             }
 
             decimal subtotal = 0;
-            var items = new List<CartItem>();
+            var saleItems = new List<SaleDetailsDTO>();
 
             foreach (var control in fpReceipt.Controls.OfType<CartItemControl>())
             {
                 subtotal += control.SubTotal;
-                items.Add(control.Item); // expose Item from CartItemControl
+
+                // Map UI CartItem → DTO
+                saleItems.Add(new SaleDetailsDTO
+                {
+                    ProductId = control.ProductId,
+                    Quantity = control.Quantity,
+                    Price = control.Price
+                });
             }
 
-            decimal tax = subtotal * 0.12m; // sample tax calculation
+            decimal tax = subtotal * 0.12m; // sample 12% VAT
             decimal grandTotal = subtotal + tax;
 
-            MessageBox.Show($"Subtotal: ₱{subtotal:N2}\nTax: ₱{tax:N2}\nTotal: ₱{grandTotal:N2}",
-                "Checkout");
+            var saleDto = new SaleDTO
+            {
+                UserId = _user?.UserId ?? 0, // Logged-in user
+                Subtotal = subtotal,
+                Tax = tax,
+                Total = grandTotal,
+                Items = saleItems
+            };
 
-            // TODO: Save order to DB via a SalesService
+            // Save to DB via service
+            await _salesService.SaveSaleAsync(saleDto);
+
+            MessageBox.Show(
+                $"Subtotal: ₱{subtotal:N2}\nTax: ₱{tax:N2}\nTotal: ₱{grandTotal:N2}",
+                "Checkout"
+            );
 
             // Clear cart
             fpReceipt.Controls.Clear();

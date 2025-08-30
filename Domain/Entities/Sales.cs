@@ -8,11 +8,19 @@ namespace POSpresso.Domain.Entities
 {
     public class Sales
     {
-        public int Id { get; set; }
-        public DateTime SaleDate { get; set; } = DateTime.Now;
-        public decimal TotalAmount { get; set; }
+        public int SaleId { get; set; }
 
-        // Navigation property
-        public ICollection<SaleDetails> SaleDetails { get; set; }
+        public DateTime SaleDate { get; set; } = DateTime.Now; 
+
+        public decimal SubTotal { get; set; }
+        public decimal Tax { get; set; }
+        public decimal Total { get; set; }
+
+        // Foreign Key to User
+        public int UserId { get; set; }
+        public User User { get; set; }
+
+        // Navigation collection (line items)
+        public ICollection<SaleDetails> SaleDetails { get; set; } = new List<SaleDetails>();
     }
 }

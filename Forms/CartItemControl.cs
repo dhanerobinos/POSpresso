@@ -24,7 +24,7 @@ namespace POSpresso.Forms
 
         public void UpdateQuantity(int delta)
         {
-            _item.Quantity += delta;
+            _item.Quantity += delta;//increment quantity
             LoadData();
             //fire event
             OnQuantityChanged?.Invoke();
