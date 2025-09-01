@@ -117,7 +117,8 @@ namespace POSpresso.Forms
                 {
                     ProductId = control.ProductId,
                     Quantity = control.Quantity,
-                    Price = control.Price
+                    Price = control.Price,
+                    Size = control.ItemSize
                 });
             }
 
@@ -136,10 +137,8 @@ namespace POSpresso.Forms
             // Save to DB via service
             await _salesService.SaveSaleAsync(saleDto);
 
-            MessageBox.Show(
-                $"Subtotal: ₱{subtotal:N2}\nTax: ₱{tax:N2}\nTotal: ₱{grandTotal:N2}",
-                "Checkout"
-            );
+            var receiptForm = new ReceiptForm(saleDto);
+            receiptForm.ShowDialog();
 
             // Clear cart
             fpReceipt.Controls.Clear();
