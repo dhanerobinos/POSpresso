@@ -15,7 +15,7 @@ namespace POSpresso.Domain.Entities
         public Products Products { get; set; }
 
         // Order info
-        public string Size { get; set; }
+        public string? Size { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
         public decimal SubTotal { get; set; }
