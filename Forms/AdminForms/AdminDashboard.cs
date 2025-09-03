@@ -116,6 +116,7 @@ namespace POSpresso.Forms
                 saleItems.Add(new SaleDetailsDTO
                 {
                     ProductId = control.ProductId,
+                    ProductName = control.Item.ProductName,
                     Quantity = control.Quantity,
                     Price = control.Price,
                     Size = control.ItemSize
@@ -142,6 +143,7 @@ namespace POSpresso.Forms
 
             // Clear cart
             fpReceipt.Controls.Clear();
+
         }
     }
 }

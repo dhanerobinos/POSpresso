@@ -34,7 +34,7 @@ namespace POSpresso.Forms
 
             foreach (var item in _sale.Items)
             {
-                sb.AppendLine($"{item.ProductId} - {item.Size ?? "N/A"}");
+                sb.AppendLine($"{item.ProductName} ({item.Size ?? "N/A"})");
                 sb.AppendLine($"Qty: {item.Quantity}  x  ₱{item.Price:N2}");
                 sb.AppendLine($"Subtotal: ₱{item.Price * item.Quantity:N2}");
                 sb.AppendLine();
@@ -48,21 +48,38 @@ namespace POSpresso.Forms
 
             rtbReceipt.Text = sb.ToString();
         }
+        private void SetupPrinter()
+        {
+            printDocument = new PrintDocument();
+            printDocument.DefaultPageSettings.PaperSize = new PaperSize("Receipt", 280, 600);
+            printDocument.PrintPage += PrintDocument_PrintPage;
+        }
+        
+        private void AdjustPaperHeight()
+        {
+            int baseHeight = 300;      
+            int perItemHeight = 40;    
+            int height = baseHeight + (_sale.Items.Count * perItemHeight);
+
+            // Set paper size dynamically
+            printDocument.DefaultPageSettings.PaperSize = new PaperSize("Receipt", 280, height);
+        }
+
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
-            float y = 20;
-            float leftMargin = e.MarginBounds.Left;
+            float y = 10;
+            float leftMargin = 10;
             float topMargin = e.MarginBounds.Top;
             Font font = new Font("Consolas", 10);
 
             // Title
             e.Graphics.DrawString("=== POSPRESSO RECEIPT ===", new Font("Consolas", 12, FontStyle.Bold), Brushes.Black, leftMargin, y);
-            y += 40;
+            y += 30;
 
             // Items
             foreach (var item in _sale.Items)
             {
-                string line = $"{item.ProductId} ({item.Size ?? "N/A"})";
+                string line = $"{item.ProductName} ({item.Size ?? "N/A"})";
                 e.Graphics.DrawString(line, font, Brushes.Black, leftMargin, y);
                 y += 20;
 
@@ -81,6 +98,11 @@ namespace POSpresso.Forms
 
         private void btnPrintReceipt_Click(object sender, EventArgs e)
         {
+            if (printDocument == null)
+            {
+                SetupPrinter();
+            }
+            AdjustPaperHeight();
             PrintPreviewDialog preview = new PrintPreviewDialog();
             preview.Document = printDocument;
             preview.ShowDialog();
