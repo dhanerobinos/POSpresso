@@ -66,12 +66,19 @@ namespace POSpresso.Services
                 throw;
             }
         }
-        public async Task<List<Sales>> GetSalesByDateAsync(DateTime startDate, DateTime endDate)
+        public async Task<List<Sales>> GetSalesAsync(DateTime? start = null, DateTime? end = null)
         {
-            return await _context.Sales
-                .Include(s => s.SaleDetails)
-                .Where(s => s.SaleDate >= startDate && s.SaleDate <= endDate)
-                .OrderBy(s => s.SaleDate)
+            var query = _context.Sales.AsQueryable();
+
+            if (start.HasValue)
+                query = query.Where(s => s.SaleDate >= start.Value);
+
+            if (end.HasValue)
+                query = query.Where(s => s.SaleDate <= end.Value);
+
+            return await query
+                .Include(s => s.SaleDetails) // so details are loaded
+                .OrderByDescending(s => s.SaleDate)
                 .ToListAsync();
         }
     }

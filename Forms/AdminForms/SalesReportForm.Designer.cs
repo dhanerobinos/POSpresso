@@ -29,16 +29,17 @@
         private void InitializeComponent()
         {
             lbFrom = new Label();
-            dtpFrom = new DateTimePicker();
+            dtpStart = new DateTimePicker();
             btnGenerateReport = new FontAwesome.Sharp.IconButton();
-            dtpTo = new DateTimePicker();
+            dtpEnd = new DateTimePicker();
             label1 = new Label();
-            dgvReport = new DataGridView();
+            dtgvSalesReport = new DataGridView();
             panel1 = new Panel();
-            lbSubtotal = new Label();
-            lbTax = new Label();
             lbTotal = new Label();
-            ((System.ComponentModel.ISupportInitialize)dgvReport).BeginInit();
+            lbTax = new Label();
+            lbSubtotal = new Label();
+            lbTransactions = new Label();
+            ((System.ComponentModel.ISupportInitialize)dtgvSalesReport).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -51,12 +52,12 @@
             lbFrom.TabIndex = 0;
             lbFrom.Text = "From:";
             // 
-            // dtpFrom
+            // dtpStart
             // 
-            dtpFrom.Location = new Point(82, 45);
-            dtpFrom.Name = "dtpFrom";
-            dtpFrom.Size = new Size(209, 23);
-            dtpFrom.TabIndex = 1;
+            dtpStart.Location = new Point(82, 45);
+            dtpStart.Name = "dtpStart";
+            dtpStart.Size = new Size(209, 23);
+            dtpStart.TabIndex = 1;
             // 
             // btnGenerateReport
             // 
@@ -69,13 +70,14 @@
             btnGenerateReport.TabIndex = 2;
             btnGenerateReport.Text = "Generate Report";
             btnGenerateReport.UseVisualStyleBackColor = true;
+            btnGenerateReport.Click += btnGenerateReport_Click;
             // 
-            // dtpTo
+            // dtpEnd
             // 
-            dtpTo.Location = new Point(342, 45);
-            dtpTo.Name = "dtpTo";
-            dtpTo.Size = new Size(209, 23);
-            dtpTo.TabIndex = 4;
+            dtpEnd.Location = new Point(342, 45);
+            dtpEnd.Name = "dtpEnd";
+            dtpEnd.Size = new Size(209, 23);
+            dtpEnd.TabIndex = 4;
             // 
             // label1
             // 
@@ -86,16 +88,17 @@
             label1.TabIndex = 3;
             label1.Text = "To:";
             // 
-            // dgvReport
+            // dtgvSalesReport
             // 
-            dgvReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvReport.Location = new Point(81, 88);
-            dgvReport.Name = "dgvReport";
-            dgvReport.Size = new Size(597, 414);
-            dgvReport.TabIndex = 5;
+            dtgvSalesReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvSalesReport.Location = new Point(81, 88);
+            dtgvSalesReport.Name = "dtgvSalesReport";
+            dtgvSalesReport.Size = new Size(597, 414);
+            dtgvSalesReport.TabIndex = 5;
             // 
             // panel1
             // 
+            panel1.Controls.Add(lbTransactions);
             panel1.Controls.Add(lbTotal);
             panel1.Controls.Add(lbTax);
             panel1.Controls.Add(lbSubtotal);
@@ -104,32 +107,41 @@
             panel1.Size = new Size(596, 100);
             panel1.TabIndex = 6;
             // 
-            // lbSubtotal
+            // lbTotal
             // 
-            lbSubtotal.AutoSize = true;
-            lbSubtotal.Location = new Point(16, 26);
-            lbSubtotal.Name = "lbSubtotal";
-            lbSubtotal.Size = new Size(54, 15);
-            lbSubtotal.TabIndex = 1;
-            lbSubtotal.Text = "Subtotal:";
+            lbTotal.AutoSize = true;
+            lbTotal.Location = new Point(422, 46);
+            lbTotal.Name = "lbTotal";
+            lbTotal.Size = new Size(36, 15);
+            lbTotal.TabIndex = 3;
+            lbTotal.Text = "Total:";
             // 
             // lbTax
             // 
             lbTax.AutoSize = true;
-            lbTax.Location = new Point(155, 26);
+            lbTax.Location = new Point(216, 46);
             lbTax.Name = "lbTax";
             lbTax.Size = new Size(27, 15);
             lbTax.TabIndex = 2;
             lbTax.Text = "Tax:";
             // 
-            // lbTotal
+            // lbSubtotal
             // 
-            lbTotal.AutoSize = true;
-            lbTotal.Location = new Point(361, 26);
-            lbTotal.Name = "lbTotal";
-            lbTotal.Size = new Size(36, 15);
-            lbTotal.TabIndex = 3;
-            lbTotal.Text = "Total:";
+            lbSubtotal.AutoSize = true;
+            lbSubtotal.Location = new Point(77, 46);
+            lbSubtotal.Name = "lbSubtotal";
+            lbSubtotal.Size = new Size(54, 15);
+            lbSubtotal.TabIndex = 1;
+            lbSubtotal.Text = "Subtotal:";
+            // 
+            // lbTransactions
+            // 
+            lbTransactions.AutoSize = true;
+            lbTransactions.Location = new Point(12, 10);
+            lbTransactions.Name = "lbTransactions";
+            lbTransactions.Size = new Size(76, 15);
+            lbTransactions.TabIndex = 4;
+            lbTransactions.Text = "Transactions:";
             // 
             // SalesReportForm
             // 
@@ -137,16 +149,16 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(765, 620);
             Controls.Add(panel1);
-            Controls.Add(dgvReport);
-            Controls.Add(dtpTo);
+            Controls.Add(dtgvSalesReport);
+            Controls.Add(dtpEnd);
             Controls.Add(label1);
             Controls.Add(btnGenerateReport);
-            Controls.Add(dtpFrom);
+            Controls.Add(dtpStart);
             Controls.Add(lbFrom);
             FormBorderStyle = FormBorderStyle.None;
             Name = "SalesReportForm";
             Text = "SalesReportForm";
-            ((System.ComponentModel.ISupportInitialize)dgvReport).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvSalesReport).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -156,14 +168,15 @@
         #endregion
 
         private Label lbFrom;
-        private DateTimePicker dtpFrom;
+        private DateTimePicker dtpStart;
         private FontAwesome.Sharp.IconButton btnGenerateReport;
-        private DateTimePicker dtpTo;
+        private DateTimePicker dtpEnd;
         private Label label1;
-        private DataGridView dgvReport;
+        private DataGridView dtgvSalesReport;
         private Panel panel1;
         private Label lbTotal;
         private Label lbTax;
         private Label lbSubtotal;
+        private Label lbTransactions;
     }
 }
