@@ -66,5 +66,13 @@ namespace POSpresso.Services
                 throw;
             }
         }
+        public async Task<List<Sales>> GetSalesByDateAsync(DateTime startDate, DateTime endDate)
+        {
+            return await _context.Sales
+                .Include(s => s.SaleDetails)
+                .Where(s => s.SaleDate >= startDate && s.SaleDate <= endDate)
+                .OrderBy(s => s.SaleDate)
+                .ToListAsync();
+        }
     }
 }

@@ -40,7 +40,7 @@ namespace POSpresso.Forms
                 sb.AppendLine();
             }
 
-            sb.AppendLine("-----------------------");
+            sb.AppendLine("-------------------------------------");
             sb.AppendLine($"Subtotal: ₱{_sale.Subtotal:N2}");
             sb.AppendLine($"Tax: ₱{_sale.Tax:N2}");
             sb.AppendLine($"Total: ₱{_sale.Total:N2}");
@@ -89,6 +89,8 @@ namespace POSpresso.Forms
             }
 
             // Totals
+            e.Graphics.DrawLine(Pens.Black, e.PageBounds.Left, y, e.PageBounds.Right, y);
+            y += 10;
             e.Graphics.DrawString($"Subtotal: ₱{_sale.Subtotal:N2}", font, Brushes.Black, leftMargin, y);
             y += 20;
             e.Graphics.DrawString($"Tax: ₱{_sale.Tax:N2}", font, Brushes.Black, leftMargin, y);
