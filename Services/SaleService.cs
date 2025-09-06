@@ -77,9 +77,11 @@ namespace POSpresso.Services
                 query = query.Where(s => s.SaleDate <= end.Value);
 
             return await query
-                .Include(s => s.SaleDetails) // so details are loaded
+                .Include(s => s.User)     
+                .Include(s => s.SaleDetails) 
                 .OrderByDescending(s => s.SaleDate)
                 .ToListAsync();
         }
+
     }
 }

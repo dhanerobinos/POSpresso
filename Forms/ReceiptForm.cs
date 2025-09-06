@@ -108,6 +108,7 @@ namespace POSpresso.Forms
             PrintPreviewDialog preview = new PrintPreviewDialog();
             preview.Document = printDocument;
             preview.ShowDialog();
+            this.Close();
         }
     }
 }
