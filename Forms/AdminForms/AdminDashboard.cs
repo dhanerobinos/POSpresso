@@ -24,7 +24,6 @@ namespace POSpresso.Forms
         public void SetCurrentUser(User user)
         {
             _user = user;
-
         }
 
         private void btnPOS_Click(object sender, EventArgs e)

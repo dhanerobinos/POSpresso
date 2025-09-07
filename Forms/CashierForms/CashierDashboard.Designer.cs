@@ -31,18 +31,24 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CashierDashboard));
             cashierPanel = new Panel();
             btnLogout = new FontAwesome.Sharp.IconButton();
-            iconButton6 = new FontAwesome.Sharp.IconButton();
+            btnPOS = new FontAwesome.Sharp.IconButton();
             iconButton10 = new FontAwesome.Sharp.IconButton();
             mainPanel = new Panel();
-            receiptPanel = new Panel();
+            panel1 = new Panel();
+            lbTotal = new Label();
+            lbTax = new Label();
+            lbSubtotal = new Label();
+            btnCheckout = new FontAwesome.Sharp.IconButton();
+            fpReceipt = new FlowLayoutPanel();
             cashierPanel.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // cashierPanel
             // 
             cashierPanel.BackgroundImage = (Image)resources.GetObject("cashierPanel.BackgroundImage");
             cashierPanel.Controls.Add(btnLogout);
-            cashierPanel.Controls.Add(iconButton6);
+            cashierPanel.Controls.Add(btnPOS);
             cashierPanel.Controls.Add(iconButton10);
             cashierPanel.Location = new Point(119, 50);
             cashierPanel.Name = "cashierPanel";
@@ -68,23 +74,24 @@
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
-            // iconButton6
+            // btnPOS
             // 
-            iconButton6.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            iconButton6.BackgroundImage = (Image)resources.GetObject("iconButton6.BackgroundImage");
-            iconButton6.FlatStyle = FlatStyle.Popup;
-            iconButton6.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton6.IconChar = FontAwesome.Sharp.IconChar.Print;
-            iconButton6.IconColor = Color.Black;
-            iconButton6.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton6.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton6.Location = new Point(0, 171);
-            iconButton6.Name = "iconButton6";
-            iconButton6.Size = new Size(184, 78);
-            iconButton6.TabIndex = 4;
-            iconButton6.Text = "Take Order";
-            iconButton6.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton6.UseVisualStyleBackColor = true;
+            btnPOS.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnPOS.BackgroundImage = (Image)resources.GetObject("btnPOS.BackgroundImage");
+            btnPOS.FlatStyle = FlatStyle.Popup;
+            btnPOS.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPOS.IconChar = FontAwesome.Sharp.IconChar.Print;
+            btnPOS.IconColor = Color.Black;
+            btnPOS.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnPOS.ImageAlign = ContentAlignment.MiddleLeft;
+            btnPOS.Location = new Point(0, 171);
+            btnPOS.Name = "btnPOS";
+            btnPOS.Size = new Size(184, 78);
+            btnPOS.TabIndex = 4;
+            btnPOS.Text = "Take Order";
+            btnPOS.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnPOS.UseVisualStyleBackColor = true;
+            btnPOS.Click += btnPOS_Click;
             // 
             // iconButton10
             // 
@@ -111,12 +118,73 @@
             mainPanel.Size = new Size(605, 620);
             mainPanel.TabIndex = 8;
             // 
-            // receiptPanel
+            // panel1
             // 
-            receiptPanel.Location = new Point(917, 50);
-            receiptPanel.Name = "receiptPanel";
-            receiptPanel.Size = new Size(244, 620);
-            receiptPanel.TabIndex = 7;
+            panel1.Controls.Add(lbTotal);
+            panel1.Controls.Add(lbTax);
+            panel1.Controls.Add(lbSubtotal);
+            panel1.Controls.Add(btnCheckout);
+            panel1.Location = new Point(917, 510);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(256, 160);
+            panel1.TabIndex = 11;
+            // 
+            // lbTotal
+            // 
+            lbTotal.AutoSize = true;
+            lbTotal.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            lbTotal.Location = new Point(21, 82);
+            lbTotal.Name = "lbTotal";
+            lbTotal.Size = new Size(56, 21);
+            lbTotal.TabIndex = 8;
+            lbTotal.Text = "Total:";
+            // 
+            // lbTax
+            // 
+            lbTax.AutoSize = true;
+            lbTax.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            lbTax.Location = new Point(21, 54);
+            lbTax.Name = "lbTax";
+            lbTax.Size = new Size(44, 21);
+            lbTax.TabIndex = 7;
+            lbTax.Text = "Tax:";
+            // 
+            // lbSubtotal
+            // 
+            lbSubtotal.AutoSize = true;
+            lbSubtotal.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            lbSubtotal.Location = new Point(21, 22);
+            lbSubtotal.Name = "lbSubtotal";
+            lbSubtotal.Size = new Size(86, 21);
+            lbSubtotal.TabIndex = 6;
+            lbSubtotal.Text = "Subtotal: ";
+            // 
+            // btnCheckout
+            // 
+            btnCheckout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCheckout.BackColor = Color.LightGreen;
+            btnCheckout.FlatStyle = FlatStyle.Popup;
+            btnCheckout.Font = new Font("Segoe UI Black", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCheckout.IconChar = FontAwesome.Sharp.IconChar.Check;
+            btnCheckout.IconColor = Color.Black;
+            btnCheckout.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnCheckout.IconSize = 40;
+            btnCheckout.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCheckout.Location = new Point(104, 117);
+            btnCheckout.Name = "btnCheckout";
+            btnCheckout.Size = new Size(148, 39);
+            btnCheckout.TabIndex = 5;
+            btnCheckout.Text = "Checkout";
+            btnCheckout.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCheckout.UseVisualStyleBackColor = false;
+            btnCheckout.Click += btnCheckout_Click;
+            // 
+            // fpReceipt
+            // 
+            fpReceipt.Location = new Point(917, 50);
+            fpReceipt.Name = "fpReceipt";
+            fpReceipt.Size = new Size(252, 454);
+            fpReceipt.TabIndex = 12;
             // 
             // CashierDashboard
             // 
@@ -124,13 +192,16 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1280, 720);
+            Controls.Add(fpReceipt);
+            Controls.Add(panel1);
             Controls.Add(cashierPanel);
             Controls.Add(mainPanel);
-            Controls.Add(receiptPanel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "CashierDashboard";
             Text = "CashierForm";
             cashierPanel.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -138,9 +209,14 @@
 
         private Panel cashierPanel;
         private FontAwesome.Sharp.IconButton btnLogout;
-        private FontAwesome.Sharp.IconButton iconButton6;
+        private FontAwesome.Sharp.IconButton btnPOS;
         private FontAwesome.Sharp.IconButton iconButton10;
         private Panel mainPanel;
-        private Panel receiptPanel;
+        private Panel panel1;
+        private Label lbTotal;
+        private Label lbTax;
+        private Label lbSubtotal;
+        private FontAwesome.Sharp.IconButton btnCheckout;
+        private FlowLayoutPanel fpReceipt;
     }
 }
