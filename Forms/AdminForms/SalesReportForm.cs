@@ -1,10 +1,5 @@
 ﻿using POSpresso.Interfaces;
-using System;
-using System.Data.Common;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
+using ClosedXML.Excel;
 namespace POSpresso.Forms.AdminForms
 {
     public partial class SalesReportForm : Form
@@ -36,7 +31,7 @@ namespace POSpresso.Forms.AdminForms
                 User = s.User != null ? s.User.Username : "Unknown"
             }).ToList();
 
-     
+
             lbTransactions.Text = $"Transactions: {sales.Count}";
             lbSubtotal.Text = $"Subtotal: ₱{sales.Sum(s => s.SubTotal):N2}";
             lbTax.Text = $"Tax: ₱{sales.Sum(s => s.Tax):N2}";
@@ -49,6 +44,49 @@ namespace POSpresso.Forms.AdminForms
             var end = dtpEnd.Value.Date.AddDays(1).AddTicks(-1);
 
             await LoadReport(start, end);
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (dtgvSalesReport.Rows.Count == 0)
+            {
+                MessageBox.Show("No data to export!");
+                return;
+            }
+
+            using (SaveFileDialog sfd = new SaveFileDialog()
+            {
+                Filter = "Excel Workbook|*.xlsx",
+                FileName = "SalesReport.xlsx"
+            })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    using (var workbook = new XLWorkbook())
+                    {
+                        var worksheet = workbook.Worksheets.Add("Report");
+
+                        // Add headers
+                        for (int i = 0; i < dtgvSalesReport.Columns.Count; i++)
+                        {
+                            worksheet.Cell(1, i + 1).Value = dtgvSalesReport.Columns[i].HeaderText;
+                        }
+
+                        // Add data
+                        for (int i = 0; i < dtgvSalesReport.Rows.Count; i++)
+                        {
+                            for (int j = 0; j < dtgvSalesReport.Columns.Count; j++)
+                            {
+                                worksheet.Cell(i + 2, j + 1).Value =
+                                    dtgvSalesReport.Rows[i].Cells[j].Value?.ToString();
+                            }
+                        }
+
+                        workbook.SaveAs(sfd.FileName);
+                        MessageBox.Show("Report exported successfully!");
+                    }
+                }
+            }
         }
     }
 }

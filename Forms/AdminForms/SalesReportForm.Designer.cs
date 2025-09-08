@@ -35,10 +35,11 @@
             label1 = new Label();
             dtgvSalesReport = new DataGridView();
             panel1 = new Panel();
+            lbTransactions = new Label();
             lbTotal = new Label();
             lbTax = new Label();
             lbSubtotal = new Label();
-            lbTransactions = new Label();
+            btnExport = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)dtgvSalesReport).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -107,6 +108,15 @@
             panel1.Size = new Size(596, 100);
             panel1.TabIndex = 6;
             // 
+            // lbTransactions
+            // 
+            lbTransactions.AutoSize = true;
+            lbTransactions.Location = new Point(12, 10);
+            lbTransactions.Name = "lbTransactions";
+            lbTransactions.Size = new Size(76, 15);
+            lbTransactions.TabIndex = 4;
+            lbTransactions.Text = "Transactions:";
+            // 
             // lbTotal
             // 
             lbTotal.AutoSize = true;
@@ -134,20 +144,25 @@
             lbSubtotal.TabIndex = 1;
             lbSubtotal.Text = "Subtotal:";
             // 
-            // lbTransactions
+            // btnExport
             // 
-            lbTransactions.AutoSize = true;
-            lbTransactions.Location = new Point(12, 10);
-            lbTransactions.Name = "lbTransactions";
-            lbTransactions.Size = new Size(76, 15);
-            lbTransactions.TabIndex = 4;
-            lbTransactions.Text = "Transactions:";
+            btnExport.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnExport.IconColor = Color.Black;
+            btnExport.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnExport.Location = new Point(557, 12);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(121, 25);
+            btnExport.TabIndex = 7;
+            btnExport.Text = "Export Report";
+            btnExport.UseVisualStyleBackColor = true;
+            btnExport.Click += btnExport_Click;
             // 
             // SalesReportForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(765, 620);
+            Controls.Add(btnExport);
             Controls.Add(panel1);
             Controls.Add(dtgvSalesReport);
             Controls.Add(dtpEnd);
@@ -178,5 +193,6 @@
         private Label lbTax;
         private Label lbSubtotal;
         private Label lbTransactions;
+        private FontAwesome.Sharp.IconButton btnExport;
     }
 }
