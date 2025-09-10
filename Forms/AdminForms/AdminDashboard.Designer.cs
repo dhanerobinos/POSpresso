@@ -43,6 +43,7 @@
             lbTotal = new Label();
             lbTax = new Label();
             lbSubtotal = new Label();
+            btnDashboard = new FontAwesome.Sharp.IconButton();
             adminPanel.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -57,6 +58,7 @@
             // adminPanel
             // 
             adminPanel.BackgroundImage = (Image)resources.GetObject("adminPanel.BackgroundImage");
+            adminPanel.Controls.Add(btnDashboard);
             adminPanel.Controls.Add(btnLogout);
             adminPanel.Controls.Add(btnPOS);
             adminPanel.Controls.Add(btnSettings);
@@ -97,7 +99,7 @@
             btnPOS.IconColor = Color.Black;
             btnPOS.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnPOS.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPOS.Location = new Point(0, 0);
+            btnPOS.Location = new Point(3, 89);
             btnPOS.Name = "btnPOS";
             btnPOS.Size = new Size(159, 78);
             btnPOS.TabIndex = 4;
@@ -116,7 +118,7 @@
             btnSettings.IconColor = Color.Black;
             btnSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnSettings.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSettings.Location = new Point(0, 336);
+            btnSettings.Location = new Point(3, 425);
             btnSettings.Name = "btnSettings";
             btnSettings.Size = new Size(159, 78);
             btnSettings.TabIndex = 3;
@@ -135,7 +137,7 @@
             btnReport.IconColor = Color.Black;
             btnReport.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnReport.ImageAlign = ContentAlignment.MiddleLeft;
-            btnReport.Location = new Point(-3, 252);
+            btnReport.Location = new Point(0, 341);
             btnReport.Name = "btnReport";
             btnReport.Size = new Size(162, 78);
             btnReport.TabIndex = 2;
@@ -154,7 +156,7 @@
             btnUsers.IconColor = Color.Black;
             btnUsers.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnUsers.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUsers.Location = new Point(0, 168);
+            btnUsers.Location = new Point(3, 257);
             btnUsers.Name = "btnUsers";
             btnUsers.Size = new Size(159, 78);
             btnUsers.TabIndex = 1;
@@ -173,7 +175,7 @@
             btnProducts.IconColor = Color.Black;
             btnProducts.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnProducts.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProducts.Location = new Point(0, 84);
+            btnProducts.Location = new Point(3, 173);
             btnProducts.Name = "btnProducts";
             btnProducts.Size = new Size(159, 78);
             btnProducts.TabIndex = 0;
@@ -250,6 +252,25 @@
             lbSubtotal.TabIndex = 6;
             lbSubtotal.Text = "Subtotal: ";
             // 
+            // btnDashboard
+            // 
+            btnDashboard.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnDashboard.BackgroundImage = (Image)resources.GetObject("btnDashboard.BackgroundImage");
+            btnDashboard.FlatStyle = FlatStyle.Popup;
+            btnDashboard.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDashboard.IconChar = FontAwesome.Sharp.IconChar.Print;
+            btnDashboard.IconColor = Color.Black;
+            btnDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDashboard.Location = new Point(1, 5);
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Size = new Size(159, 78);
+            btnDashboard.TabIndex = 6;
+            btnDashboard.Text = "Dashboard";
+            btnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnDashboard.UseVisualStyleBackColor = true;
+            btnDashboard.Click += btnDashboard_Click;
+            // 
             // AdminDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -290,5 +311,6 @@
         private Label lbSubtotal;
         private Label lbTotal;
         private Label lbTax;
+        private FontAwesome.Sharp.IconButton btnDashboard;
     }
 }

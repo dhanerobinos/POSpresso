@@ -35,6 +35,7 @@ namespace POSpresso
                     services.AddScoped<ManageUserService>();
                     services.AddScoped<ManageCategoryService>();
                     services.AddScoped<SaleService>();
+                    services.AddScoped<DashboardService>();
 
 
                     //Interfaces
@@ -43,6 +44,8 @@ namespace POSpresso
                     services.AddScoped<IProductService, ProductService>();
                     services.AddScoped<IManageCategoryService, ManageCategoryService>();
                     services.AddScoped<ISaleService, SaleService>();
+                
+
 
                     // Register forms
                     services.AddTransient<LoginForm>();
@@ -53,6 +56,7 @@ namespace POSpresso
                     services.AddTransient<POSForm>();
                     services.AddTransient<CategoryForm>();
                     services.AddTransient<SalesReportForm>();
+                    services.AddTransient<DashboardForm>();
                 })
                 .Build();
             ServiceProvider = host.Services;

@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            label3 = new Label();
             panel2 = new Panel();
+            label2 = new Label();
             panel3 = new Panel();
+            lbRevenue = new Label();
+            lbTransactions = new Label();
+            lbTotalSales = new Label();
             label1 = new Label();
             dateTimePicker1 = new DateTimePicker();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            lbTotalSales = new Label();
-            lbTransactions = new Label();
-            lbRevenue = new Label();
-            label2 = new Label();
-            label3 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -52,6 +52,16 @@
             panel1.Size = new Size(424, 395);
             panel1.TabIndex = 0;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label3.Location = new Point(154, 12);
+            label3.Name = "label3";
+            label3.Size = new Size(98, 21);
+            label3.TabIndex = 6;
+            label3.Text = "Sales Chart:";
+            // 
             // panel2
             // 
             panel2.Controls.Add(label2);
@@ -59,6 +69,16 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(326, 395);
             panel2.TabIndex = 1;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label2.Location = new Point(124, 12);
+            label2.Name = "label2";
+            label2.Size = new Size(113, 21);
+            label2.TabIndex = 5;
+            label2.Text = "Top Products:";
             // 
             // panel3
             // 
@@ -71,6 +91,36 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(747, 177);
             panel3.TabIndex = 2;
+            // 
+            // lbRevenue
+            // 
+            lbRevenue.AutoSize = true;
+            lbRevenue.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lbRevenue.Location = new Point(477, 87);
+            lbRevenue.Name = "lbRevenue";
+            lbRevenue.Size = new Size(80, 21);
+            lbRevenue.TabIndex = 4;
+            lbRevenue.Text = "Revenue:";
+            // 
+            // lbTransactions
+            // 
+            lbTransactions.AutoSize = true;
+            lbTransactions.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lbTransactions.Location = new Point(245, 87);
+            lbTransactions.Name = "lbTransactions";
+            lbTransactions.Size = new Size(109, 21);
+            lbTransactions.TabIndex = 3;
+            lbTransactions.Text = "Transactions:";
+            // 
+            // lbTotalSales
+            // 
+            lbTotalSales.AutoSize = true;
+            lbTotalSales.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lbTotalSales.Location = new Point(20, 87);
+            lbTotalSales.Name = "lbTotalSales";
+            lbTotalSales.Size = new Size(95, 21);
+            lbTotalSales.TabIndex = 2;
+            lbTotalSales.Text = "Total Sales:";
             // 
             // label1
             // 
@@ -93,57 +143,6 @@
             // 
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
-            // 
-            // lbTotalSales
-            // 
-            lbTotalSales.AutoSize = true;
-            lbTotalSales.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lbTotalSales.Location = new Point(20, 87);
-            lbTotalSales.Name = "lbTotalSales";
-            lbTotalSales.Size = new Size(95, 21);
-            lbTotalSales.TabIndex = 2;
-            lbTotalSales.Text = "Total Sales:";
-            // 
-            // lbTransactions
-            // 
-            lbTransactions.AutoSize = true;
-            lbTransactions.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lbTransactions.Location = new Point(245, 87);
-            lbTransactions.Name = "lbTransactions";
-            lbTransactions.Size = new Size(109, 21);
-            lbTransactions.TabIndex = 3;
-            lbTransactions.Text = "Transactions:";
-            // 
-            // lbRevenue
-            // 
-            lbRevenue.AutoSize = true;
-            lbRevenue.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lbRevenue.Location = new Point(477, 87);
-            lbRevenue.Name = "lbRevenue";
-            lbRevenue.Size = new Size(80, 21);
-            lbRevenue.TabIndex = 4;
-            lbRevenue.Text = "Revenue:";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label2.Location = new Point(124, 12);
-            label2.Name = "label2";
-            label2.Size = new Size(113, 21);
-            label2.TabIndex = 5;
-            label2.Text = "Top Products:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label3.Location = new Point(154, 12);
-            label3.Name = "label3";
-            label3.Size = new Size(98, 21);
-            label3.TabIndex = 6;
-            label3.Text = "Sales Chart:";
-
             // 
             // DashboardForm
             // 

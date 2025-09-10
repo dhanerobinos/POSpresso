@@ -14,7 +14,7 @@ namespace POSpresso.Forms
         private readonly FormLoaderService _formLoader;
         private readonly ProductService _productService;
         private readonly SaleService _salesService;
-        public AdminDashboard(FormLoaderService formLoader,ProductService productService, SaleService salesService)
+        public AdminDashboard(FormLoaderService formLoader, ProductService productService, SaleService salesService)
         {
             InitializeComponent();
             _formLoader = formLoader;
@@ -25,7 +25,10 @@ namespace POSpresso.Forms
         {
             _user = user;
         }
-
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<DashboardForm>());
+        }
         private void btnPOS_Click(object sender, EventArgs e)
         {
             var posForm = Program.ServiceProvider.GetRequiredService<POSForm>();
@@ -144,5 +147,7 @@ namespace POSpresso.Forms
             fpReceipt.Controls.Clear();
 
         }
+
+     
     }
 }
