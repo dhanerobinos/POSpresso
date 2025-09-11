@@ -32,4 +32,4 @@ It helped me learn to integrate EF Core into a real world application, build a W
 - Responsive UI with async/await
 - CRUD operations with EF Core
 - Clean architecture with DTOs & services
-
+-Sales history & reports (daily sales, sales by cashier, top-selling products)
