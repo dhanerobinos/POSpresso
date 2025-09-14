@@ -5,25 +5,29 @@ It’s a Point of Sale (POS) system designed to help small businesses manage pro
 
 To be able to learn EF Core in this project was a huge advancement of direct-SQL that I were used to before. In this process, I learned about database-first and code-first solutions, asynchronous programming and clean architecture principles as I applied them to a real-life POS system.
 
-- Entity Framework Core Integration
-The EF Core project made me acquainted with the ORM (Object Relational Mapper) approach to database handling, EF Core.
-I got acquainted with mapping entities, setting up relations, and the CRUD operations do not involve writing raw SQL but is still performance and maintainable.
+## Learning Highlights
 
-- Clean Architecture and OOP concepts
-The use of object-oriented design has enabled me to maintain code that is tidy, modular and reusable.
-I applied `IEntityTypeConfiguration` to entity mapping, `DTOs` to data transfer and service classes to decouple business logic with UI.
+### Entity Framework Core Integration
+- I learned how to use EF Core as an ORM (Object Relational Mapper) to handle data without writing raw SQL.
+This included mapping entities, setting up relationships, and performing CRUD operations in a maintainable way.
 
-- Responsive UI Async/Await
-When EF Core queries used asynchronous techniques, I could make the UI feel responsive during data operations of significant size.
+### Clean Architecture and OOP Concepts
+- Using object-oriented design helped me keep the code tidy, modular, and reusable.
+I applied IEntityTypeConfiguration for entity mapping, DTOs for data transfer, and service classes to decouple business logic from the UI.
 
-- Images Product & Category Management
-Applied the ability to add, update, delete and display products and categories with the ability to store and render images to enhance better user experience.
+### Responsive UI with Async/Await
+- By using asynchronous EF Core queries, the UI stays responsive even during large data operations.
 
-- Role Based User Management
-Came up with a system of admin and cashiers users that would allow access to various applications.
+### Images in Product & Category Management
+- Added functionality to create, update, delete, and display products and categories with images, improving the user experience.
 
-- The project was a functional POS system as well as a significant learning curve to me.
-It helped me learn to integrate EF Core into a real world application, build a WinForms project with clean architecture and learn to work with SQL Server in a more modern and maintainable fashion.
+### Role-Based User Management
+- Implemented admin and cashier roles to provide different access levels within the application.
+
+
+- This project is not only a functional POS system but also a significant milestone in my learning journey.
+It helped me integrate EF Core into a real-world application, structure a WinForms project with clean architecture, and work with SQL Server in a modern and maintainable way.
+
 
 ## Features
 - Manage products and categories (with images)
