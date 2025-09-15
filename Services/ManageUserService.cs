@@ -9,10 +9,9 @@ namespace POSpresso.Services
     public class ManageUserService : IManageUserService
     {
         private readonly POSDbContext _context;
-
-       public ManageUserService(POSDbContext context)
+        public ManageUserService(POSDbContext context)
         {
-          _context = context;
+            _context = context;
         }
 
         public async Task<List<User>> GetAllUsersAsync() =>

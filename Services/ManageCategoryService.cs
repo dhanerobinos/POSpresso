@@ -5,27 +5,31 @@ using POSpresso.Domain.Entities;
 using POSpresso.Domain.Enums;
 using POSpresso.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace POSpresso.Services
 {
-    public class ManageCategoryService: IManageCategoryService
+    public class ManageCategoryService : IManageCategoryService
     {
         private readonly POSDbContext _context;
+
         public ManageCategoryService(POSDbContext context)
         {
             _context = context;
         }
+
         public async Task<List<ProductCategoryDTO>> GetAllCategoriesAsync()
         {
-            using var context = new POSDbContext(); 
-            return await context.ProductCategories
-                .Select(c => new ProductCategoryDTO
-                {
-                    CategoryID = c.CategoryID,
-                    CategoryName = c.CategoryName,
-                    CategoryImage = c.CategoryImage,
-                    CategoryStatus = c.CategoryStatus
-                })
+            return await _context.ProductCategories
+                 .Select(c => new ProductCategoryDTO
+                 {
+                     CategoryID = c.CategoryID,
+                     CategoryName = c.CategoryName,
+                     CategoryImage = c.CategoryImage,
+                     CategoryStatus = c.CategoryStatus
+                 })
                 .ToListAsync();
         }
 
@@ -47,6 +51,7 @@ namespace POSpresso.Services
             _context.ProductCategories.Add(category);
             await _context.SaveChangesAsync();
         }
+
         public async Task UpdateCategoryAsync(ProductCategoryDTO categoryDTO)
         {
             var categories = await _context.ProductCategories.FindAsync(categoryDTO.CategoryID);
@@ -59,6 +64,7 @@ namespace POSpresso.Services
             _context.ProductCategories.Update(categories);
             await _context.SaveChangesAsync();
         }
+
         public async Task SetCategoryStatusAsync(int categoryId, ProductCategoryStatusEnum status)
         {
             var category = await _context.ProductCategories.FindAsync(categoryId);
@@ -68,9 +74,10 @@ namespace POSpresso.Services
             category.CategoryStatus = status;
             await _context.SaveChangesAsync();
         }
+
         public async Task<ProductCategoryDTO?> GetCategoryByIdAsync(int categoryId)
         {
-            var category = await _context.ProductCategories
+            return await _context.ProductCategories
                 .Where(c => c.CategoryID == categoryId)
                 .Select(c => new ProductCategoryDTO
                 {
@@ -80,9 +87,6 @@ namespace POSpresso.Services
                     CategoryStatus = c.CategoryStatus
                 })
                 .FirstOrDefaultAsync();
-
-            return category;
         }
-
     }
 }

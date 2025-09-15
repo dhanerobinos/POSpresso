@@ -8,10 +8,11 @@ namespace POSpresso.Services
     public class FormLoaderService
     {
         private readonly IServiceProvider _serviceProvider;
-        public FormLoaderService(IServiceProvider provider)
+        public FormLoaderService(IServiceProvider serviceProvider)
         {
-            _serviceProvider = provider;
+            _serviceProvider = serviceProvider;
         }
+
         public void LoadForm(Panel panel, Form form)
         {
             if (panel.Controls.Count > 0)

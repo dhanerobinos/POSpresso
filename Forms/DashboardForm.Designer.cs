@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
+            salesChartPanel = new Panel();
             label3 = new Label();
             panel2 = new Panel();
             label2 = new Label();
@@ -39,18 +39,18 @@
             label1 = new Label();
             dateTimePicker1 = new DateTimePicker();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            panel1.SuspendLayout();
+            salesChartPanel.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // salesChartPanel
             // 
-            panel1.Controls.Add(label3);
-            panel1.Location = new Point(2, 185);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(424, 395);
-            panel1.TabIndex = 0;
+            salesChartPanel.Controls.Add(label3);
+            salesChartPanel.Location = new Point(2, 185);
+            salesChartPanel.Name = "salesChartPanel";
+            salesChartPanel.Size = new Size(424, 395);
+            salesChartPanel.TabIndex = 0;
             // 
             // label3
             // 
@@ -151,12 +151,13 @@
             ClientSize = new Size(749, 581);
             Controls.Add(panel3);
             Controls.Add(panel2);
-            Controls.Add(panel1);
+            Controls.Add(salesChartPanel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "DashboardForm";
             Text = "DashboardForm";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+
+            salesChartPanel.ResumeLayout(false);
+            salesChartPanel.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel3.ResumeLayout(false);
@@ -166,7 +167,7 @@
 
         #endregion
 
-        private Panel panel1;
+        private Panel salesChartPanel;
         private Panel panel2;
         private Panel panel3;
         private Label label4;
