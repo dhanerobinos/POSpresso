@@ -22,4 +22,9 @@ namespace POSpresso.Domain.DTO
         public decimal Price { get; set; }
         public string? Size { get; set; }
     }
+    public class DailySalesDto
+    {
+        public DateTime Date { get; set; }
+        public decimal TotalSales { get; set; }
+    }
 }

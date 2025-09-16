@@ -4,10 +4,7 @@ using POSpresso.Domain.DTO;
 using POSpresso.Domain.Entities;
 using POSpresso.Domain.Enums;
 using POSpresso.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace POSpresso.Services
 {

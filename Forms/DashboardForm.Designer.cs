@@ -56,7 +56,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label3.Location = new Point(154, 12);
+            label3.Location = new Point(154, 4);
             label3.Name = "label3";
             label3.Size = new Size(98, 21);
             label3.TabIndex = 6;
@@ -74,7 +74,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label2.Location = new Point(124, 12);
+            label2.Location = new Point(124, 4);
             label2.Name = "label2";
             label2.Size = new Size(113, 21);
             label2.TabIndex = 5;
@@ -155,7 +155,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "DashboardForm";
             Text = "DashboardForm";
-
+            Load += DashboardForm_Load;
             salesChartPanel.ResumeLayout(false);
             salesChartPanel.PerformLayout();
             panel2.ResumeLayout(false);

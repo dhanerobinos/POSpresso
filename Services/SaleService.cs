@@ -82,6 +82,18 @@ namespace POSpresso.Services
                 .OrderByDescending(s => s.SaleDate)
                 .ToListAsync();
         }
+        public async Task<List<CategoryStatsDTO>> GetCategoryStatsAsync()
+        {
+            return await _context.Products
+                .Include(p => p.ProductCategory) 
+                .GroupBy(p => p.ProductCategory.CategoryName)
+                .Select(g => new CategoryStatsDTO
+                {
+                    CategoryName = g.Key,
+                    ProductCount = g.Count()
+                })
+                .ToListAsync();
+        }
 
     }
 }
