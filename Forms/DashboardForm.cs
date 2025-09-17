@@ -14,7 +14,7 @@ namespace POSpresso.Forms
 
         public DashboardForm(ISaleService saleService)
         {
-            InitializeComponent(); 
+            InitializeComponent();
             _saleService = saleService;
 
             // Add WebView2 chart inside salesChartPanel
@@ -29,35 +29,55 @@ namespace POSpresso.Forms
         {
             await webView2.EnsureCoreWebView2Async();
 
-            var stats = await _saleService.GetCategoryStatsAsync();
+            //sales for the last 7 days
+            var stats = await _saleService.GetDailySalesAsync(DateTime.Today.AddDays(-6), DateTime.Today);
 
-            var labels = string.Join(",", stats.Select(s => $"'{s.CategoryName}'"));
-            var values = string.Join(",", stats.Select(s => s.ProductCount));
+            var labels = string.Join(",", stats.Select(s => $"'{s.Date:MMM dd}'"));
+            var values = string.Join(",", stats.Select(s => s.TotalSales));
+
+            // bar color assignment
+            var colors = string.Join(",", stats.Select((s, i) =>
+            {
+                string[] palette = new[]
+                {
+                    "#36A2EB", "#FF6384", "#FFCE56",
+                    "#4CAF50", "#9C27B0", "#FF9800", "#795548"
+                };
+                return $"'{palette[i % palette.Length]}'";
+            }));
 
             string html = $@"
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
-            </head>
-            <body>
-                <canvas id='myChart' width='400' height='200'></canvas>
-                <script>
-                    const ctx = document.getElementById('myChart');
-                    new Chart(ctx, {{
-                        type: 'pie',
-                        data: {{
-                            labels: [{labels}],
-                            datasets: [{{
-                                label: 'Products by Category',
-                                data: [{values}],
-                                backgroundColor: ['#36A2EB','#FF6384','#FFCE56','#4CAF50','#9C27B0']
-                            }}]
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+    </head>
+    <body>
+        <canvas id='myChart' width='400' height='200'></canvas>
+        <script>
+            const ctx = document.getElementById('myChart');
+            new Chart(ctx, {{
+                type: 'bar',
+                data: {{
+                    labels: [{labels}],
+                    datasets: [{{
+                        label: 'Daily Sales',
+                        data: [{values}],
+                        backgroundColor: [{colors}]
+                    }}]
+                }},
+                options: {{
+                    responsive: true,
+                    scales: {{
+                        y: {{
+                            beginAtZero: true
                         }}
-                    }});
-                </script>
-            </body>
-            </html>";
+                    }}
+                }}
+            }});
+        </script>
+    </body>
+    </html>";
 
             webView2.NavigateToString(html);
         }

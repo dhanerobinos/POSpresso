@@ -82,18 +82,41 @@ namespace POSpresso.Services
                 .OrderByDescending(s => s.SaleDate)
                 .ToListAsync();
         }
-        public async Task<List<CategoryStatsDTO>> GetCategoryStatsAsync()
+        public async Task<IEnumerable<DailySalesDto>> GetDailySalesAsync(DateTime startDate, DateTime endDate)
         {
-            return await _context.Products
-                .Include(p => p.ProductCategory) 
-                .GroupBy(p => p.ProductCategory.CategoryName)
-                .Select(g => new CategoryStatsDTO
+            // Get sales by day
+            var sales = await _context.Sales
+                .Where(s => s.SaleDate.Date >= startDate.Date && s.SaleDate.Date <= endDate.Date)
+                .GroupBy(s => s.SaleDate.Date)
+                .Select(g => new DailySalesDto
                 {
-                    CategoryName = g.Key,
-                    ProductCount = g.Count()
+                    Date = g.Key,
+                    TotalSales = g.Sum(x => x.Total)
                 })
                 .ToListAsync();
+
+            //  dictionary for quick lookup
+            var salesDict = sales.ToDictionary(s => s.Date, s => s.TotalSales);
+
+            // Generate all dates in the range & fill missing days with 0
+            var result = Enumerable.Range(0, (endDate - startDate).Days + 1)
+                .Select(offset =>
+                {
+                    var date = startDate.Date.AddDays(offset);
+                    return new DailySalesDto
+                    {
+                        Date = date,
+                        TotalSales = salesDict.ContainsKey(date) ? salesDict[date] : 0
+                    };
+                })
+                .ToList();
+
+            return result;
         }
+
+
+
+
 
     }
 }
