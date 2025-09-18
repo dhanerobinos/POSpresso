@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             salesChartPanel = new Panel();
-            label3 = new Label();
-            panel2 = new Panel();
-            label2 = new Label();
+            BestSellerPanel = new Panel();
             panel3 = new Panel();
             lbRevenue = new Label();
             lbTransactions = new Label();
@@ -39,46 +37,24 @@
             label1 = new Label();
             dateTimePicker1 = new DateTimePicker();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            salesChartPanel.SuspendLayout();
-            panel2.SuspendLayout();
+            label2 = new Label();
+            label3 = new Label();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
             // salesChartPanel
             // 
-            salesChartPanel.Controls.Add(label3);
-            salesChartPanel.Location = new Point(2, 185);
+            salesChartPanel.Location = new Point(2, 220);
             salesChartPanel.Name = "salesChartPanel";
-            salesChartPanel.Size = new Size(424, 395);
+            salesChartPanel.Size = new Size(380, 360);
             salesChartPanel.TabIndex = 0;
             // 
-            // label3
+            // BestSellerPanel
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label3.Location = new Point(154, 4);
-            label3.Name = "label3";
-            label3.Size = new Size(98, 21);
-            label3.TabIndex = 6;
-            label3.Text = "Sales Chart:";
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(label2);
-            panel2.Location = new Point(423, 185);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(326, 395);
-            panel2.TabIndex = 1;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label2.Location = new Point(124, 4);
-            label2.Name = "label2";
-            label2.Size = new Size(113, 21);
-            label2.TabIndex = 5;
-            label2.Text = "Top Products:";
+            BestSellerPanel.Location = new Point(401, 220);
+            BestSellerPanel.Name = "BestSellerPanel";
+            BestSellerPanel.Size = new Size(348, 360);
+            BestSellerPanel.TabIndex = 1;
             // 
             // panel3
             // 
@@ -144,31 +120,50 @@
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(452, 185);
+            label2.Name = "label2";
+            label2.Size = new Size(255, 32);
+            label2.TabIndex = 5;
+            label2.Text = "Best Selling Products";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(110, 185);
+            label3.Name = "label3";
+            label3.Size = new Size(160, 32);
+            label3.TabIndex = 6;
+            label3.Text = "Weekly Sales";
+            // 
             // DashboardForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(749, 581);
+            Controls.Add(label3);
+            Controls.Add(label2);
             Controls.Add(panel3);
-            Controls.Add(panel2);
+            Controls.Add(BestSellerPanel);
             Controls.Add(salesChartPanel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "DashboardForm";
             Text = "DashboardForm";
             Load += DashboardForm_Load;
-            salesChartPanel.ResumeLayout(false);
-            salesChartPanel.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Panel salesChartPanel;
-        private Panel panel2;
+        private Panel BestSellerPanel;
         private Panel panel3;
         private Label label4;
         private Label lbRevenue;
@@ -177,7 +172,7 @@
         private Label label1;
         private DateTimePicker dateTimePicker1;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
-        private Label label3;
         private Label label2;
+        private Label label3;
     }
 }

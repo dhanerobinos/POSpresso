@@ -113,6 +113,23 @@ namespace POSpresso.Services
 
             return result;
         }
+        public async Task<IEnumerable<BestSellerDto>> GetBestSellersAsync(DateTime startDate, DateTime endDate, int top = 5)
+        {
+            var bestSellers = await _context.SaleDetails
+                .Where(sd => sd.Sales.SaleDate.Date >= startDate.Date && sd.Sales.SaleDate.Date <= endDate.Date)
+                .GroupBy(sd => sd.Products.ProductName)
+                .Select(g => new BestSellerDto
+                {
+                    ProductName = g.Key,
+                    QuantitySold = g.Sum(x => x.Quantity)
+                })
+                .OrderByDescending(b => b.QuantitySold)
+                .Take(top)
+                .ToListAsync();
+
+            return bestSellers;
+        }
+
 
 
 
