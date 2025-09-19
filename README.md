@@ -37,4 +37,4 @@ It helped me integrate EF Core into a real-world application, structure a WinFor
 - CRUD operations with EF Core
 - Clean architecture with DTOs & services
 - Sales history & reports (daily sales, sales by cashier, top-selling products)
-- Dashboard with charts (visual sales overview and top products)
+- Dashboard with charts (visual sales overview and top products) using webview2
