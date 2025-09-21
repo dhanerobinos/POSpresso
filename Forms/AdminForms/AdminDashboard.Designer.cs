@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard));
             mainPanel = new Panel();
             adminPanel = new Panel();
+            btnDashboard = new FontAwesome.Sharp.IconButton();
             btnLogout = new FontAwesome.Sharp.IconButton();
             btnPOS = new FontAwesome.Sharp.IconButton();
             btnSettings = new FontAwesome.Sharp.IconButton();
@@ -43,7 +44,6 @@
             lbTotal = new Label();
             lbTax = new Label();
             lbSubtotal = new Label();
-            btnDashboard = new FontAwesome.Sharp.IconButton();
             adminPanel.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -54,6 +54,7 @@
             mainPanel.Name = "mainPanel";
             mainPanel.Size = new Size(765, 620);
             mainPanel.TabIndex = 1;
+            mainPanel.Paint += mainPanel_Paint;
             // 
             // adminPanel
             // 
@@ -69,6 +70,26 @@
             adminPanel.Name = "adminPanel";
             adminPanel.Size = new Size(161, 620);
             adminPanel.TabIndex = 2;
+            // 
+            // btnDashboard
+            // 
+            btnDashboard.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnDashboard.BackgroundImage = (Image)resources.GetObject("btnDashboard.BackgroundImage");
+            btnDashboard.FlatStyle = FlatStyle.Popup;
+            btnDashboard.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDashboard.IconChar = FontAwesome.Sharp.IconChar.ChartSimple;
+            btnDashboard.IconColor = Color.Black;
+            btnDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnDashboard.IconSize = 30;
+            btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDashboard.Location = new Point(1, 5);
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Size = new Size(159, 78);
+            btnDashboard.TabIndex = 6;
+            btnDashboard.Text = "Dashboard";
+            btnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnDashboard.UseVisualStyleBackColor = true;
+            btnDashboard.Click += btnDashboard_Click;
             // 
             // btnLogout
             // 
@@ -251,25 +272,6 @@
             lbSubtotal.Size = new Size(86, 21);
             lbSubtotal.TabIndex = 6;
             lbSubtotal.Text = "Subtotal: ";
-            // 
-            // btnDashboard
-            // 
-            btnDashboard.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnDashboard.BackgroundImage = (Image)resources.GetObject("btnDashboard.BackgroundImage");
-            btnDashboard.FlatStyle = FlatStyle.Popup;
-            btnDashboard.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDashboard.IconChar = FontAwesome.Sharp.IconChar.Print;
-            btnDashboard.IconColor = Color.Black;
-            btnDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.Location = new Point(1, 5);
-            btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(159, 78);
-            btnDashboard.TabIndex = 6;
-            btnDashboard.Text = "Dashboard";
-            btnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnDashboard.UseVisualStyleBackColor = true;
-            btnDashboard.Click += btnDashboard_Click;
             // 
             // AdminDashboard
             // 

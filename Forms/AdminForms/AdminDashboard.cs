@@ -148,6 +148,9 @@ namespace POSpresso.Forms
 
         }
 
-     
+        private void mainPanel_Paint(object sender, PaintEventArgs e)
+        {
+            _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<DashboardForm>());
+        }
     }
 }
