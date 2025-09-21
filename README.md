@@ -24,6 +24,9 @@ I applied IEntityTypeConfiguration for entity mapping, DTOs for data transfer, a
 ### Role-Based User Management
 - Implemented admin and cashier roles to provide different access levels within the application.
 
+### Dashboard Charts with WebView2
+- Integrated WebView2 to display interactive and modern charts in the Dashboard, making sales insights and best-seller reports visually clear and user-friendly.
+
 
 - This project is not only a functional POS system but also a significant milestone in my learning journey.
 It helped me integrate EF Core into a real-world application, structure a WinForms project with clean architecture, and work with SQL Server in a modern and maintainable way.
@@ -37,4 +40,4 @@ It helped me integrate EF Core into a real-world application, structure a WinFor
 - CRUD operations with EF Core
 - Clean architecture with DTOs & services
 - Sales history & reports (daily sales, sales by cashier, top-selling products)
-- Dashboard with charts (visual sales overview and top products)
+- Dashboard with charts (visual sales overview and top products) using webview2
