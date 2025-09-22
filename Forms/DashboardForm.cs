@@ -29,6 +29,10 @@ namespace POSpresso.Forms
 
         private async void DashboardForm_Load(object sender, EventArgs e)
         {
+            await LoadDashboardAsync();
+        }
+        private async Task LoadDashboardAsync()
+        {
             await webView2.EnsureCoreWebView2Async();
 
             //sales for the last 7 days

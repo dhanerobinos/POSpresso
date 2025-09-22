@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,8 +26,12 @@ namespace POSpresso
                 })
                 .ConfigureServices((context, services) =>
                 {                                                                                           //Always register DbContext,Services, and Forms in the same order
+                                                                                                            // Get connection string from appsettings.json
+                    var connectionString = context.Configuration.GetConnectionString("DefaultConnection");
+
                     // Register DbContext with config
-                    services.AddDbContext<POSDbContext>();
+                    services.AddDbContextFactory<POSDbContext>(options =>
+                        options.UseSqlServer(connectionString));
 
                     // Register services
                     services.AddScoped<AuthService>();

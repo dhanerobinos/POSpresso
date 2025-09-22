@@ -161,7 +161,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "DashboardForm";
             Text = "DashboardForm";
-            Load += DashboardForm_Load;
+            Load += this.DashboardForm_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);

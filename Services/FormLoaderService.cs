@@ -13,11 +13,12 @@ namespace POSpresso.Services
             _serviceProvider = serviceProvider;
         }
 
-        public void LoadForm(Panel panel, Form form)
+        public void LoadForm<T>(Panel panel) where T : Form
         {
             if (panel.Controls.Count > 0)
                 panel.Controls[0].Dispose();
 
+            var form = _serviceProvider.GetRequiredService<T>();
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
@@ -25,6 +26,7 @@ namespace POSpresso.Services
             panel.Controls.Add(form);
             form.Show();
         }
+
         public void LoadDashboard(Form currentForm, User user)
         {
             currentForm.Hide();

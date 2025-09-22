@@ -4,19 +4,21 @@ using POSpresso.Domain.Entities;
 using POSpresso.Domain.DTO;
 using POSpresso.Interfaces;
 
-
 namespace POSpresso.Services
 {
-    public class SaleService: ISaleService
+    public class SaleService : ISaleService
     {
-        private readonly POSDbContext _context;
-        public SaleService(POSDbContext context)
+        private readonly IDbContextFactory<POSDbContext> _contextFactory;
+
+        public SaleService(IDbContextFactory<POSDbContext> contextFactory)
         {
-            _context = context;
+            _contextFactory = contextFactory;
         }
 
-        public async Task<int> CheckoutAsync(List<CartItem>cartItems)
+        public async Task<int> CheckoutAsync(List<CartItem> cartItems)
         {
+            using var _context = _contextFactory.CreateDbContext();
+
             var sale = new Sales
             {
                 SaleDate = DateTime.Now,
@@ -30,13 +32,17 @@ namespace POSpresso.Services
                     SubTotal = ci.SubTotal
                 }).ToList()
             };
+
             _context.Sales.Add(sale);
             await _context.SaveChangesAsync();
 
             return sale.SaleId;
         }
+
         public async Task<int> SaveSaleAsync(SaleDTO dto)
         {
+            using var _context = _contextFactory.CreateDbContext();
+
             var sale = new Sales
             {
                 UserId = dto.UserId,
@@ -66,8 +72,11 @@ namespace POSpresso.Services
                 throw;
             }
         }
+
         public async Task<List<Sales>> GetSalesAsync(DateTime? start = null, DateTime? end = null)
         {
+            using var _context = _contextFactory.CreateDbContext();
+
             var query = _context.Sales.AsQueryable();
 
             if (start.HasValue)
@@ -77,14 +86,16 @@ namespace POSpresso.Services
                 query = query.Where(s => s.SaleDate <= end.Value);
 
             return await query
-                .Include(s => s.User)     
-                .Include(s => s.SaleDetails) 
+                .Include(s => s.User)
+                .Include(s => s.SaleDetails)
                 .OrderByDescending(s => s.SaleDate)
                 .ToListAsync();
         }
+
         public async Task<IEnumerable<DailySalesDto>> GetDailySalesAsync(DateTime startDate, DateTime endDate)
         {
-            // Get sales by day
+            using var _context = _contextFactory.CreateDbContext();
+
             var sales = await _context.Sales
                 .Where(s => s.SaleDate.Date >= startDate.Date && s.SaleDate.Date <= endDate.Date)
                 .GroupBy(s => s.SaleDate.Date)
@@ -95,10 +106,8 @@ namespace POSpresso.Services
                 })
                 .ToListAsync();
 
-            //  dictionary for quick lookup
             var salesDict = sales.ToDictionary(s => s.Date, s => s.TotalSales);
 
-            // Generate all dates in the range & fill missing days with 0
             var result = Enumerable.Range(0, (endDate - startDate).Days + 1)
                 .Select(offset =>
                 {
@@ -106,15 +115,19 @@ namespace POSpresso.Services
                     return new DailySalesDto
                     {
                         Date = date,
-                        TotalSales = salesDict.ContainsKey(date) ? salesDict[date] : 0
+                        TotalSales = salesDict.TryGetValue(date, out var total) ? total : 0
                     };
                 })
+                .OrderBy(r => r.Date)
                 .ToList();
 
             return result;
         }
+
         public async Task<IEnumerable<BestSellerDto>> GetBestSellersAsync(DateTime startDate, DateTime endDate, int top = 5)
         {
+            using var _context = _contextFactory.CreateDbContext();
+
             var bestSellers = await _context.SaleDetails
                 .Where(sd => sd.Sales.SaleDate.Date >= startDate.Date && sd.Sales.SaleDate.Date <= endDate.Date)
                 .GroupBy(sd => sd.Products.ProductName)
@@ -129,11 +142,5 @@ namespace POSpresso.Services
 
             return bestSellers;
         }
-
-
-
-
-
-
     }
 }

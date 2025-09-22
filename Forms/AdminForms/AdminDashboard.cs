@@ -27,29 +27,29 @@ namespace POSpresso.Forms
         }
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<DashboardForm>());
+            _formLoader.LoadForm<DashboardForm>(mainPanel);
         }
         private void btnPOS_Click(object sender, EventArgs e)
         {
             var posForm = Program.ServiceProvider.GetRequiredService<POSForm>();
             posForm.OnAddToCart += AddToCart;
 
-            _formLoader.LoadForm(mainPanel, posForm);
+            _formLoader.LoadForm<POSForm>(mainPanel);
         }
 
         private void btnProducts_Click(object sender, EventArgs e)
         {
-            _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<ProductForm>());
+            _formLoader.LoadForm<ProductForm>(mainPanel);
         }
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
-            _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<ManageUserForm>());
+            _formLoader.LoadForm<ManageUserForm>(mainPanel);
         }
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<SalesReportForm>());
+            _formLoader.LoadForm<SalesReportForm>(mainPanel);
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
@@ -150,7 +150,7 @@ namespace POSpresso.Forms
 
         private void mainPanel_Paint(object sender, PaintEventArgs e)
         {
-            _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<DashboardForm>());
+            _formLoader.LoadForm<DashboardForm>(mainPanel);
         }
     }
 }

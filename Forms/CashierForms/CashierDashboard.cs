@@ -40,7 +40,7 @@ namespace POSpresso.Forms
             var posForm = Program.ServiceProvider.GetRequiredService<POSForm>();
             posForm.OnAddToCart += AddToCart;
 
-            _formLoader.LoadForm(mainPanel, posForm);
+            _formLoader.LoadForm<POSForm>(mainPanel);
         }
         private void AddToCart(CartItem item)
         {
