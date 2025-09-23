@@ -20,6 +20,11 @@ namespace POSpresso.Forms
             _formLoader = formLoader;
             _productService = productService;
             _salesService = salesService;
+
+            this.Load += (s, e) =>
+            {
+                _formLoader.LoadForm<DashboardForm>(mainPanel);
+            };
         }
         public void SetCurrentUser(User user)
         {
@@ -146,11 +151,6 @@ namespace POSpresso.Forms
             // Clear cart
             fpReceipt.Controls.Clear();
 
-        }
-
-        private void mainPanel_Paint(object sender, PaintEventArgs e)
-        {
-            _formLoader.LoadForm<DashboardForm>(mainPanel);
         }
     }
 }

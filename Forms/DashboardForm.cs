@@ -73,6 +73,7 @@ namespace POSpresso.Forms
         </script>
     </body>
     </html>";
+            await webView2.EnsureCoreWebView2Async();
 
             webView2.NavigateToString(html);
 

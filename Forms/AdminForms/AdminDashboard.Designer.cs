@@ -54,7 +54,7 @@
             mainPanel.Name = "mainPanel";
             mainPanel.Size = new Size(765, 620);
             mainPanel.TabIndex = 1;
-            mainPanel.Paint += mainPanel_Paint;
+  
             // 
             // adminPanel
             // 
@@ -289,6 +289,7 @@
             Name = "AdminDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Dashboard";
+
             adminPanel.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
