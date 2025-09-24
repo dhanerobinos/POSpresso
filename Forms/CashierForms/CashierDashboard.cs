@@ -40,7 +40,7 @@ namespace POSpresso.Forms
             var posForm = Program.ServiceProvider.GetRequiredService<POSForm>();
             posForm.OnAddToCart += AddToCart;
 
-            _formLoader.LoadForm<POSForm>(mainPanel);
+            _formLoader.LoadForm(mainPanel, posForm);
         }
         private void AddToCart(CartItem item)
         {
@@ -123,6 +123,11 @@ namespace POSpresso.Forms
 
             // Clear cart
             fpReceipt.Controls.Clear();
+        }
+
+        private void iconButton10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

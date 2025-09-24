@@ -13,19 +13,18 @@ namespace POSpresso.Services
             _serviceProvider = serviceProvider;
         }
 
-        public void LoadForm<T>(Panel panel) where T : Form
+        public void LoadForm(Panel panel, Form form)
         {
-            if (panel.Controls.Count > 0)
-                panel.Controls[0].Dispose();
+            panel.Controls.Clear();
 
-            var form = _serviceProvider.GetRequiredService<T>();
             form.TopLevel = false;
-            form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
 
             panel.Controls.Add(form);
             form.Show();
+            form.BringToFront();
         }
+
 
         public void LoadDashboard(Form currentForm, User user)
         {

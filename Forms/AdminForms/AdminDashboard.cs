@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DocumentFormat.OpenXml.Office.SpreadSheetML.Y2023.MsForms;
+using Microsoft.Extensions.DependencyInjection;
 using POSpresso.Domain.DTO;
 using POSpresso.Domain.Entities;
 using POSpresso.Forms.AdminForms;
@@ -23,7 +24,7 @@ namespace POSpresso.Forms
 
             this.Load += (s, e) =>
             {
-                _formLoader.LoadForm<DashboardForm>(mainPanel);
+                _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<DashboardForm>());
             };
         }
         public void SetCurrentUser(User user)
@@ -32,29 +33,30 @@ namespace POSpresso.Forms
         }
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            _formLoader.LoadForm<DashboardForm>(mainPanel);
+            _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<DashboardForm>());
         }
         private void btnPOS_Click(object sender, EventArgs e)
         {
             var posForm = Program.ServiceProvider.GetRequiredService<POSForm>();
             posForm.OnAddToCart += AddToCart;
 
-            _formLoader.LoadForm<POSForm>(mainPanel);
+            _formLoader.LoadForm(mainPanel, posForm);
+
         }
 
         private void btnProducts_Click(object sender, EventArgs e)
         {
-            _formLoader.LoadForm<ProductForm>(mainPanel);
+            _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<ProductForm>());
         }
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
-            _formLoader.LoadForm<ManageUserForm>(mainPanel);
+            _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<ManageUserForm>());
         }
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            _formLoader.LoadForm<SalesReportForm>(mainPanel);
+            _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<SalesReportForm>());
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
@@ -150,6 +152,10 @@ namespace POSpresso.Forms
 
             // Clear cart
             fpReceipt.Controls.Clear();
+        }
+
+        private void fpReceipt_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

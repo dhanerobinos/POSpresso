@@ -110,6 +110,7 @@
             iconButton10.Text = "Dashboard";
             iconButton10.TextImageRelation = TextImageRelation.ImageBeforeText;
             iconButton10.UseVisualStyleBackColor = true;
+
             // 
             // mainPanel
             // 

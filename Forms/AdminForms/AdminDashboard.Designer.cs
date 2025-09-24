@@ -54,7 +54,6 @@
             mainPanel.Name = "mainPanel";
             mainPanel.Size = new Size(765, 620);
             mainPanel.TabIndex = 1;
-  
             // 
             // adminPanel
             // 
@@ -211,6 +210,7 @@
             fpReceipt.Name = "fpReceipt";
             fpReceipt.Size = new Size(256, 463);
             fpReceipt.TabIndex = 3;
+            fpReceipt.Paint += fpReceipt_Paint;
             // 
             // btnCheckout
             // 
@@ -289,7 +289,6 @@
             Name = "AdminDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Dashboard";
-
             adminPanel.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
