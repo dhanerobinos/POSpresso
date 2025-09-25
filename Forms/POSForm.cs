@@ -1,8 +1,9 @@
-﻿using System.Windows.Forms;
+﻿using POSpresso.Controls;
 using POSpresso.Domain.DTO;
 using POSpresso.Domain.Entities;
+using POSpresso.Domain.Enums;
 using POSpresso.Services;
-using POSpresso.Controls;
+using System.Windows.Forms;
 
 namespace POSpresso.Forms
 {
@@ -61,10 +62,16 @@ namespace POSpresso.Forms
 
         private void Product_Clicked(object? sender, ProductDTO product)
         {
+            if (product.ProductStatus == ProductStatus.Unavailable)
+            {
+                MessageBox.Show($"{product.ProductName} is currently unavailable.");
+                return;
+            }
+
             using var optionsForm = new ProductOptions(product);
             optionsForm.OnAddToCart += (item) =>
             {
-                OnAddToCart?.Invoke(item); // bubble event up to AdminDashboard
+                OnAddToCart?.Invoke(item);
             };
             optionsForm.ShowDialog();
         }

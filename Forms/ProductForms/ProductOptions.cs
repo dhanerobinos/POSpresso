@@ -8,7 +8,6 @@ namespace POSpresso.Forms
 
         private readonly ProductDTO _product;
 
-        // ✅ class-level counters used by all handlers
         private int _mediumQty = 0;
         private int _largeQty = 0;
 
@@ -26,7 +25,7 @@ namespace POSpresso.Forms
                 pbProduct.Image = Image.FromStream(ms);
             }
 
-            // start at 0
+            // set at 0
             lblMediumQty.Text = "0";
             lblLargeQty.Text = "0";
         }
@@ -34,7 +33,7 @@ namespace POSpresso.Forms
         private void btnMediumAdd_Click(object sender, EventArgs e)
         {
             _mediumQty++;
-            lblMediumQty.Text = _mediumQty.ToString();   // 🔁 use your actual label name
+            lblMediumQty.Text = _mediumQty.ToString();   
         }
 
         private void btnMediumMinus_Click(object sender, EventArgs e)
@@ -64,7 +63,7 @@ namespace POSpresso.Forms
             }
 
             decimal mediumPrice = _product.ProductPrice;
-            decimal largePrice = _product.ProductPrice + 30;  
+            decimal largePrice = _product.ProductPrice + 30;
 
             if (_mediumQty > 0)
             {

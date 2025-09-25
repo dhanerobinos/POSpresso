@@ -111,11 +111,11 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Modern No. 20", 20.25F, FontStyle.Bold);
             label1.ForeColor = SystemColors.ControlLight;
-            label1.Location = new Point(302, 15);
+            label1.Location = new Point(219, 18);
             label1.Name = "label1";
-            label1.Size = new Size(141, 29);
+            label1.Size = new Size(302, 29);
             label1.TabIndex = 0;
-            label1.Text = "Dashboard";
+            label1.Text = "Monthly Sales Overview";
             // 
             // sqlCommand1
             // 
@@ -128,7 +128,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Modern No. 20", 20.25F, FontStyle.Bold);
             label2.ForeColor = SystemColors.ControlLight;
-            label2.Location = new Point(452, 185);
+            label2.Location = new Point(432, 185);
             label2.Name = "label2";
             label2.Size = new Size(271, 29);
             label2.TabIndex = 5;
@@ -161,7 +161,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "DashboardForm";
             Text = "DashboardForm";
-            Load += this.DashboardForm_Load;
+            Load += DashboardForm_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);

@@ -10,5 +10,8 @@ namespace POSpresso.Interfaces
         Task<List<Sales>> GetSalesAsync(DateTime? startDate = null, DateTime? endDate = null);
         Task<IEnumerable<DailySalesDto>> GetDailySalesAsync(DateTime startDate, DateTime endDate);
         Task<IEnumerable<BestSellerDto>> GetBestSellersAsync(DateTime startDate, DateTime endDate, int top = 5);
+        Task<decimal> GetMonthlyTotalSalesAsync(DateTime month);
+        Task<int> GetMonthlyTransactionCountAsync(DateTime month);
+        Task<decimal> GetMonthlyRevenueAsync(DateTime month);
     }
 }

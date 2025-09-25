@@ -1,4 +1,5 @@
 ﻿using POSpresso.Domain.DTO;
+using POSpresso.Domain.Enums;
 
 
 namespace POSpresso
@@ -18,7 +19,6 @@ namespace POSpresso
                 ctrl.Click += Card_Click;
             }
         }
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -26,7 +26,8 @@ namespace POSpresso
         public void SetProduct(ProductDTO product)
         {
             _product = product;
-            lblProductName.Text = product.ProductName;
+
+            lbProductName.Text = product.ProductName;
             lblPrice.Text = $"₱{product.ProductPrice:N2}";
 
             if (product.ProductImage != null)
@@ -34,22 +35,42 @@ namespace POSpresso
                 using var ms = new MemoryStream(product.ProductImage);
                 pbProduct.Image = Image.FromStream(ms);
             }
+            else
+            {
+                pbProduct.Image = null;
+            }
 
-            this.Enabled = product.ProductIsAvailable;
-            this.Tag = product.ProductId;
+            if (product.ProductStatus == ProductStatus.Unavailable)
+            {
+                this.BackColor = Color.LightGray;
+
+                lbUnavailable.Visible = true;
+                lbUnavailable.Text = "UNAVAILABLE";
+                lbUnavailable.ForeColor = Color.White;
+                lbUnavailable.BackColor = Color.FromArgb(180, Color.Black);
+                lbUnavailable.Font = new Font("Segoe UI", 12, FontStyle.Bold);
+                lbUnavailable.TextAlign = ContentAlignment.MiddleCenter;
+
+                lbUnavailable.BringToFront();
+            }
+            else
+            {
+                this.BackColor = SystemColors.Control;
+                lbUnavailable.Visible = false;
+            }
         }
 
         public event EventHandler<ProductDTO>? OnProductClicked;
 
         private void Card_Click(object? sender, EventArgs e)
         {
-            if (_product != null)
-                OnProductClicked?.Invoke(this, _product);
-        }
+            if (_product == null)
+                return;
 
-        private void ProductDisplayControl_Load(object sender, EventArgs e)
-        {
+            if (!_product.ProductIsAvailable)
+                return; // block clicks on unavailable products
 
+            OnProductClicked?.Invoke(this, _product);
         }
     }
 }

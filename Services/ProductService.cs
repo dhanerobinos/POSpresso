@@ -82,6 +82,7 @@ public class ProductService : IProductService
             .ToListAsync();
     }
 
+
     public ProductDTO GetProductDTO(Products product)
     {
         return new ProductDTO
@@ -115,7 +116,7 @@ public class ProductService : IProductService
         using var context = _contextFactory.CreateDbContext();
 
         return await context.Products
-            .Where(p => p.CategoryId == categoryId && p.ProductStatus == ProductStatus.Available)
+            .Where(p => p.CategoryId == categoryId) //show all products, available or not
             .Select(p => new ProductDTO
             {
                 ProductId = p.ProductId,
@@ -129,4 +130,5 @@ public class ProductService : IProductService
             })
             .ToListAsync();
     }
+
 }

@@ -26,10 +26,23 @@ namespace POSpresso.Forms
             bestSellerWebView = new WebView2 { Dock = DockStyle.Fill };
             BestSellerPanel.Controls.Add(bestSellerWebView);
         }
+        private async Task LoadMonthlyDashboardStatsAsync()
+        {
+            DateTime now = DateTime.Now;
+
+            var totalSales = await _saleService.GetMonthlyTotalSalesAsync(now);
+            var transactions = await _saleService.GetMonthlyTransactionCountAsync(now);
+            var revenue = await _saleService.GetMonthlyRevenueAsync(now);
+
+            lbTotalSales.Text = $"Total Sales: {totalSales:N2}";
+            lbTransactions.Text = $"Transactions: {transactions}";
+            lbRevenue.Text = $"Revenue: ₱{revenue:N2}";
+        }
 
         private async void DashboardForm_Load(object sender, EventArgs e)
         {
             await LoadDashboardAsync();
+            await LoadMonthlyDashboardStatsAsync();
         }
         private async Task LoadDashboardAsync()
         {

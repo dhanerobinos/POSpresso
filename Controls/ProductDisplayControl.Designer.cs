@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             pbProduct = new PictureBox();
-            lblProductName = new Label();
+            lbProductName = new Label();
             lblPrice = new Label();
+            lbUnavailable = new Label();
             ((System.ComponentModel.ISupportInitialize)pbProduct).BeginInit();
             SuspendLayout();
             // 
@@ -44,16 +45,16 @@
             pbProduct.TabStop = false;
             pbProduct.Click += pictureBox1_Click;
             // 
-            // lblProductName
+            // lbProductName
             // 
-            lblProductName.AutoSize = true;
-            lblProductName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblProductName.Location = new Point(35, 123);
-            lblProductName.Name = "lblProductName";
-            lblProductName.Size = new Size(74, 21);
-            lblProductName.TabIndex = 1;
-            lblProductName.Text = "Product:";
-            lblProductName.TextAlign = ContentAlignment.MiddleCenter;
+            lbProductName.AutoSize = true;
+            lbProductName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbProductName.Location = new Point(35, 123);
+            lbProductName.Name = "lbProductName";
+            lbProductName.Size = new Size(74, 21);
+            lbProductName.TabIndex = 1;
+            lbProductName.Text = "Product:";
+            lbProductName.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblPrice
             // 
@@ -66,16 +67,28 @@
             lblPrice.TabIndex = 2;
             lblPrice.Text = "Price:";
             // 
+            // lbUnavailable
+            // 
+            lbUnavailable.AutoSize = true;
+            lbUnavailable.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbUnavailable.ForeColor = Color.Firebrick;
+            lbUnavailable.Location = new Point(18, 0);
+            lbUnavailable.Name = "lbUnavailable";
+            lbUnavailable.Size = new Size(120, 47);
+            lbUnavailable.TabIndex = 3;
+            lbUnavailable.Text = "label1";
+            lbUnavailable.Visible = false;
+            // 
             // ProductDisplayControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lbUnavailable);
             Controls.Add(lblPrice);
-            Controls.Add(lblProductName);
+            Controls.Add(lbProductName);
             Controls.Add(pbProduct);
             Name = "ProductDisplayControl";
             Size = new Size(160, 200);
-            Load += ProductDisplayControl_Load;
             ((System.ComponentModel.ISupportInitialize)pbProduct).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -84,7 +97,8 @@
         #endregion
 
         private PictureBox pbProduct;
-        private Label lblProductName;
+        private Label lbProductName;
         private Label lblPrice;
+        private Label lbUnavailable;
     }
 }

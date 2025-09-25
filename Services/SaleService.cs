@@ -142,5 +142,31 @@ namespace POSpresso.Services
 
             return bestSellers;
         }
+        public async Task<decimal> GetMonthlyTotalSalesAsync(DateTime month)
+        {
+            using var context = await _contextFactory.CreateDbContextAsync();
+
+            return await context.Sales
+                .Where(s => s.SaleDate.Month == month.Month && s.SaleDate.Year == month.Year)
+                .SumAsync(s => (decimal?)s.Total ?? 0m);
+        }
+
+        public async Task<int> GetMonthlyTransactionCountAsync(DateTime month)
+        {
+            using var context = await _contextFactory.CreateDbContextAsync();
+
+            return await context.Sales
+                .Where(s => s.SaleDate.Month == month.Month && s.SaleDate.Year == month.Year)
+                .CountAsync();
+        }
+
+        public async Task<decimal> GetMonthlyRevenueAsync(DateTime month)
+        {
+            using var context = await _contextFactory.CreateDbContextAsync();
+
+            return await context.Sales
+                .Where(s => s.SaleDate.Month == month.Month && s.SaleDate.Year == month.Year)
+                .SumAsync(s => (decimal?)(s.Total - s.Tax) ?? 0m);
+        }
     }
 }
