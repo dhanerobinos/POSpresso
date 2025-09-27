@@ -28,7 +28,7 @@ I applied IEntityTypeConfiguration for entity mapping, DTOs for data transfer, a
 - Integrated WebView2 to display interactive and modern charts in the Dashboard, making sales insights and best-seller reports visually clear and user-friendly.
 
 
-- This project is not only a functional POS system but also a significant milestone in my learning journey.
+This project is not only a functional POS system but also a significant milestone in my learning journey.
 It helped me integrate EF Core into a real-world application, structure a WinForms project with clean architecture, and work with SQL Server in a modern and maintainable way.
 
 
