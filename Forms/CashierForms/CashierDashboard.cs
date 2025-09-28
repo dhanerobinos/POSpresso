@@ -3,6 +3,7 @@ using POSpresso.Domain.DTO;
 using POSpresso.Domain.Entities;
 using POSpresso.Interfaces;
 using POSpresso.Services;
+using POSpresso.Forms.CashierForms;
 
 namespace POSpresso.Forms
 {
@@ -128,6 +129,11 @@ namespace POSpresso.Forms
         private void iconButton10_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<CashierDashboardForm>());
         }
     }
 }

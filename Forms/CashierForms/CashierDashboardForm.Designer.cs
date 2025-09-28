@@ -113,9 +113,9 @@
             label1.ForeColor = SystemColors.ControlLight;
             label1.Location = new Point(218, 15);
             label1.Name = "label1";
-            label1.Size = new Size(302, 29);
+            label1.Size = new Size(279, 29);
             label1.TabIndex = 8;
-            label1.Text = "Monthly Sales Overview";
+            label1.Text = "Today's Sale Overview";
             // 
             // sqlCommand1
             // 
@@ -130,9 +130,9 @@
             label3.ForeColor = SystemColors.ControlLight;
             label3.Location = new Point(109, 182);
             label3.Name = "label3";
-            label3.Size = new Size(172, 29);
+            label3.Size = new Size(146, 29);
             label3.TabIndex = 12;
-            label3.Text = "Weekly Sales";
+            label3.Text = "Item's Sold";
             // 
             // label2
             // 
@@ -162,6 +162,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "CashierDashboardForm";
             Text = "DashboardForm";
+            Load += CashierDashboardForm_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);

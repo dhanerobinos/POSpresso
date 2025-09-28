@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace POSpresso.Domain.DTO
 {
-    public class DailySalesDTO
+    public class CashierDashboardDTO
     {
-        public DateTime Date { get; set; }
         public decimal TotalSales { get; set; }
-        public int TotalItems { get; set; }
+        public int Transactions { get; set; }
+        public int ItemsSold { get; set; }
     }
 }
-

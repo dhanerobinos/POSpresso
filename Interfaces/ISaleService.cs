@@ -13,5 +13,7 @@ namespace POSpresso.Interfaces
         Task<decimal> GetMonthlyTotalSalesAsync(DateTime month);
         Task<int> GetMonthlyTransactionCountAsync(DateTime month);
         Task<decimal> GetMonthlyRevenueAsync(DateTime month);
+  
+        Task<List<DailySalesDTO>> GetDailyItemsSoldAsync(DateTime start, DateTime end);
     }
 }

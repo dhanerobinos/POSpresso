@@ -168,5 +168,38 @@ namespace POSpresso.Services
                 .Where(s => s.SaleDate.Month == month.Month && s.SaleDate.Year == month.Year)
                 .SumAsync(s => (decimal?)(s.Total - s.Tax) ?? 0m);
         }
+        public async Task<CashierDashboardDTO> GetWeeklySalesAsync()
+        {
+            using var context = _contextFactory.CreateDbContext();
+            var today = DateTime.Today;
+            var startOfWeek = today.AddDays(-(int)today.DayOfWeek); // Sunday as start
+
+            var sales = await context.Sales
+                .Where(s => s.SaleDate.Date >= startOfWeek && s.SaleDate.Date <= today)
+                .ToListAsync();
+
+            return new CashierDashboardDTO
+            {
+                TotalSales = sales.Sum(s => s.Total),
+                Transactions = sales.Count,
+                ItemsSold = sales.Sum(s => s.SaleDetails.Sum(d => d.Quantity))
+            };
+        }
+        public async Task<List<DailySalesDTO>> GetDailyItemsSoldAsync(DateTime startDate, DateTime endDate)
+        {
+            using var context = _contextFactory.CreateDbContext();
+
+            return await context.SaleDetails
+                .Where(d => d.Sales.SaleDate >= startDate && d.Sales.SaleDate <= endDate)
+                .GroupBy(d => d.Sales.SaleDate.Date)
+                .Select(g => new DailySalesDTO
+                {
+                    Date = g.Key,
+                    TotalItems = g.Sum(x => x.Quantity) // total count of items today
+                })
+                .OrderBy(g => g.Date)
+                .ToListAsync();
+        }
+
     }
 }

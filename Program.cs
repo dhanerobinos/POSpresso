@@ -7,6 +7,7 @@ using POSpresso.Domain.Entities;
 using POSpresso.Domain.Enums;
 using POSpresso.Forms;
 using POSpresso.Forms.AdminForms;
+using POSpresso.Forms.CashierForms;
 using POSpresso.Interfaces;
 using POSpresso.Services;
 
@@ -62,6 +63,7 @@ namespace POSpresso
                     services.AddTransient<CategoryForm>();
                     services.AddTransient<SalesReportForm>();
                     services.AddTransient<DashboardForm>();
+                    services.AddTransient<CashierDashboardForm>();
                 })
                 .Build();
             ServiceProvider = host.Services;
