@@ -33,45 +33,45 @@ namespace POSpresso.Forms.CashierForms
         {
             await webView2.EnsureCoreWebView2Async();
 
-            // Items sold for the last 7 days
-            var stats = await _saleService.GetDailyItemsSoldAsync(DateTime.Today.AddDays(-6), DateTime.Today);
+            // Get today's sales per product
+            var stats = await _saleService.GetTodayProductSalesAsync();
 
-            var labels = string.Join(",", stats.Select(s => $"'{s.Date:MMM dd}'"));
-            var values = string.Join(",", stats.Select(s => s.TotalItems));
-
+            var labels = string.Join(",", stats.Select(s => $"'{s.ProductName}'"));
+            var values = string.Join(",", stats.Select(s => s.QuantitySold));
 
             string html = $@"
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
-    </head>
-    <body style='display:flex; justify-content:center; align-items:center; height:100%; margin:0;'>
-        <canvas id='myChart' width='400' height='200'></canvas>
-        <script>
-            const ctx = document.getElementById('myChart');
-            new Chart(ctx, {{
-                type: 'bar',
-                data: {{
-                    labels: [{labels}],
-                    datasets: [{{
-                        label: 'Items Sold',
-                        data: [{values}],
-                        backgroundColor: '#FF9800'
-                    }}]
-                }},
-                options: {{
-                    responsive: true,
-                    scales: {{
-                        y: {{
-                            beginAtZero: true
-                        }}
+<!DOCTYPE html>
+<html>
+<head>
+    <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+</head>
+<body style='display:flex; justify-content:center; align-items:center; height:100%; margin:0;'>
+    <canvas id='myChart' width='400' height='200'></canvas>
+    <script>
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {{
+            type: 'bar',
+            data: {{
+                labels: [{labels}],
+                datasets: [{{
+                    label: 'Items Sold Today',
+                    data: [{values}],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50', '#9C27B0']
+                }}]
+            }},
+            options: {{
+                responsive: true,
+                scales: {{
+                    y: {{
+                        beginAtZero: true
                     }}
                 }}
-            }});
-        </script>
-    </body>
-    </html>";
+            }}
+        }});
+    </script>
+</body>
+</html>";
+
 
             webView2.NavigateToString(html);
             await webView2.EnsureCoreWebView2Async();

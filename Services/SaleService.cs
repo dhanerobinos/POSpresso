@@ -200,6 +200,21 @@ namespace POSpresso.Services
                 .OrderBy(g => g.Date)
                 .ToListAsync();
         }
+        public async Task<List<TodayProductSalesDTO>> GetTodayProductSalesAsync()
+        {
+            using var context = _contextFactory.CreateDbContext();
+            var today = DateTime.Today;
 
+            return await context.SaleDetails
+                .Where(sd => sd.Sales.SaleDate.Date == today)
+                .GroupBy(sd => sd.Products.ProductName)
+                .Select(g => new TodayProductSalesDTO
+                {
+                    ProductName = g.Key,
+                    QuantitySold = g.Sum(x => x.Quantity)
+                })
+                .OrderByDescending(x => x.QuantitySold)
+                .ToListAsync();
+        }
     }
 }
