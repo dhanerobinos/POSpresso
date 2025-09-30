@@ -289,6 +289,7 @@
             Name = "AdminDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Dashboard";
+
             adminPanel.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

@@ -27,8 +27,19 @@ namespace POSpresso.Forms.CashierForms
         private async void CashierDashboardForm_Load(object sender, EventArgs e)
         {
             await LoadCashierDashboardAsync();
+            await LoadDailyDashboardStatsAsync();
         }
+        private async Task LoadDailyDashboardStatsAsync()
+        {
+            DateTime now = DateTime.Now;
 
+            var totalSales = await _saleService.GetDailyTotalSalesAsync(now);
+            var transactions = await _saleService.GetDailyTransactionCountAsync(now);
+            var revenue = await _saleService.GetMonthlyRevenueAsync(now);
+
+            lbTotalSales.Text = $"Total Sales: {totalSales:N2}";
+            lbTransactions.Text = $"Transactions: {transactions}";
+        }
         private async Task LoadCashierDashboardAsync()
         {
             await webView2.EnsureCoreWebView2Async();

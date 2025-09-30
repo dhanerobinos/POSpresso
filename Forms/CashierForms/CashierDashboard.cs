@@ -19,6 +19,11 @@ namespace POSpresso.Forms
             _formLoader = formLoader;
             _salesService = salesService;
 
+            this.Load += (s, e) =>
+            {
+                _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<CashierDashboardForm>());
+            };
+
         }
         public void SetCurrentUser(User user)
         {

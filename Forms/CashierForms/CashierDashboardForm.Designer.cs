@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CashierDashboardForm));
             panel3 = new Panel();
-            lbRevenue = new Label();
             lbTransactions = new Label();
             lbTotalSales = new Label();
             BestSellerPanel = new Panel();
@@ -45,7 +44,6 @@
             // panel3
             // 
             panel3.BackgroundImage = (Image)resources.GetObject("panel3.BackgroundImage");
-            panel3.Controls.Add(lbRevenue);
             panel3.Controls.Add(lbTransactions);
             panel3.Controls.Add(lbTotalSales);
             panel3.Location = new Point(1, 47);
@@ -53,25 +51,13 @@
             panel3.Size = new Size(747, 92);
             panel3.TabIndex = 10;
             // 
-            // lbRevenue
-            // 
-            lbRevenue.AutoSize = true;
-            lbRevenue.BackColor = Color.Transparent;
-            lbRevenue.Font = new Font("Modern No. 20", 14.25F, FontStyle.Bold);
-            lbRevenue.ForeColor = SystemColors.ControlLightLight;
-            lbRevenue.Location = new Point(480, 59);
-            lbRevenue.Name = "lbRevenue";
-            lbRevenue.Size = new Size(87, 21);
-            lbRevenue.TabIndex = 4;
-            lbRevenue.Text = "Revenue:";
-            // 
             // lbTransactions
             // 
             lbTransactions.AutoSize = true;
             lbTransactions.BackColor = Color.Transparent;
             lbTransactions.Font = new Font("Modern No. 20", 14.25F, FontStyle.Bold);
             lbTransactions.ForeColor = SystemColors.ControlLightLight;
-            lbTransactions.Location = new Point(248, 59);
+            lbTransactions.Location = new Point(440, 59);
             lbTransactions.Name = "lbTransactions";
             lbTransactions.Size = new Size(127, 21);
             lbTransactions.TabIndex = 3;
@@ -83,7 +69,7 @@
             lbTotalSales.BackColor = Color.Transparent;
             lbTotalSales.Font = new Font("Modern No. 20", 14.25F, FontStyle.Bold);
             lbTotalSales.ForeColor = SystemColors.ControlLightLight;
-            lbTotalSales.Location = new Point(23, 59);
+            lbTotalSales.Location = new Point(43, 59);
             lbTotalSales.Name = "lbTotalSales";
             lbTotalSales.Size = new Size(113, 21);
             lbTotalSales.TabIndex = 2;
@@ -172,7 +158,6 @@
         #endregion
 
         private Panel panel3;
-        private Label lbRevenue;
         private Label lbTransactions;
         private Label lbTotalSales;
         private Panel BestSellerPanel;

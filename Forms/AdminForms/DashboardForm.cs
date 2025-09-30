@@ -128,6 +128,6 @@ namespace POSpresso.Forms
     </html>";
 
             bestSellerWebView.NavigateToString(bestSellerHtml);
-        }
+        } 
     }
 }

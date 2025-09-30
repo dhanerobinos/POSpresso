@@ -185,21 +185,25 @@ namespace POSpresso.Services
                 ItemsSold = sales.Sum(s => s.SaleDetails.Sum(d => d.Quantity))
             };
         }
-        public async Task<List<DailySalesDTO>> GetDailyItemsSoldAsync(DateTime startDate, DateTime endDate)
-        {
-            using var context = _contextFactory.CreateDbContext();
 
-            return await context.SaleDetails
-                .Where(d => d.Sales.SaleDate >= startDate && d.Sales.SaleDate <= endDate)
-                .GroupBy(d => d.Sales.SaleDate.Date)
-                .Select(g => new DailySalesDTO
-                {
-                    Date = g.Key,
-                    TotalItems = g.Sum(x => x.Quantity) // total count of items today
-                })
-                .OrderBy(g => g.Date)
-                .ToListAsync();
+        public async Task<int> GetDailyTransactionCountAsync(DateTime day)
+        {
+            using var context = await _contextFactory.CreateDbContextAsync();
+
+            return await context.Sales
+                .Where(s => s.SaleDate.Date == day.Date)
+                .CountAsync();
         }
+        public async Task<decimal> GetDailyTotalSalesAsync(DateTime day)
+        {
+            using var context = await _contextFactory.CreateDbContextAsync();
+
+            return await context.Sales
+                .Where(s => s.SaleDate.Date == day.Date)
+                .SumAsync(s => (decimal?)s.Total ?? 0m);
+        }
+
+
         public async Task<List<TodayProductSalesDTO>> GetTodayProductSalesAsync()
         {
             using var context = _contextFactory.CreateDbContext();
