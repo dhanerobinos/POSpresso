@@ -40,6 +40,7 @@
             lbSubtotal = new Label();
             btnCheckout = new FontAwesome.Sharp.IconButton();
             fpReceipt = new FlowLayoutPanel();
+            btnProductStatus = new FontAwesome.Sharp.IconButton();
             cashierPanel.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -47,6 +48,7 @@
             // cashierPanel
             // 
             cashierPanel.BackgroundImage = (Image)resources.GetObject("cashierPanel.BackgroundImage");
+            cashierPanel.Controls.Add(btnProductStatus);
             cashierPanel.Controls.Add(btnLogout);
             cashierPanel.Controls.Add(btnPOS);
             cashierPanel.Controls.Add(btnDashboard);
@@ -187,6 +189,25 @@
             fpReceipt.Size = new Size(252, 454);
             fpReceipt.TabIndex = 12;
             // 
+            // btnProductStatus
+            // 
+            btnProductStatus.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnProductStatus.BackgroundImage = (Image)resources.GetObject("btnProductStatus.BackgroundImage");
+            btnProductStatus.FlatStyle = FlatStyle.Popup;
+            btnProductStatus.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnProductStatus.IconChar = FontAwesome.Sharp.IconChar.Mizuni;
+            btnProductStatus.IconColor = Color.Black;
+            btnProductStatus.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnProductStatus.ImageAlign = ContentAlignment.MiddleLeft;
+            btnProductStatus.Location = new Point(-2, 261);
+            btnProductStatus.Name = "btnProductStatus";
+            btnProductStatus.Size = new Size(184, 78);
+            btnProductStatus.TabIndex = 6;
+            btnProductStatus.Text = "Change Product Status";
+            btnProductStatus.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnProductStatus.UseVisualStyleBackColor = true;
+            btnProductStatus.Click += btnProductStatus_Click;
+            // 
             // CashierDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -219,5 +240,6 @@
         private FontAwesome.Sharp.IconButton btnCheckout;
         private FlowLayoutPanel fpReceipt;
         private FontAwesome.Sharp.IconButton btnDashboard;
+        private FontAwesome.Sharp.IconButton btnProductStatus;
     }
 }

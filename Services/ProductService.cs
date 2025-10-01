@@ -130,5 +130,15 @@ public class ProductService : IProductService
             })
             .ToListAsync();
     }
+    public async Task UpdateProductStatusAsync(int productId, ProductStatus newStatus)
+    {
+        using var context = _contextFactory.CreateDbContext();
+
+        var product = await context.Products.FindAsync(productId);
+        if (product == null) return;
+
+        product.ProductStatus = newStatus;
+        await context.SaveChangesAsync();
+    }
 
 }

@@ -140,5 +140,10 @@ namespace POSpresso.Forms
         {
             _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<CashierDashboardForm>());
         }
+
+        private void btnProductStatus_Click(object sender, EventArgs e)
+        {
+            _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<ProductStatusForm>());
+        }
     }
 }

@@ -33,7 +33,7 @@ namespace POSpresso.Forms
         private void btnMediumAdd_Click(object sender, EventArgs e)
         {
             _mediumQty++;
-            lblMediumQty.Text = _mediumQty.ToString();   
+            lblMediumQty.Text = _mediumQty.ToString();
         }
 
         private void btnMediumMinus_Click(object sender, EventArgs e)
@@ -100,5 +100,10 @@ namespace POSpresso.Forms
         }
 
         private void btnCancel_Click(object sender, EventArgs e) => Close();
+
+        private void lblLargeQty_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

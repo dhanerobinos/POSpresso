@@ -17,5 +17,6 @@ namespace POSpresso.Interfaces
         Task UpdateProductAsync(ProductDTO productDto);
         Task<bool> DeleteProductAsync(int productId);
         ProductDTO GetProductDTO(Products product);
+
     }
 }

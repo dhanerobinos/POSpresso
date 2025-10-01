@@ -64,6 +64,7 @@ namespace POSpresso
                     services.AddTransient<SalesReportForm>();
                     services.AddTransient<DashboardForm>();
                     services.AddTransient<CashierDashboardForm>();
+                    services.AddTransient<ProductStatusForm>();
                 })
                 .Build();
             ServiceProvider = host.Services;

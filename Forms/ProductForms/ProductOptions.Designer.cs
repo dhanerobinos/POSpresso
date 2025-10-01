@@ -52,6 +52,7 @@
             pbProduct.SizeMode = PictureBoxSizeMode.StretchImage;
             pbProduct.TabIndex = 0;
             pbProduct.TabStop = false;
+
             // 
             // lbProductName
             // 
@@ -62,6 +63,7 @@
             lbProductName.Size = new Size(74, 21);
             lbProductName.TabIndex = 1;
             lbProductName.Text = "Product:";
+
             // 
             // lnMedium
             // 
@@ -72,6 +74,7 @@
             lnMedium.Size = new Size(78, 21);
             lnMedium.TabIndex = 5;
             lnMedium.Text = "Medium:";
+          
             // 
             // lbLarge
             // 
@@ -82,6 +85,7 @@
             lbLarge.Size = new Size(56, 21);
             lbLarge.TabIndex = 6;
             lbLarge.Text = "Large:";
+    
             // 
             // btnMediumMinus
             // 
@@ -144,6 +148,7 @@
             lbPrice.Size = new Size(50, 21);
             lbPrice.TabIndex = 14;
             lbPrice.Text = "Price:";
+         
             // 
             // lblMediumQty
             // 
@@ -154,6 +159,7 @@
             lblMediumQty.Size = new Size(23, 25);
             lblMediumQty.TabIndex = 15;
             lblMediumQty.Text = "0";
+        
             // 
             // lblLargeQty
             // 
@@ -164,6 +170,7 @@
             lblLargeQty.Size = new Size(23, 25);
             lblLargeQty.TabIndex = 16;
             lblLargeQty.Text = "0";
+            lblLargeQty.Click += lblLargeQty_Click;
             // 
             // btnLargeMinus
             // 
