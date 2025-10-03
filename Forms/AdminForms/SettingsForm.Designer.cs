@@ -32,14 +32,12 @@
             btnGeneralSettings = new FontAwesome.Sharp.IconButton();
             panel1 = new Panel();
             panel2 = new Panel();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
-            iconButton2 = new FontAwesome.Sharp.IconButton();
             iconButton3 = new FontAwesome.Sharp.IconButton();
-            panel3 = new Panel();
-            label2 = new Label();
+            btnDiscounts = new FontAwesome.Sharp.IconButton();
+            btnPaymentMethods = new FontAwesome.Sharp.IconButton();
+            SettingsMainPanel = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -64,6 +62,7 @@
             btnGeneralSettings.TabIndex = 1;
             btnGeneralSettings.Text = "General";
             btnGeneralSettings.UseVisualStyleBackColor = true;
+            btnGeneralSettings.Click += btnGeneralSettings_Click;
             // 
             // panel1
             // 
@@ -76,39 +75,13 @@
             // panel2
             // 
             panel2.Controls.Add(iconButton3);
-            panel2.Controls.Add(iconButton2);
-            panel2.Controls.Add(iconButton1);
+            panel2.Controls.Add(btnDiscounts);
+            panel2.Controls.Add(btnPaymentMethods);
             panel2.Controls.Add(btnGeneralSettings);
             panel2.Location = new Point(22, 85);
             panel2.Name = "panel2";
             panel2.Size = new Size(712, 67);
             panel2.TabIndex = 3;
-            // 
-            // iconButton1
-            // 
-            iconButton1.FlatStyle = FlatStyle.Flat;
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            iconButton1.IconColor = Color.Black;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.Location = new Point(155, 15);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Size = new Size(99, 40);
-            iconButton1.TabIndex = 2;
-            iconButton1.Text = "General";
-            iconButton1.UseVisualStyleBackColor = true;
-            // 
-            // iconButton2
-            // 
-            iconButton2.FlatStyle = FlatStyle.Flat;
-            iconButton2.IconChar = FontAwesome.Sharp.IconChar.None;
-            iconButton2.IconColor = Color.Black;
-            iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton2.Location = new Point(279, 15);
-            iconButton2.Name = "iconButton2";
-            iconButton2.Size = new Size(99, 40);
-            iconButton2.TabIndex = 3;
-            iconButton2.Text = "General";
-            iconButton2.UseVisualStyleBackColor = true;
             // 
             // iconButton3
             // 
@@ -123,30 +96,45 @@
             iconButton3.Text = "General";
             iconButton3.UseVisualStyleBackColor = true;
             // 
-            // panel3
+            // btnDiscounts
             // 
-            panel3.Controls.Add(label2);
-            panel3.Location = new Point(22, 158);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(712, 438);
-            panel3.TabIndex = 3;
+            btnDiscounts.FlatStyle = FlatStyle.Flat;
+            btnDiscounts.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnDiscounts.IconColor = Color.Black;
+            btnDiscounts.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnDiscounts.Location = new Point(279, 15);
+            btnDiscounts.Name = "btnDiscounts";
+            btnDiscounts.Size = new Size(99, 40);
+            btnDiscounts.TabIndex = 3;
+            btnDiscounts.Text = "Discounts";
+            btnDiscounts.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // btnPaymentMethods
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(268, 16);
-            label2.Name = "label2";
-            label2.Size = new Size(141, 45);
-            label2.TabIndex = 1;
-            label2.Text = "Settings";
+            btnPaymentMethods.FlatStyle = FlatStyle.Flat;
+            btnPaymentMethods.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnPaymentMethods.IconColor = Color.Black;
+            btnPaymentMethods.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnPaymentMethods.Location = new Point(155, 15);
+            btnPaymentMethods.Name = "btnPaymentMethods";
+            btnPaymentMethods.Size = new Size(99, 40);
+            btnPaymentMethods.TabIndex = 2;
+            btnPaymentMethods.Text = "Payment Methods";
+            btnPaymentMethods.UseVisualStyleBackColor = true;
+            // 
+            // SettingsMainPanel
+            // 
+            SettingsMainPanel.Location = new Point(22, 158);
+            SettingsMainPanel.Name = "SettingsMainPanel";
+            SettingsMainPanel.Size = new Size(712, 438);
+            SettingsMainPanel.TabIndex = 3;
             // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(765, 620);
-            Controls.Add(panel3);
+            Controls.Add(SettingsMainPanel);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -155,8 +143,6 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -167,9 +153,8 @@
         private Panel panel1;
         private Panel panel2;
         private FontAwesome.Sharp.IconButton iconButton3;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private Panel panel3;
-        private Label label2;
+        private FontAwesome.Sharp.IconButton btnDiscounts;
+        private FontAwesome.Sharp.IconButton btnPaymentMethods;
+        private Panel SettingsMainPanel;
     }
 }

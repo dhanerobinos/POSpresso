@@ -61,7 +61,7 @@ namespace POSpresso.Forms
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-
+            _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<SettingsForm>());
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
