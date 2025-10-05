@@ -121,6 +121,7 @@
             btnPaymentMethods.TabIndex = 2;
             btnPaymentMethods.Text = "Payment Methods";
             btnPaymentMethods.UseVisualStyleBackColor = true;
+            btnPaymentMethods.Click += btnPaymentMethods_Click;
             // 
             // SettingsMainPanel
             // 

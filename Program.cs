@@ -67,6 +67,7 @@ namespace POSpresso
                     services.AddTransient<ProductStatusForm>();
                     services.AddTransient<SettingsForm>();
                     services.AddTransient<GeneralSettingsForm>();
+                    services.AddTransient<PaymentMethodForm>();
                 })
                 .Build();
             ServiceProvider = host.Services;

@@ -1,15 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using POSpresso.Forms.CashierForms;
+using POSpresso.Forms.AdminForms;
 using POSpresso.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace POSpresso.Forms.AdminForms
 {
@@ -25,6 +17,11 @@ namespace POSpresso.Forms.AdminForms
         private void btnGeneralSettings_Click(object sender, EventArgs e)
         {
             _formLoader.LoadForm(SettingsMainPanel, Program.ServiceProvider.GetRequiredService<GeneralSettingsForm>());
+        }
+
+        private void btnPaymentMethods_Click(object sender, EventArgs e)
+        {
+            _formLoader.LoadForm(SettingsMainPanel, Program.ServiceProvider.GetRequiredService<PaymentMethodForm>());
         }
     }
 }
