@@ -30,14 +30,15 @@
         {
             label1 = new Label();
             label2 = new Label();
-            textBox1 = new TextBox();
+            tbCafeName = new TextBox();
             label3 = new Label();
-            textBox3 = new TextBox();
+            tbContactNo = new TextBox();
             label4 = new Label();
-            textBox4 = new TextBox();
+            tbAddress = new TextBox();
             label5 = new Label();
             pictureBox1 = new PictureBox();
-            linkLabel1 = new LinkLabel();
+            lbLogo = new LinkLabel();
+            btnSave = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -61,12 +62,12 @@
             label2.TabIndex = 1;
             label2.Text = "Cafe Name:";
             // 
-            // textBox1
+            // tbCafeName
             // 
-            textBox1.Location = new Point(179, 127);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(152, 23);
-            textBox1.TabIndex = 2;
+            tbCafeName.Location = new Point(179, 127);
+            tbCafeName.Name = "tbCafeName";
+            tbCafeName.Size = new Size(152, 23);
+            tbCafeName.TabIndex = 2;
             // 
             // label3
             // 
@@ -80,12 +81,12 @@
             label3.TabIndex = 3;
             label3.Text = "Logo:";
             // 
-            // textBox3
+            // tbContactNo
             // 
-            textBox3.Location = new Point(179, 214);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(152, 23);
-            textBox3.TabIndex = 8;
+            tbContactNo.Location = new Point(179, 214);
+            tbContactNo.Name = "tbContactNo";
+            tbContactNo.Size = new Size(152, 23);
+            tbContactNo.TabIndex = 8;
             // 
             // label4
             // 
@@ -97,12 +98,12 @@
             label4.TabIndex = 7;
             label4.Text = "Contact No:";
             // 
-            // textBox4
+            // tbAddress
             // 
-            textBox4.Location = new Point(179, 185);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(152, 23);
-            textBox4.TabIndex = 6;
+            tbAddress.Location = new Point(179, 185);
+            tbAddress.Name = "tbAddress";
+            tbAddress.Size = new Size(152, 23);
+            tbAddress.TabIndex = 6;
             // 
             // label5
             // 
@@ -122,31 +123,46 @@
             pictureBox1.TabIndex = 9;
             pictureBox1.TabStop = false;
             // 
-            // linkLabel1
+            // lbLogo
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.LinkColor = Color.DarkCyan;
-            linkLabel1.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
-            linkLabel1.Location = new Point(179, 163);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(88, 15);
-            linkLabel1.TabIndex = 10;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = " ( Browse here )";
+            lbLogo.AutoSize = true;
+            lbLogo.LinkColor = Color.DarkCyan;
+            lbLogo.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
+            lbLogo.Location = new Point(179, 163);
+            lbLogo.Name = "lbLogo";
+            lbLogo.Size = new Size(88, 15);
+            lbLogo.TabIndex = 10;
+            lbLogo.TabStop = true;
+            lbLogo.Text = " ( Browse here )";
+            // 
+            // btnSave
+            // 
+            btnSave.BackColor = Color.ForestGreen;
+            btnSave.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnSave.IconColor = Color.Black;
+            btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnSave.Location = new Point(179, 256);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(152, 23);
+            btnSave.TabIndex = 11;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // GeneralSettingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(712, 438);
-            Controls.Add(linkLabel1);
+            Controls.Add(btnSave);
+            Controls.Add(lbLogo);
             Controls.Add(pictureBox1);
-            Controls.Add(textBox3);
+            Controls.Add(tbContactNo);
             Controls.Add(label4);
-            Controls.Add(textBox4);
+            Controls.Add(tbAddress);
             Controls.Add(label5);
             Controls.Add(label3);
-            Controls.Add(textBox1);
+            Controls.Add(tbCafeName);
             Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
@@ -161,13 +177,14 @@
 
         private Label label1;
         private Label label2;
-        private TextBox textBox1;
+        private TextBox tbCafeName;
         private Label label3;
-        private TextBox textBox3;
+        private TextBox tbContactNo;
         private Label label4;
-        private TextBox textBox4;
+        private TextBox tbAddress;
         private Label label5;
         private PictureBox pictureBox1;
-        private LinkLabel linkLabel1;
+        private LinkLabel lbLogo;
+        private FontAwesome.Sharp.IconButton btnSave;
     }
 }

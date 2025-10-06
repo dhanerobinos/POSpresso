@@ -42,6 +42,7 @@ namespace POSpresso
                     services.AddScoped<ManageCategoryService>();
                     services.AddScoped<SaleService>();
                     services.AddScoped<DashboardService>();
+                    services.AddScoped<SettingsService>();
 
 
                     //Interfaces
@@ -50,7 +51,9 @@ namespace POSpresso
                     services.AddScoped<IProductService, ProductService>();
                     services.AddScoped<IManageCategoryService, ManageCategoryService>();
                     services.AddScoped<ISaleService, SaleService>();
-                
+                    services.AddScoped<ISettingsService, SettingsService>();
+
+
 
 
                     // Register forms

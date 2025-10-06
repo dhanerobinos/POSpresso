@@ -13,6 +13,8 @@ namespace POSpresso.Data
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Sales> Sales { get; set; }
         public DbSet<SaleDetails> SaleDetails { get; set; }
+        public DbSet<SettingsEntity> SettingsEntity { get; set; }
+
 
 
 

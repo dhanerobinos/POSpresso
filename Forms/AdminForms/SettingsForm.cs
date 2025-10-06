@@ -8,6 +8,7 @@ namespace POSpresso.Forms.AdminForms
     public partial class SettingsForm : Form
     {
         private readonly FormLoaderService _formLoader;
+        private readonly SettingsService _settingsService;  
         public SettingsForm(FormLoaderService formLoader)
         {
             InitializeComponent();
