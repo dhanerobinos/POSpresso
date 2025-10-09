@@ -218,11 +218,10 @@
             // dtgvPaymentMethods
             // 
             dtgvPaymentMethods.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvPaymentMethods.Location = new Point(12, 85);
+            dtgvPaymentMethods.Location = new Point(12, 70);
             dtgvPaymentMethods.Name = "dtgvPaymentMethods";
             dtgvPaymentMethods.Size = new Size(296, 353);
             dtgvPaymentMethods.TabIndex = 24;
-
             // 
             // label7
             // 
