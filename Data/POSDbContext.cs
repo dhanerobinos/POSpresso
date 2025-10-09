@@ -15,6 +15,7 @@ namespace POSpresso.Data
         public DbSet<SaleDetails> SaleDetails { get; set; }
         public DbSet<SettingsEntity> SettingsEntity { get; set; }
 
+        public DbSet<PaymentMethod> PaymentMethod { get; set; }
 
 
 

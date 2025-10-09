@@ -43,6 +43,7 @@ namespace POSpresso
                     services.AddScoped<SaleService>();
                     services.AddScoped<DashboardService>();
                     services.AddScoped<SettingsService>();
+                    services.AddScoped<PaymentMethodService>();
 
 
                     //Interfaces
@@ -52,6 +53,7 @@ namespace POSpresso
                     services.AddScoped<IManageCategoryService, ManageCategoryService>();
                     services.AddScoped<ISaleService, SaleService>();
                     services.AddScoped<ISettingsService, SettingsService>();
+                    services.AddScoped<IPaymentMethodService, PaymentMethodService>();
 
 
 
