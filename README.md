@@ -35,7 +35,7 @@ It helped me integrate EF Core into a real-world application, structure a WinFor
 ## Features
 - Manage products and categories (with images).
 - Role-based user management (Admin & Cashier).
-- POS functionality.
+- POS functionality
 - Responsive UI with async/await.
 - CRUD operations with EF Core.
 - Clean architecture with DTOs & services.
