@@ -38,12 +38,8 @@
             lbLogo = new LinkLabel();
             btnSave = new FontAwesome.Sharp.IconButton();
             panel1 = new Panel();
-            label8 = new Label();
-            comboBox2 = new ComboBox();
-            label1 = new Label();
-            cbStatus = new ComboBox();
             label6 = new Label();
-            cbType = new ComboBox();
+            cbStatus = new ComboBox();
             dtgvPaymentMethods = new DataGridView();
             label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -55,7 +51,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(44, 67);
+            label2.Location = new Point(6, 82);
             label2.Name = "label2";
             label2.Size = new Size(144, 25);
             label2.TabIndex = 24;
@@ -63,7 +59,7 @@
             // 
             // tbPaymentName
             // 
-            tbPaymentName.Location = new Point(194, 67);
+            tbPaymentName.Location = new Point(156, 82);
             tbPaymentName.Name = "tbPaymentName";
             tbPaymentName.Size = new Size(152, 23);
             tbPaymentName.TabIndex = 25;
@@ -74,7 +70,7 @@
             label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ImageAlign = ContentAlignment.TopLeft;
             label3.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
-            label3.Location = new Point(44, 95);
+            label3.Location = new Point(6, 110);
             label3.Name = "label3";
             label3.Size = new Size(63, 25);
             label3.TabIndex = 26;
@@ -84,7 +80,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(44, 125);
+            label5.Location = new Point(6, 140);
             label5.Name = "label5";
             label5.Size = new Size(119, 25);
             label5.TabIndex = 27;
@@ -92,7 +88,7 @@
             // 
             // tbAddress
             // 
-            tbAddress.Location = new Point(194, 125);
+            tbAddress.Location = new Point(156, 140);
             tbAddress.Name = "tbAddress";
             tbAddress.Size = new Size(152, 23);
             tbAddress.TabIndex = 28;
@@ -101,14 +97,14 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(52, 154);
+            label4.Location = new Point(14, 169);
             label4.Name = "label4";
             label4.Size = new Size(0, 25);
             label4.TabIndex = 29;
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(352, 65);
+            pictureBox1.Location = new Point(314, 80);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(109, 112);
             pictureBox1.TabIndex = 31;
@@ -119,7 +115,7 @@
             lbLogo.AutoSize = true;
             lbLogo.LinkColor = Color.DarkCyan;
             lbLogo.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
-            lbLogo.Location = new Point(194, 103);
+            lbLogo.Location = new Point(156, 118);
             lbLogo.Name = "lbLogo";
             lbLogo.Size = new Size(88, 15);
             lbLogo.TabIndex = 32;
@@ -132,21 +128,18 @@
             btnSave.IconChar = FontAwesome.Sharp.IconChar.None;
             btnSave.IconColor = Color.Black;
             btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnSave.Location = new Point(194, 257);
+            btnSave.Location = new Point(156, 212);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(152, 23);
             btnSave.TabIndex = 33;
             btnSave.Text = "Add";
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // panel1
             // 
-            panel1.Controls.Add(label8);
-            panel1.Controls.Add(comboBox2);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(cbStatus);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(cbType);
+            panel1.Controls.Add(cbStatus);
             panel1.Controls.Add(btnSave);
             panel1.Controls.Add(lbLogo);
             panel1.Controls.Add(pictureBox1);
@@ -156,72 +149,41 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(tbPaymentName);
             panel1.Controls.Add(label2);
-            panel1.Location = new Point(314, 85);
+            panel1.Location = new Point(356, 85);
             panel1.Name = "panel1";
-            panel1.Size = new Size(474, 353);
+            panel1.Size = new Size(432, 353);
             panel1.TabIndex = 23;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(52, 212);
-            label8.Name = "label8";
-            label8.Size = new Size(72, 25);
-            label8.TabIndex = 39;
-            label8.Text = "Status:";
-            // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(194, 217);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(121, 23);
-            comboBox2.TabIndex = 38;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(52, 183);
-            label1.Name = "label1";
-            label1.Size = new Size(72, 25);
-            label1.TabIndex = 37;
-            label1.Text = "Status:";
-            // 
-            // cbStatus
-            // 
-            cbStatus.FormattingEnabled = true;
-            cbStatus.Location = new Point(194, 188);
-            cbStatus.Name = "cbStatus";
-            cbStatus.Size = new Size(121, 23);
-            cbStatus.TabIndex = 36;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(52, 154);
+            label6.Location = new Point(14, 169);
             label6.Name = "label6";
             label6.Size = new Size(72, 25);
             label6.TabIndex = 35;
             label6.Text = "Status:";
             // 
-            // cbType
+            // cbStatus
             // 
-            cbType.FormattingEnabled = true;
-            cbType.Location = new Point(194, 159);
-            cbType.Name = "cbType";
-            cbType.Size = new Size(121, 23);
-            cbType.TabIndex = 34;
+            cbStatus.FormattingEnabled = true;
+            cbStatus.Location = new Point(156, 174);
+            cbStatus.Name = "cbStatus";
+            cbStatus.Size = new Size(152, 23);
+            cbStatus.TabIndex = 34;
             // 
             // dtgvPaymentMethods
             // 
+            dtgvPaymentMethods.AllowUserToAddRows = false;
+            dtgvPaymentMethods.AllowUserToDeleteRows = false;
             dtgvPaymentMethods.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvPaymentMethods.Location = new Point(12, 70);
             dtgvPaymentMethods.Name = "dtgvPaymentMethods";
-            dtgvPaymentMethods.Size = new Size(296, 353);
+            dtgvPaymentMethods.ReadOnly = true;
+            dtgvPaymentMethods.RowHeadersVisible = false;
+            dtgvPaymentMethods.Size = new Size(329, 353);
             dtgvPaymentMethods.TabIndex = 24;
+            dtgvPaymentMethods.CellContentClick += dtgvPaymentMethods_CellContentClick;
             // 
             // label7
             // 
@@ -265,12 +227,8 @@
         private FontAwesome.Sharp.IconButton btnSave;
         private Panel panel1;
         private Label label6;
-        private ComboBox cbType;
+        private ComboBox cbStatus;
         private DataGridView dtgvPaymentMethods;
         private Label label7;
-        private Label label8;
-        private ComboBox comboBox2;
-        private Label label1;
-        private ComboBox cbStatus;
     }
 }
