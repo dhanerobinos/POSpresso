@@ -15,7 +15,8 @@ namespace POSpresso.Forms
         private readonly FormLoaderService _formLoader;
         private readonly ProductService _productService;
         private readonly SaleService _salesService;
-        public AdminDashboard(FormLoaderService formLoader, ProductService productService, SaleService salesService)
+        private readonly PaymentMethodService _paymentMethodService;
+        public AdminDashboard(FormLoaderService formLoader, ProductService productService, SaleService salesService, PaymentMethodService paymentMethodService)
         {
             InitializeComponent();
             _formLoader = formLoader;
@@ -26,6 +27,7 @@ namespace POSpresso.Forms
             {
                 _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<DashboardForm>());
             };
+            _paymentMethodService = paymentMethodService;
         }
         public void SetCurrentUser(User user)
         {

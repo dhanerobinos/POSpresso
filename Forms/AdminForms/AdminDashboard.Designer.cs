@@ -223,9 +223,9 @@
             btnCheckout.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCheckout.IconSize = 40;
             btnCheckout.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCheckout.Location = new Point(104, 117);
+            btnCheckout.Location = new Point(21, 117);
             btnCheckout.Name = "btnCheckout";
-            btnCheckout.Size = new Size(148, 39);
+            btnCheckout.Size = new Size(231, 40);
             btnCheckout.TabIndex = 5;
             btnCheckout.Text = "Checkout";
             btnCheckout.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -289,7 +289,6 @@
             Name = "AdminDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Dashboard";
-
             adminPanel.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

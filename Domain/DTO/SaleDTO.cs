@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POSpresso.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,9 @@ namespace POSpresso.Domain.DTO
         public decimal Tax { get; set; }
         public decimal Total { get; set; }
         public List<SaleDetailsDTO> Items { get; set; } = new();
+        public PaymentMethod? PaymentMethod { get; set; }    
+        public decimal AmountPaid { get; set; }
+        public decimal Change { get; set; }
     }
     public class SaleDetailsDTO
     {

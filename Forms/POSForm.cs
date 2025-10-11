@@ -81,10 +81,5 @@ namespace POSpresso.Forms
         {
             await LoadCategoriesAsync();
         }
-
-        private void flpCategories_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
