@@ -20,6 +20,10 @@ namespace POSpresso.Domain.Entities
         public int UserId { get; set; }
         public User User { get; set; }
 
+        //FK to PaymentMethod
+        public int Id { get; set; } // FK
+        public PaymentMethod PaymentMethod { get; set; }
+
         // Navigation collection (line items)
         public ICollection<SaleDetails> SaleDetails { get; set; } = new List<SaleDetails>();
     }

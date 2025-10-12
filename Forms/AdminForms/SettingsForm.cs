@@ -22,7 +22,7 @@ namespace POSpresso.Forms.AdminForms
 
         private void btnPaymentMethods_Click(object sender, EventArgs e)
         {
-            _formLoader.LoadForm(SettingsMainPanel, Program.ServiceProvider.GetRequiredService<PaymentMethodForm>());
+            _formLoader.LoadForm(SettingsMainPanel, Program.ServiceProvider.GetRequiredService<ManagePaymentMethodForm>());
         }
     }
 }

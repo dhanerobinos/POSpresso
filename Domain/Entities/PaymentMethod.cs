@@ -10,8 +10,8 @@ namespace POSpresso.Domain.Entities
     {
         public int Id { get; set; }
         public string MethodName { get; set; } = string.Empty;
-        public string Type { get; set; } = string.Empty;
         public bool IsEnabled { get; set; } = true;
         public bool IsDefault { get; set; } = false;
+        public byte[]? PaymentImage { get; set; }
     }
 }

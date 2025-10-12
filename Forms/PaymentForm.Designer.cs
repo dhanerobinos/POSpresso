@@ -28,19 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
+            panelPayment = new Panel();
+            label1 = new Label();
             SuspendLayout();
+            // 
+            // panelPayment
+            // 
+            panelPayment.Location = new Point(12, 66);
+            panelPayment.Name = "panelPayment";
+            panelPayment.Size = new Size(336, 210);
+            panelPayment.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(70, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(220, 32);
+            label1.TabIndex = 1;
+            label1.Text = "Payment Methods";
             // 
             // PaymentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(360, 288);
+            Controls.Add(label1);
+            Controls.Add(panelPayment);
             FormBorderStyle = FormBorderStyle.None;
             Name = "PaymentForm";
             Text = "PaymentForm";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Panel panelPayment;
+        private Label label1;
     }
 }

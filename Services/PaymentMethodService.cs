@@ -23,9 +23,9 @@ namespace POSpresso.Services
                 {
                     Id = p.Id,
                     MethodName = p.MethodName,
-                    Type = p.Type,
                     IsEnabled = p.IsEnabled,
-                    IsDefault = p.IsDefault
+                    IsDefault = p.IsDefault,
+                    PaymentImage =p.PaymentImage
                 })
                 .ToListAsync();
         }
@@ -41,9 +41,9 @@ namespace POSpresso.Services
             {
                 Id = entity.Id,
                 MethodName = entity.MethodName,
-                Type = entity.Type,
                 IsEnabled = entity.IsEnabled,
-                IsDefault = entity.IsDefault
+                IsDefault = entity.IsDefault,
+                PaymentImage = entity.PaymentImage
             };
         }
 
@@ -54,9 +54,9 @@ namespace POSpresso.Services
             var entity = new PaymentMethod
             {
                 MethodName = dto.MethodName,
-                Type = dto.Type,
                 IsEnabled = dto.IsEnabled,
-                IsDefault = dto.IsDefault
+                IsDefault = dto.IsDefault,
+                PaymentImage = dto.PaymentImage
             };
 
             context.PaymentMethod.Add(entity);
@@ -71,9 +71,11 @@ namespace POSpresso.Services
             if (entity == null) return;
 
             entity.MethodName = dto.MethodName;
-            entity.Type = dto.Type;
             entity.IsEnabled = dto.IsEnabled;
             entity.IsDefault = dto.IsDefault;
+
+            if (dto.PaymentImage != null)
+                entity.PaymentImage = dto.PaymentImage;
 
             await context.SaveChangesAsync();
         }

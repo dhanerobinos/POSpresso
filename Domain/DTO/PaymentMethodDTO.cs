@@ -13,5 +13,6 @@ namespace POSpresso.Domain.DTO
         public string Type { get; set; } = string.Empty;
         public bool IsEnabled { get; set; }
         public bool IsDefault { get; set; }
+        public byte[]? PaymentImage { get; set; }
     }
 }
