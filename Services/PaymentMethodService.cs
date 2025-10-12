@@ -21,7 +21,7 @@ namespace POSpresso.Services
             return await context.PaymentMethod
                 .Select(p => new PaymentMethodDTO
                 {
-                    Id = p.Id,
+                    PaymentMethodId = p.PaymentMethodId,
                     MethodName = p.MethodName,
                     IsEnabled = p.IsEnabled,
                     IsDefault = p.IsDefault,
@@ -39,7 +39,7 @@ namespace POSpresso.Services
 
             return new PaymentMethodDTO
             {
-                Id = entity.Id,
+                PaymentMethodId = entity.PaymentMethodId,
                 MethodName = entity.MethodName,
                 IsEnabled = entity.IsEnabled,
                 IsDefault = entity.IsDefault,
@@ -67,7 +67,7 @@ namespace POSpresso.Services
         {
             using var context = _contextFactory.CreateDbContext();
 
-            var entity = await context.PaymentMethod.FindAsync(dto.Id);
+            var entity = await context.PaymentMethod.FindAsync(dto.PaymentMethodId);
             if (entity == null) return;
 
             entity.MethodName = dto.MethodName;

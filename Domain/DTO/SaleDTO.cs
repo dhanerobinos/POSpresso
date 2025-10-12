@@ -14,7 +14,8 @@ namespace POSpresso.Domain.DTO
         public decimal Tax { get; set; }
         public decimal Total { get; set; }
         public List<SaleDetailsDTO> Items { get; set; } = new();
-        public PaymentMethod? PaymentMethod { get; set; }    
+        public PaymentMethod? PaymentMethod { get; set; }
+        public int PaymentMethodId { get; set; }
         public decimal AmountPaid { get; set; }
         public decimal Change { get; set; }
     }

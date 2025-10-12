@@ -21,7 +21,7 @@ namespace POSpresso.Domain.Entities
         public User User { get; set; }
 
         //FK to PaymentMethod
-        public int Id { get; set; } // FK
+        public int PaymentMethodId { get; set; } // FK
         public PaymentMethod PaymentMethod { get; set; }
 
         // Navigation collection (line items)

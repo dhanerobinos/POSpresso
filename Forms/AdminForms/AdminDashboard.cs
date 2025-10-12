@@ -15,7 +15,10 @@ namespace POSpresso.Forms
         private readonly FormLoaderService _formLoader;
         private readonly ProductService _productService;
         private readonly SaleService _salesService;
-        private readonly PaymentMethodService _paymentMethodService;
+        private readonly IPaymentMethodService _paymentService;
+
+        public int? SelectedPaymentMethodId { get; private set; }
+
         public AdminDashboard(FormLoaderService formLoader, ProductService productService, SaleService salesService, PaymentMethodService paymentMethodService)
         {
             InitializeComponent();
@@ -27,7 +30,8 @@ namespace POSpresso.Forms
             {
                 _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<DashboardForm>());
             };
-            _paymentMethodService = paymentMethodService;
+            _paymentService = paymentMethodService;
+
         }
         public void SetCurrentUser(User user)
         {
@@ -122,8 +126,6 @@ namespace POSpresso.Forms
             foreach (var control in fpReceipt.Controls.OfType<CartItemControl>())
             {
                 subtotal += control.SubTotal;
-
-                // Map UI CartItem → DTO
                 saleItems.Add(new SaleDetailsDTO
                 {
                     ProductId = control.ProductId,
@@ -134,26 +136,42 @@ namespace POSpresso.Forms
                 });
             }
 
-            decimal tax = subtotal * 0.12m; // sample 12% VAT
+            decimal tax = subtotal * 0.12m;
             decimal grandTotal = subtotal + tax;
 
-            var saleDto = new SaleDTO
+            // 🔹 STEP 1: Show payment form
+            using (var paymentForm = new PaymentForm(_paymentService))
             {
-                UserId = _user?.UserId ?? 0, // Logged-in user
-                Subtotal = subtotal,
-                Tax = tax,
-                Total = grandTotal,
-                Items = saleItems
-            };
+                var result = paymentForm.ShowDialog();
 
-            // Save to DB via service
-            await _salesService.SaveSaleAsync(saleDto);
+                if (result != DialogResult.OK || paymentForm.SelectedPaymentMethodId == null)
+                {
+                    MessageBox.Show("Checkout canceled or no payment method selected.");
+                    return;
+                }
 
-            var receiptForm = new ReceiptForm(saleDto);
-            receiptForm.ShowDialog();
+                // 🔹 STEP 2: Proceed with sale
+                var saleDto = new SaleDTO
+                {
+                    UserId = _user?.UserId ?? 0,
+                    Subtotal = subtotal,
+                    Tax = tax,
+                    Total = grandTotal,
+                    PaymentMethodId = paymentForm.SelectedPaymentMethodId.Value,
+                    Items = saleItems
+                };
 
-            // Clear cart
-            fpReceipt.Controls.Clear();
+                // Save asynchronously
+                await _salesService.SaveSaleAsync(saleDto);
+
+                // 🔹 STEP 3: Print receipt
+                var receiptForm = new ReceiptForm(saleDto);
+                receiptForm.ShowDialog();
+
+                // 🔹 STEP 4: Clear cart
+                fpReceipt.Controls.Clear();
+                UpdateTotals();
+            }
         }
 
         private void fpReceipt_Paint(object sender, PaintEventArgs e)

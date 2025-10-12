@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DocumentFormat.OpenXml.InkML;
+using Microsoft.EntityFrameworkCore;
 using POSpresso.Data;
-using POSpresso.Domain.Entities;
 using POSpresso.Domain.DTO;
+using POSpresso.Domain.Entities;
 using POSpresso.Interfaces;
 
 namespace POSpresso.Services
@@ -50,6 +51,7 @@ namespace POSpresso.Services
                 Tax = Math.Round(dto.Tax, 2),
                 Total = Math.Round(dto.Total, 2),
                 SaleDate = DateTime.Now,
+                PaymentMethodId = dto.PaymentMethodId,
                 SaleDetails = dto.Items.Select(i => new SaleDetails
                 {
                     ProductId = i.ProductId,
@@ -60,17 +62,11 @@ namespace POSpresso.Services
                 }).ToList()
             };
 
-            try
-            {
-                _context.Sales.Add(sale);
-                await _context.SaveChangesAsync();
-                return sale.SaleId;
-            }
-            catch (DbUpdateException ex)
-            {
-                Console.WriteLine(ex.InnerException?.Message);
-                throw;
-            }
+            // Save to database
+            _context.Sales.Add(sale); 
+            await _context.SaveChangesAsync();
+
+            return sale.SaleId;
         }
 
         public async Task<List<Sales>> GetSalesAsync(DateTime? start = null, DateTime? end = null)

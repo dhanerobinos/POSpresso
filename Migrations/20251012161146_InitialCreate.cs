@@ -12,6 +12,22 @@ namespace POSpresso.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "PaymentMethod",
+                columns: table => new
+                {
+                    PaymentMethodId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MethodName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    IsDefault = table.Column<bool>(type: "bit", nullable: false),
+                    PaymentImage = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentMethod", x => x.PaymentMethodId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProductCategories",
                 columns: table => new
                 {
@@ -24,6 +40,21 @@ namespace POSpresso.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductCategories", x => x.CategoryID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SettingsEntity",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CafeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Contact = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SettingsEntity", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -82,11 +113,18 @@ namespace POSpresso.Migrations
                     SubTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Tax = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    PaymentMethodId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sales", x => x.SaleId);
+                    table.ForeignKey(
+                        name: "FK_Sales_PaymentMethod_PaymentMethodId",
+                        column: x => x.PaymentMethodId,
+                        principalTable: "PaymentMethod",
+                        principalColumn: "PaymentMethodId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Sales_User_UserId",
                         column: x => x.UserId,
@@ -103,10 +141,10 @@ namespace POSpresso.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SaleId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    Size = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Size = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SubTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    SubTotal = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -141,6 +179,11 @@ namespace POSpresso.Migrations
                 column: "SaleId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Sales_PaymentMethodId",
+                table: "Sales",
+                column: "PaymentMethodId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Sales_UserId",
                 table: "Sales",
                 column: "UserId");
@@ -153,6 +196,9 @@ namespace POSpresso.Migrations
                 name: "SaleDetails");
 
             migrationBuilder.DropTable(
+                name: "SettingsEntity");
+
+            migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
@@ -160,6 +206,9 @@ namespace POSpresso.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProductCategories");
+
+            migrationBuilder.DropTable(
+                name: "PaymentMethod");
 
             migrationBuilder.DropTable(
                 name: "User");

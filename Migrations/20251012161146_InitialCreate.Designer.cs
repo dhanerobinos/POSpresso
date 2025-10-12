@@ -12,8 +12,8 @@ using POSpresso.Data;
 namespace POSpresso.Migrations
 {
     [DbContext(typeof(POSDbContext))]
-    [Migration("20250901154440_MakeSaleDetailSizeNullable")]
-    partial class MakeSaleDetailSizeNullable
+    [Migration("20251012161146_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,32 @@ namespace POSpresso.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("POSpresso.Domain.Entities.PaymentMethod", b =>
+                {
+                    b.Property<int>("PaymentMethodId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentMethodId"));
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MethodName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("PaymentImage")
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("PaymentMethodId");
+
+                    b.ToTable("PaymentMethod");
+                });
 
             modelBuilder.Entity("POSpresso.Domain.Entities.ProductCategory", b =>
                 {
@@ -138,6 +164,9 @@ namespace POSpresso.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaleId"));
 
+                    b.Property<int>("PaymentMethodId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("SaleDate")
                         .HasColumnType("datetime2");
 
@@ -155,9 +184,36 @@ namespace POSpresso.Migrations
 
                     b.HasKey("SaleId");
 
+                    b.HasIndex("PaymentMethodId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Sales");
+                });
+
+            modelBuilder.Entity("POSpresso.Domain.Entities.SettingsEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CafeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Contact")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SettingsEntity");
                 });
 
             modelBuilder.Entity("POSpresso.Domain.Entities.User", b =>
@@ -237,11 +293,19 @@ namespace POSpresso.Migrations
 
             modelBuilder.Entity("POSpresso.Domain.Entities.Sales", b =>
                 {
+                    b.HasOne("POSpresso.Domain.Entities.PaymentMethod", "PaymentMethod")
+                        .WithMany()
+                        .HasForeignKey("PaymentMethodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("POSpresso.Domain.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("PaymentMethod");
 
                     b.Navigation("User");
                 });

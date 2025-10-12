@@ -99,6 +99,22 @@ namespace POSpresso
                     db.SaveChanges();
                 }
             }
+            using (var scope = host.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<POSDbContext>();
+
+                if (!context.PaymentMethod.Any())
+                {
+                    context.PaymentMethod.Add(new PaymentMethod
+                    {
+                        MethodName = "Cash",
+                        IsEnabled = true,
+                        IsDefault = true
+                    });
+                    context.SaveChanges();
+                }
+            }
+
 
             var loginForm = host.Services.GetRequiredService<LoginForm>();
             Application.Run(loginForm);

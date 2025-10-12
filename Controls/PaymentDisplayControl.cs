@@ -1,4 +1,5 @@
-﻿using POSpresso.Domain.DTO;
+﻿using FontAwesome.Sharp;
+using POSpresso.Domain.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,21 @@ namespace POSpresso.Controls
             InitializeComponent();
             this.Click += Card_Click;
             lbPaymentOption.Click += Card_Click;
+        }
+        public void SetPayment(PaymentMethodDTO payment)
+        {
+            _payment = payment;
+            lbPaymentOption.Text = payment.MethodName; 
+            if (payment.PaymentImage != null && payment.PaymentImage.Length > 0)
+            {
+                using var ms = new MemoryStream(payment.PaymentImage);
+                pbPaymentLogo.Image = Image.FromStream(ms);
+            }
+            else
+            {
+                pbPaymentLogo.Image = null;
+            }
+            ;
         }
         private void Card_Click(object? sender, EventArgs e)
         {

@@ -29,25 +29,37 @@
         private void InitializeComponent()
         {
             lbPaymentOption = new Label();
+            pbPaymentLogo = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pbPaymentLogo).BeginInit();
             SuspendLayout();
             // 
             // lbPaymentOption
             // 
             lbPaymentOption.AutoSize = true;
-            lbPaymentOption.Location = new Point(43, 26);
+            lbPaymentOption.Location = new Point(107, 34);
             lbPaymentOption.Name = "lbPaymentOption";
             lbPaymentOption.Size = new Size(38, 15);
             lbPaymentOption.TabIndex = 0;
             lbPaymentOption.Text = "label1";
+            // 
+            // pbPaymentLogo
+            // 
+            pbPaymentLogo.Location = new Point(5, 9);
+            pbPaymentLogo.Name = "pbPaymentLogo";
+            pbPaymentLogo.Size = new Size(74, 68);
+            pbPaymentLogo.TabIndex = 1;
+            pbPaymentLogo.TabStop = false;
             // 
             // PaymentDisplayControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(pbPaymentLogo);
             Controls.Add(lbPaymentOption);
             Name = "PaymentDisplayControl";
-            Size = new Size(131, 67);
+            Size = new Size(164, 85);
+            ((System.ComponentModel.ISupportInitialize)pbPaymentLogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -55,5 +67,6 @@
         #endregion
 
         private Label lbPaymentOption;
+        private PictureBox pbPaymentLogo;
     }
 }

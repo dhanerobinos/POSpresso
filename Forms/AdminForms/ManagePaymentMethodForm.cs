@@ -106,7 +106,7 @@ namespace POSpresso.Forms
                 }
 
                 dtgvPaymentMethods.Rows.Add(
-                    m.Id,
+                    m.PaymentMethodId,
                     paymentImage,
                     m.MethodName,
                     m.IsEnabled ? "Active" : "Inactive",
@@ -166,7 +166,7 @@ namespace POSpresso.Forms
 
             var dto = new PaymentMethodDTO
             {
-                Id = _editingId ?? 0,
+                PaymentMethodId = _editingId ?? 0,
                 MethodName = tbPaymentName.Text.Trim(),
                 IsEnabled = cbStatus.Text == "Active",          //Save status
                 PaymentImage = selectedPaymentImage
