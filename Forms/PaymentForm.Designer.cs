@@ -58,6 +58,7 @@
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "PaymentForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "PaymentForm";
             Load += PaymentForm_Load;
             ResumeLayout(false);

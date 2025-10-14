@@ -181,6 +181,7 @@
             pbLogo.Location = new Point(192, 183);
             pbLogo.Name = "pbLogo";
             pbLogo.Size = new Size(82, 60);
+            pbLogo.SizeMode = PictureBoxSizeMode.AutoSize;
             pbLogo.TabIndex = 37;
             pbLogo.TabStop = false;
             // 

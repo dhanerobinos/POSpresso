@@ -36,15 +36,16 @@
             // lbPaymentOption
             // 
             lbPaymentOption.AutoSize = true;
-            lbPaymentOption.Location = new Point(107, 34);
+            lbPaymentOption.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbPaymentOption.Location = new Point(85, 28);
             lbPaymentOption.Name = "lbPaymentOption";
-            lbPaymentOption.Size = new Size(38, 15);
+            lbPaymentOption.Size = new Size(72, 30);
             lbPaymentOption.TabIndex = 0;
             lbPaymentOption.Text = "label1";
             // 
             // pbPaymentLogo
             // 
-            pbPaymentLogo.Location = new Point(5, 9);
+            pbPaymentLogo.Location = new Point(5, 7);
             pbPaymentLogo.Name = "pbPaymentLogo";
             pbPaymentLogo.Size = new Size(74, 68);
             pbPaymentLogo.TabIndex = 1;
@@ -58,7 +59,7 @@
             Controls.Add(pbPaymentLogo);
             Controls.Add(lbPaymentOption);
             Name = "PaymentDisplayControl";
-            Size = new Size(164, 85);
+            Size = new Size(200, 80);
             ((System.ComponentModel.ISupportInitialize)pbPaymentLogo).EndInit();
             ResumeLayout(false);
             PerformLayout();

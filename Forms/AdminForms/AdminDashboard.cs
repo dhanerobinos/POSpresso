@@ -114,6 +114,7 @@ namespace POSpresso.Forms
 
         private async void btnCheckout_Click(object sender, EventArgs e)
         {
+
             if (fpReceipt.Controls.Count == 0)
             {
                 MessageBox.Show("No items in the cart.");
@@ -139,7 +140,7 @@ namespace POSpresso.Forms
             decimal tax = subtotal * 0.12m;
             decimal grandTotal = subtotal + tax;
 
-            // 🔹 STEP 1: Show payment form
+            // Show payment selection form
             using (var paymentForm = new PaymentForm(_paymentService))
             {
                 var result = paymentForm.ShowDialog();
@@ -150,7 +151,20 @@ namespace POSpresso.Forms
                     return;
                 }
 
-                // 🔹 STEP 2: Proceed with sale
+                // Confirm payment before saving to DB
+                var selectedPayment = await _paymentService.GetByIdAsync(paymentForm.SelectedPaymentMethodId.Value);
+                using (var confirmPayment = new ConfirmPaymentForm(grandTotal, selectedPayment.MethodName))
+                {
+                    confirmPayment.ShowDialog();
+
+                    if (!confirmPayment.IsConfirmed)
+                    {
+                        MessageBox.Show("Payment not confirmed. Transaction canceled.");
+                        return;
+                    }
+                }
+
+                // Proceed with saving sale
                 var saleDto = new SaleDTO
                 {
                     UserId = _user?.UserId ?? 0,
@@ -161,14 +175,13 @@ namespace POSpresso.Forms
                     Items = saleItems
                 };
 
-                // Save asynchronously
                 await _salesService.SaveSaleAsync(saleDto);
 
-                // 🔹 STEP 3: Print receipt
+                // Show receipt
                 var receiptForm = new ReceiptForm(saleDto);
                 receiptForm.ShowDialog();
 
-                // 🔹 STEP 4: Clear cart
+                // Clear cart
                 fpReceipt.Controls.Clear();
                 UpdateTotals();
             }
