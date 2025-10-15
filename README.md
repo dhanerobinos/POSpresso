@@ -41,4 +41,4 @@ It helped me integrate EF Core into a real-world application, structure a WinFor
 - Clean architecture with DTOs & services.
 - Sales history & reports (daily sales, sales by cashier, top-selling products).
 - Dashboard with charts (visual sales overview and top products) using webview2.
-- Settings management (general,payment options, and discounts).
+- Settings management (general and payment options).
