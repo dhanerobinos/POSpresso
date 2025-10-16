@@ -13,17 +13,20 @@ namespace POSpresso.Forms
         private readonly IServiceProvider _serviceProvider;
         private readonly FormLoaderService _formLoader;
         private readonly SaleService _salesService;
-        public CashierDashboard(FormLoaderService formLoader, SaleService salesService)
+        private readonly IPaymentMethodService _paymentService;
+
+        public int? SelectedPaymentMethodId { get; private set; }
+        public CashierDashboard(FormLoaderService formLoader, SaleService salesService, PaymentMethodService paymentMethodService)
         {
             InitializeComponent();
             _formLoader = formLoader;
             _salesService = salesService;
+            _paymentService = paymentMethodService;
 
             this.Load += (s, e) =>
             {
                 _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<CashierDashboardForm>());
             };
-
         }
         public void SetCurrentUser(User user)
         {
@@ -85,6 +88,7 @@ namespace POSpresso.Forms
 
         private async void btnCheckout_Click(object sender, EventArgs e)
         {
+
             if (fpReceipt.Controls.Count == 0)
             {
                 MessageBox.Show("No items in the cart.");
@@ -97,8 +101,6 @@ namespace POSpresso.Forms
             foreach (var control in fpReceipt.Controls.OfType<CartItemControl>())
             {
                 subtotal += control.SubTotal;
-
-                // Map UI CartItem → DTO
                 saleItems.Add(new SaleDetailsDTO
                 {
                     ProductId = control.ProductId,
@@ -109,33 +111,55 @@ namespace POSpresso.Forms
                 });
             }
 
-            decimal tax = subtotal * 0.12m; // sample 12% VAT
+            decimal tax = subtotal * 0.12m;
             decimal grandTotal = subtotal + tax;
 
-            var saleDto = new SaleDTO
+            // Show payment selection form
+            using (var paymentForm = new PaymentForm(_paymentService))
             {
-                UserId = _user?.UserId ?? 0, // Logged-in user
-                Subtotal = subtotal,
-                Tax = tax,
-                Total = grandTotal,
-                Items = saleItems
-            };
+                var result = paymentForm.ShowDialog();
 
-            // Save to DB via service
-            await _salesService.SaveSaleAsync(saleDto);
+                if (result != DialogResult.OK || paymentForm.SelectedPaymentMethodId == null)
+                {
+                    MessageBox.Show("Checkout canceled or no payment method selected.");
+                    return;
+                }
 
-            var receiptForm = new ReceiptForm(saleDto);
-            receiptForm.ShowDialog();
+                // Confirm payment before saving to DB
+                var selectedPayment = await _paymentService.GetByIdAsync(paymentForm.SelectedPaymentMethodId.Value);
+                using (var confirmPayment = new ConfirmPaymentForm(grandTotal, selectedPayment.MethodName))
+                {
+                    confirmPayment.ShowDialog();
 
-            // Clear cart
-            fpReceipt.Controls.Clear();
+                    if (!confirmPayment.IsConfirmed)
+                    {
+                        MessageBox.Show("Payment not confirmed. Transaction canceled.");
+                        return;
+                    }
+                }
+
+                // Proceed with saving sale
+                var saleDto = new SaleDTO
+                {
+                    UserId = _user?.UserId ?? 0,
+                    Subtotal = subtotal,
+                    Tax = tax,
+                    Total = grandTotal,
+                    PaymentMethodId = paymentForm.SelectedPaymentMethodId.Value,
+                    Items = saleItems
+                };
+
+                await _salesService.SaveSaleAsync(saleDto);
+
+                // Show receipt
+                var receiptForm = new ReceiptForm(saleDto);
+                receiptForm.ShowDialog();
+
+                // Clear cart
+                fpReceipt.Controls.Clear();
+                UpdateTotals();
+            }
         }
-
-        private void iconButton10_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             _formLoader.LoadForm(mainPanel, Program.ServiceProvider.GetRequiredService<CashierDashboardForm>());
