@@ -73,7 +73,7 @@
             ProductsPanel.Controls.Add(tbProductName);
             ProductsPanel.Location = new Point(494, 12);
             ProductsPanel.Name = "ProductsPanel";
-            ProductsPanel.Size = new Size(259, 596);
+            ProductsPanel.Size = new Size(259, 593);
             ProductsPanel.TabIndex = 0;
             ProductsPanel.Visible = false;
             // 
@@ -144,13 +144,13 @@
             // 
             // pbProductImage
             // 
+            pbProductImage.BackColor = Color.Linen;
             pbProductImage.Location = new Point(94, 20);
             pbProductImage.Name = "pbProductImage";
             pbProductImage.Size = new Size(75, 78);
             pbProductImage.SizeMode = PictureBoxSizeMode.StretchImage;
             pbProductImage.TabIndex = 25;
             pbProductImage.TabStop = false;
-
             // 
             // label5
             // 
@@ -254,13 +254,14 @@
             // 
             dtgvProducts.AllowUserToAddRows = false;
             dtgvProducts.AllowUserToDeleteRows = false;
+            dtgvProducts.BackgroundColor = Color.Linen;
             dtgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvProducts.Location = new Point(1, 71);
+            dtgvProducts.Location = new Point(12, 71);
             dtgvProducts.Name = "dtgvProducts";
             dtgvProducts.ReadOnly = true;
             dtgvProducts.RowHeadersVisible = false;
             dtgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dtgvProducts.Size = new Size(487, 534);
+            dtgvProducts.Size = new Size(476, 534);
             dtgvProducts.TabIndex = 1;
             dtgvProducts.CellContentClick += dtgvProducts_CellContentClick;
             // 
@@ -302,6 +303,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(765, 620);
             Controls.Add(btnAddCategory);
             Controls.Add(btnShowProductPanel);

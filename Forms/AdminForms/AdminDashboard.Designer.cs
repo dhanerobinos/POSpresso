@@ -210,7 +210,7 @@
             fpReceipt.Name = "fpReceipt";
             fpReceipt.Size = new Size(256, 463);
             fpReceipt.TabIndex = 3;
-            fpReceipt.Paint += fpReceipt_Paint;
+
             // 
             // btnCheckout
             // 

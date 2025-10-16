@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagePaymentMethodForm));
             dtgvPaymentMethods = new DataGridView();
             label7 = new Label();
             label2 = new Label();
@@ -51,29 +52,34 @@
             // 
             dtgvPaymentMethods.AllowUserToAddRows = false;
             dtgvPaymentMethods.AllowUserToDeleteRows = false;
+            dtgvPaymentMethods.BackgroundColor = Color.Linen;
             dtgvPaymentMethods.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvPaymentMethods.Location = new Point(12, 70);
+            dtgvPaymentMethods.Location = new Point(12, 96);
             dtgvPaymentMethods.Name = "dtgvPaymentMethods";
             dtgvPaymentMethods.ReadOnly = true;
             dtgvPaymentMethods.RowHeadersVisible = false;
-            dtgvPaymentMethods.Size = new Size(329, 353);
+            dtgvPaymentMethods.Size = new Size(329, 503);
             dtgvPaymentMethods.TabIndex = 24;
             dtgvPaymentMethods.CellContentClick += dtgvPaymentMethods_CellContentClick;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(245, 9);
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = SystemColors.ButtonFace;
+            label7.Location = new Point(215, 19);
             label7.Name = "label7";
-            label7.Size = new Size(220, 32);
+            label7.Size = new Size(321, 47);
             label7.TabIndex = 36;
             label7.Text = "Payment Methods";
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
             label2.Location = new Point(6, 82);
             label2.Name = "label2";
             label2.Size = new Size(144, 25);
@@ -90,7 +96,9 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
             label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.White;
             label5.Location = new Point(6, 120);
             label5.Name = "label5";
             label5.Size = new Size(119, 25);
@@ -138,7 +146,9 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
             label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.White;
             label6.Location = new Point(6, 149);
             label6.Name = "label6";
             label6.Size = new Size(72, 25);
@@ -147,6 +157,7 @@
             // 
             // panel1
             // 
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
             panel1.Controls.Add(lbLogo);
             panel1.Controls.Add(pbLogo);
             panel1.Controls.Add(label3);
@@ -188,7 +199,9 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.White;
             label3.ImageAlign = ContentAlignment.TopLeft;
             label3.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
             label3.Location = new Point(8, 196);
@@ -201,6 +214,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(765, 620);
             Controls.Add(label7);
             Controls.Add(dtgvPaymentMethods);

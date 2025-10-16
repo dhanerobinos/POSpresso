@@ -186,10 +186,5 @@ namespace POSpresso.Forms
                 UpdateTotals();
             }
         }
-
-        private void fpReceipt_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

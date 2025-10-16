@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SalesReportForm));
             lbFrom = new Label();
             dtpStart = new DateTimePicker();
             btnGenerateReport = new FontAwesome.Sharp.IconButton();
@@ -91,6 +92,7 @@
             // 
             // dtgvSalesReport
             // 
+            dtgvSalesReport.BackgroundColor = Color.Linen;
             dtgvSalesReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvSalesReport.Location = new Point(81, 88);
             dtgvSalesReport.Name = "dtgvSalesReport";
@@ -161,6 +163,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(765, 620);
             Controls.Add(btnExport);
             Controls.Add(panel1);

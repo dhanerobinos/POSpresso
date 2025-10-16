@@ -28,28 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(POSForm));
             flpCategories = new FlowLayoutPanel();
             flpProducts = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // flpCategories
             // 
-            flpCategories.Location = new Point(0, 0);
+            flpCategories.BackColor = Color.Linen;
+            flpCategories.Location = new Point(12, 12);
             flpCategories.Name = "flpCategories";
-            flpCategories.Size = new Size(145, 620);
+            flpCategories.Size = new Size(133, 596);
             flpCategories.TabIndex = 0;
             // 
             // flpProducts
             // 
-            flpProducts.Location = new Point(151, 0);
+            flpProducts.BackColor = Color.Linen;
+            flpProducts.Location = new Point(151, 12);
             flpProducts.Name = "flpProducts";
-            flpProducts.Size = new Size(612, 620);
+            flpProducts.Size = new Size(602, 596);
             flpProducts.TabIndex = 1;
             // 
             // POSForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(765, 620);
             Controls.Add(flpProducts);
             Controls.Add(flpCategories);

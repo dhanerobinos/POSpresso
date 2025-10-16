@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             label1 = new Label();
             btnGeneralSettings = new FontAwesome.Sharp.IconButton();
             panel1 = new Panel();
             panel2 = new Panel();
-            iconButton3 = new FontAwesome.Sharp.IconButton();
-            btnDiscounts = new FontAwesome.Sharp.IconButton();
             btnPaymentMethods = new FontAwesome.Sharp.IconButton();
             SettingsMainPanel = new Panel();
             panel1.SuspendLayout();
@@ -52,20 +51,23 @@
             // 
             // btnGeneralSettings
             // 
+            btnGeneralSettings.BackColor = Color.Tan;
             btnGeneralSettings.FlatStyle = FlatStyle.Flat;
+            btnGeneralSettings.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnGeneralSettings.IconChar = FontAwesome.Sharp.IconChar.None;
             btnGeneralSettings.IconColor = Color.Black;
             btnGeneralSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnGeneralSettings.Location = new Point(27, 15);
+            btnGeneralSettings.Location = new Point(141, 15);
             btnGeneralSettings.Name = "btnGeneralSettings";
-            btnGeneralSettings.Size = new Size(99, 40);
+            btnGeneralSettings.Size = new Size(174, 40);
             btnGeneralSettings.TabIndex = 1;
             btnGeneralSettings.Text = "General";
-            btnGeneralSettings.UseVisualStyleBackColor = true;
+            btnGeneralSettings.UseVisualStyleBackColor = false;
             btnGeneralSettings.Click += btnGeneralSettings_Click;
             // 
             // panel1
             // 
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
             panel1.Controls.Add(label1);
             panel1.Location = new Point(22, 12);
             panel1.Name = "panel1";
@@ -74,8 +76,7 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(iconButton3);
-            panel2.Controls.Add(btnDiscounts);
+            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
             panel2.Controls.Add(btnPaymentMethods);
             panel2.Controls.Add(btnGeneralSettings);
             panel2.Location = new Point(22, 85);
@@ -83,44 +84,20 @@
             panel2.Size = new Size(712, 67);
             panel2.TabIndex = 3;
             // 
-            // iconButton3
-            // 
-            iconButton3.FlatStyle = FlatStyle.Flat;
-            iconButton3.IconChar = FontAwesome.Sharp.IconChar.None;
-            iconButton3.IconColor = Color.Black;
-            iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton3.Location = new Point(393, 15);
-            iconButton3.Name = "iconButton3";
-            iconButton3.Size = new Size(99, 40);
-            iconButton3.TabIndex = 4;
-            iconButton3.Text = "General";
-            iconButton3.UseVisualStyleBackColor = true;
-            // 
-            // btnDiscounts
-            // 
-            btnDiscounts.FlatStyle = FlatStyle.Flat;
-            btnDiscounts.IconChar = FontAwesome.Sharp.IconChar.None;
-            btnDiscounts.IconColor = Color.Black;
-            btnDiscounts.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnDiscounts.Location = new Point(279, 15);
-            btnDiscounts.Name = "btnDiscounts";
-            btnDiscounts.Size = new Size(99, 40);
-            btnDiscounts.TabIndex = 3;
-            btnDiscounts.Text = "Discounts";
-            btnDiscounts.UseVisualStyleBackColor = true;
-            // 
             // btnPaymentMethods
             // 
+            btnPaymentMethods.BackColor = Color.PaleGreen;
             btnPaymentMethods.FlatStyle = FlatStyle.Flat;
+            btnPaymentMethods.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPaymentMethods.IconChar = FontAwesome.Sharp.IconChar.None;
             btnPaymentMethods.IconColor = Color.Black;
             btnPaymentMethods.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnPaymentMethods.Location = new Point(155, 15);
+            btnPaymentMethods.Location = new Point(374, 15);
             btnPaymentMethods.Name = "btnPaymentMethods";
-            btnPaymentMethods.Size = new Size(99, 40);
+            btnPaymentMethods.Size = new Size(174, 40);
             btnPaymentMethods.TabIndex = 2;
             btnPaymentMethods.Text = "Payment Methods";
-            btnPaymentMethods.UseVisualStyleBackColor = true;
+            btnPaymentMethods.UseVisualStyleBackColor = false;
             btnPaymentMethods.Click += btnPaymentMethods_Click;
             // 
             // SettingsMainPanel
@@ -134,6 +111,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Linen;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(765, 620);
             Controls.Add(SettingsMainPanel);
             Controls.Add(panel2);
@@ -153,8 +132,6 @@
         private FontAwesome.Sharp.IconButton btnGeneralSettings;
         private Panel panel1;
         private Panel panel2;
-        private FontAwesome.Sharp.IconButton iconButton3;
-        private FontAwesome.Sharp.IconButton btnDiscounts;
         private FontAwesome.Sharp.IconButton btnPaymentMethods;
         private Panel SettingsMainPanel;
     }
